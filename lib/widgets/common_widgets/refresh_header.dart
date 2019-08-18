@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 ///
 /// @created by 文景睿
-/// description:自定义刷新头布局
+/// description:自定义刷新头布局,继承了Header
 ///
 class RefreshHeader extends ClassicalHeader {
   @override
