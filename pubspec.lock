@@ -211,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.8"
+  fish_redux:
+    dependency: "direct main"
+    description:
+      name: fish_redux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.5"
   fixnum:
     dependency: transitive
     description:
