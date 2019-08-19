@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_douban/pages/book_music_tab_pages/movie_page.dart';
+import 'package:flutter_douban/pages/book_music_pages/movie_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
