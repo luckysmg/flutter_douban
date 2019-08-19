@@ -21,14 +21,14 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.2.0"
   boolean_selector:
     dependency: transitive
     description:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.4"
   bubble_tab_indicator:
     dependency: "direct main"
     description:
@@ -161,7 +161,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1+1"
+    version: "2.0.6"
   csslib:
     dependency: transitive
     description:
@@ -210,7 +210,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.8+1"
+    version: "5.0.8"
   fixnum:
     dependency: transitive
     description:
@@ -447,7 +447,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.6"
   mime:
     dependency: transitive
     description:
@@ -496,7 +496,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.4"
+    version: "1.6.2"
   path_provider:
     dependency: transitive
     description:
@@ -510,14 +510,14 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0+1"
+    version: "1.7.0"
   platform:
     dependency: transitive
     description:
       name: platform
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.0"
   pool:
     dependency: transitive
     description:
@@ -531,7 +531,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.11"
+    version: "3.0.9"
   provider:
     dependency: "direct main"
     description:
@@ -559,7 +559,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.3"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -662,7 +662,7 @@ packages:
       name: string_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.4"
   synchronized:
     dependency: transitive
     description:
@@ -760,7 +760,7 @@ packages:
       name: web_socket_channel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.15"
+    version: "1.0.13"
   yaml:
     dependency: transitive
     description:

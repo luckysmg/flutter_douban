@@ -21,7 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - camera (from `.symlinks/plugins/camera/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
   camera:
     :path: ".symlinks/plugins/camera/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   flutter_tab_bar_no_ripple:
     :path: ".symlinks/plugins/flutter_tab_bar_no_ripple/ios"
   fluttertoast:
@@ -53,7 +53,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   camera: d56ad165545ae5a0ffb892376033760a969c68c8
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
