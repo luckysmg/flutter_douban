@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_douban/pages/book_music_tab_pages/kou_bei_page.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +19,7 @@ class MovieCards extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _bar(),
-          _cards(),
+          _cards(context),
         ],
       ),
     );
@@ -38,19 +40,20 @@ class MovieCards extends StatelessWidget {
           ),
         ),
         Container(
-            margin: EdgeInsets.only(right: 10),
-            child: Text(
-              '全部 29 >',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(21),
-                fontWeight: FontWeight.w500,
-              ),
-            )),
+          margin: EdgeInsets.only(right: 10),
+          child: Text(
+            '全部 29 >',
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(21),
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ],
     );
   }
 
-  Widget _cards() {
+  Widget _cards(context) {
     return Container(
       height: 280,
       child: EasyRefresh(
@@ -59,21 +62,21 @@ class MovieCards extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           children: <Widget>[
-            _cardItem('card1.png'),
-            _cardItem('card3.jpg'),
-            _cardItem('card2.jpg')
+            _cardItem('card1.png', context),
+            _cardItem('card3.jpg', context),
+            _cardItem('card2.jpg', context)
           ],
         ),
       ),
     );
   }
 
-  Widget _cardItem(String assetName) {
+  Widget _cardItem(String assetName, BuildContext context) {
     return GestureDetector(
       onTap: () {
         switch (assetName) {
           case 'card1.png':
-            ToastUtil.show('进入口碑电影页面');
+            NavigatorUtil.push(context, KouBeiPage(), rootNavigator: true);
             break;
           case 'card3.jpg':
             ToastUtil.show('进入Top250电影页面');

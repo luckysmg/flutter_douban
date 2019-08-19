@@ -7,13 +7,12 @@ import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'model/book_music_view_tab_index_model.dart';
 import 'pages/main_five_pages/book_music_page.dart';
-import 'pages/main_five_pages/market_page.dart';
-import 'pages/main_five_pages/person_page.dart';
 import 'pages/main_five_pages/group_page.dart';
 import 'pages/main_five_pages/home.dart';
-
-import 'model/book_music_view_tab_index_model.dart';
+import 'pages/main_five_pages/market_page.dart';
+import 'pages/main_five_pages/person_page.dart';
 
 ///
 /// @created by 文景睿

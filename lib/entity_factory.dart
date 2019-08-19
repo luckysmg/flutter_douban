@@ -1,4 +1,5 @@
 import 'package:flutter_douban/entity/comment_entity.dart';
+import 'package:flutter_douban/entity/kou_bei_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_bottom_list_entity.dart';
@@ -11,6 +12,8 @@ class EntityFactory {
       return null;
     } else if (T.toString() == "CommentEntity") {
       return CommentEntity.fromJson(json) as T;
+    } else if (T.toString() == "KouBeiEntity") {
+      return KouBeiEntity.fromJson(json) as T;
     } else if (T.toString() == "MovieLongCommentEntity") {
       return MovieLongCommentEntity.fromJson(json) as T;
     } else if (T.toString() == "MovieDetailEntity") {
