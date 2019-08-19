@@ -16,6 +16,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="flutter_douban"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
