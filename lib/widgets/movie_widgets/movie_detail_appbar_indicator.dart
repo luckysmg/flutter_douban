@@ -21,38 +21,42 @@ class MovieDetailAppbarIndicator extends StatefulWidget {
 class MovieDetailAppbarIndicatorState
     extends State<MovieDetailAppbarIndicator> {
   double opacity = 0.0;
+  double currentOffsetY = 40.0;
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: opacity,
-      child: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            ///图片
-            Container(
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
-              child: Image.network(
-                this.widget.data.images.small,
-                height: 30,
+    ///这里是平移动画+透明度渐变动画
+    return Transform.translate(
+      offset: Offset(0, currentOffsetY),
+      child: Opacity(
+        opacity: opacity,
+        child: Container(
+          alignment: Alignment.center,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ///图片
+              Container(
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
+                child: Image.network(
+                  this.widget.data.images.small,
+                  height: 30,
+                ),
               ),
-            ),
 
-            ///文字
-            Container(
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _movieName(),
-                  _starScore(),
-                ],
+              ///文字
+              Container(
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _movieName(),
+                    _starScore(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -101,8 +105,9 @@ class MovieDetailAppbarIndicatorState
     );
   }
 
-  void updateOpacity(opacity) {
+  void updateOpacity(opacity, offsetY) {
     this.opacity = opacity;
+    this.currentOffsetY = offsetY;
     setState(() {});
   }
 }

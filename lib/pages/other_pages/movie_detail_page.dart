@@ -45,6 +45,15 @@ class MovieDetailPage extends StatelessWidget {
   MovieLongCommentEntity _longCommentData;
   BuildContext context;
 
+  ///appbar交互的判断临界offset
+  var edgeOffsetY = 200.0;
+
+  ///appbar上退出按钮右边的电影指示的初始化透明度
+  var indicatorOpacity = 0.0;
+
+  ///appbar上标题的初始化透明度
+  var titleOpacity = 1.0;
+
   MovieDetailPage({Key key, this.movieId}) : super(key: key);
 
   @override
@@ -72,7 +81,7 @@ class MovieDetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: _bgColor,
       appBar: AppBar(
-        backgroundColor: _bgColor,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         title: Stack(
           children: <Widget>[
@@ -334,20 +343,23 @@ class MovieDetailPage extends StatelessWidget {
     );
   }
 
-  ///滚动监听交互
+  ///滚动监听动画交互
   void scrollListenerEffect() {
-    var indicatorOpacity = 0.0;
-    var titleOpacity = 1.0;
     double offset = scrollController.offset;
     if (offset <= 0) {
       offset = 0;
-    } else if (offset >= 200) {
-      offset = 200;
+    } else if (offset >= edgeOffsetY) {
+      offset = edgeOffsetY;
     }
-    indicatorOpacity = offset / 200;
-    titleOpacity = (200 - offset) / 200;
+
+    ///这里用初中数学知识就可以算出来
+    indicatorOpacity = offset / edgeOffsetY;
+    titleOpacity = (edgeOffsetY - offset) / edgeOffsetY;
+    double indicatorOffsetY = -(1 / 5) * offset + 40;
+
+    ///拿到所有数据之后利用key更新状态
     _movieDetailAppbarIndicatorStateKey.currentState
-        .updateOpacity(indicatorOpacity);
+        .updateOpacity(indicatorOpacity, indicatorOffsetY);
     _movieDetailAppbarTitleStateKey.currentState.updateOpacity(titleOpacity);
   }
 }
