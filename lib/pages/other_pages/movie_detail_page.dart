@@ -9,6 +9,8 @@ import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/empty_movie_detail_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/buy_ticket_view.dart';
+import 'package:flutter_douban/widgets/movie_widgets/movie_detail_appbar_indicator.dart';
+import 'package:flutter_douban/widgets/movie_widgets/movie_detail_appbar_title.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_detail_drawer.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_score_footer.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_score_header.dart';
@@ -17,6 +19,7 @@ import 'package:flutter_douban/widgets/movie_widgets/performing_people_view.dart
 import 'package:flutter_douban/widgets/movie_widgets/record_card_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/score_star_detail.dart';
 import 'package:flutter_douban/widgets/movie_widgets/trailers_photo_view.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +32,11 @@ class MovieDetailPage extends StatelessWidget {
   final String movieId;
   final Color _textColor = Colors.white;
   final Color _bgColor = Colors.blueGrey[600];
-  final ScrollController _controller = new ScrollController();
+  final ScrollController scrollController = ScrollController();
+  final GlobalKey<MovieDetailAppbarIndicatorState>
+      _movieDetailAppbarIndicatorStateKey = GlobalKey();
+  final GlobalKey<MovieDetailAppbarTitleState> _movieDetailAppbarTitleStateKey =
+      GlobalKey();
 
   ///电影详情数据实体
   MovieDetailEntity _detailData;
@@ -42,8 +49,6 @@ class MovieDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _controller.addListener(() {});
-
     return ChangeNotifierProvider(
       builder: (context) => MovieDetailModel(movieId: this.movieId),
       child: Consumer<MovieDetailModel>(
@@ -69,9 +74,21 @@ class MovieDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bgColor,
         elevation: 0.0,
-        title: Text(
-          '电影',
-          style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+        title: Stack(
+          children: <Widget>[
+            Align(
+                alignment: Alignment.center,
+                child: MovieDetailAppbarTitle(
+                  key: _movieDetailAppbarTitleStateKey,
+                )),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: MovieDetailAppbarIndicator(
+                key: _movieDetailAppbarIndicatorStateKey,
+                data: _detailData,
+              ),
+            )
+          ],
         ),
         centerTitle: true,
         leading: _backIcon(context),
@@ -96,7 +113,6 @@ class MovieDetailPage extends StatelessWidget {
       },
       child: Container(
         height: 50,
-        width: 50,
         child: Icon(Icons.arrow_back_ios),
       ),
     );
@@ -110,43 +126,40 @@ class MovieDetailPage extends StatelessWidget {
 
   ///主体布局（除开抽屉的布局）
   Widget _mainBody() {
+    ///这里添加刷新布局是因为需要回弹效果，flutter自带的回弹效果有动画bug
     return Container(
-      child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10),
-        child: ListView(
-          controller: _controller,
-          physics: BouncingScrollPhysics(),
-          children: <Widget>[
-            _movieDetailHeader(),
-            RecordCardView(),
-            _scoreCard(),
-            BuyTicketView(),
-            BriefIntroductionView(text: _detailData.summary),
-            PerformingPeopleView(
-              dataList: _detailData.casts,
-            ),
-            TrailersPhotoView(
-              data: _detailData,
-            ),
-            MovieShortCommentView(data: _detailData),
-            _placeHolder(),
-          ],
-        ),
+      margin: EdgeInsets.only(left: 10, right: 10),
+      child: EasyRefresh.custom(
+        ///这里因为用了custom构造器(推荐），所以里面子元素内部都需要SliverToBoxAdapter包裹
+        scrollController: scrollController..addListener(scrollListenerEffect),
+        slivers: <Widget>[
+          _movieDetailHeader(),
+          RecordCardView(),
+          _scoreCard(),
+          BuyTicketView(),
+          BriefIntroductionView(text: _detailData.summary),
+          PerformingPeopleView(dataList: _detailData.casts),
+          TrailersPhotoView(data: _detailData),
+          MovieShortCommentView(data: _detailData),
+          _placeHolder(),
+        ],
       ),
     );
   }
 
   ///电影详情页面最上方的头布局
   Widget _movieDetailHeader() {
-    return Container(
-      margin: EdgeInsets.only(top: 20),
-      height: ScreenUtil().setHeight(250),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _movieImage(),
-          _movieInfo(),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: 20),
+        height: ScreenUtil().setHeight(250),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _movieImage(),
+            _movieInfo(),
+          ],
+        ),
       ),
     );
   }
@@ -277,25 +290,27 @@ class MovieDetailPage extends StatelessWidget {
 
   ///豆瓣评分的card
   Widget _scoreCard() {
-    return Container(
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-      height: ScreenUtil().setHeight(210),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Color.fromARGB(120, 0, 0, 0),
-      ),
-      child: Column(
-        children: <Widget>[
-          MovieScoreHeader(),
-          ScoreStarDetail(
-            rating: _detailData.rating,
-          ),
-          _divider(),
-          MovieScoreFooter(
-            lookedCount: _detailData.collectCount,
-            wishCount: _detailData.wishCount,
-          ),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
+        height: ScreenUtil().setHeight(210),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color.fromARGB(120, 0, 0, 0),
+        ),
+        child: Column(
+          children: <Widget>[
+            MovieScoreHeader(),
+            ScoreStarDetail(
+              rating: _detailData.rating,
+            ),
+            _divider(),
+            MovieScoreFooter(
+              lookedCount: _detailData.collectCount,
+              wishCount: _detailData.wishCount,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -312,8 +327,27 @@ class MovieDetailPage extends StatelessWidget {
 
   ///下方占位布局，是为了配合下方的抽屉布局
   Widget _placeHolder() {
-    return SizedBox(
-      height: ScreenUtil().setHeight(120),
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: ScreenUtil().setHeight(120),
+      ),
     );
+  }
+
+  ///滚动监听交互
+  void scrollListenerEffect() {
+    var indicatorOpacity = 0.0;
+    var titleOpacity = 1.0;
+    double offset = scrollController.offset;
+    if (offset <= 0) {
+      offset = 0;
+    } else if (offset >= 200) {
+      offset = 200;
+    }
+    indicatorOpacity = offset / 200;
+    titleOpacity = (200 - offset) / 200;
+    _movieDetailAppbarIndicatorStateKey.currentState
+        .updateOpacity(indicatorOpacity);
+    _movieDetailAppbarTitleStateKey.currentState.updateOpacity(titleOpacity);
   }
 }

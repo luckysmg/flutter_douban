@@ -16,12 +16,14 @@ class TrailersPhotoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          _header(),
-          _horizontalList(context),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            _header(),
+            _horizontalList(context),
+          ],
+        ),
       ),
     );
   }

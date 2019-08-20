@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 /// description:常量类
 ///
 class Constants {
+  ///这个在判断是否是调试模式时候用，在release模式下设置为false即可
+  ///eg：网络请求会打印请求到的数据，如果release模式也打印会耗费性能，所以只在debug模式下打印网络信息
+  static const bool isDebug = false;
+
   static const String BASE_URL = 'https://douban.uieee.com/v2';
   static const String ASSETS_IMG = 'assets/images/';
   static final Color APP_THEME_COLOR = Colors.green[600];

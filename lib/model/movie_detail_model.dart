@@ -28,7 +28,7 @@ class MovieDetailModel extends BaseModel {
         hasData = true;
 
         ///模拟请求网络的延迟
-        await Future.delayed(Duration(milliseconds: 1000));
+        await Future.delayed(Duration(milliseconds: 800));
         notifyListeners();
       });
     });

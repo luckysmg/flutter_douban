@@ -30,44 +30,41 @@ class MovieView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh(
+    return EasyRefresh.custom(
       enableControlFinishLoad: true,
-      enableControlFinishRefresh: true,
+      enableControlFinishRefresh: false,
       header: RefreshHeader(),
       footer: RefreshFooter(),
       controller: easyRefreshController,
+      scrollController: scrollController,
       onRefresh: () async {
         await _tabGridKey.currentState.refreshData();
         await _hotMovieKey.currentState.refreshData();
-        easyRefreshController.finishRefresh();
+        await Future.delayed(Duration(milliseconds: 1000));
+        easyRefreshController.finishRefresh(success: true, noMore: false);
       },
       onLoad: () async {
-        Future.delayed(Duration(milliseconds: 200), () {
-          easyRefreshController.finishLoad(success: true, noMore: true);
-        });
+        await Future.delayed(Duration(milliseconds: 500));
+        easyRefreshController.finishLoad(success: true, noMore: true);
       },
-      child: CustomScrollView(
-        controller: scrollController,
-        shrinkWrap: true,
-        slivers: <Widget>[
-          SliverToBoxAdapter(child: _headerView()),
-          SliverToBoxAdapter(child: _introductionImage('introduction.jpg')),
-          SliverToBoxAdapter(child: TabGrid(key: _tabGridKey)),
-          SliverToBoxAdapter(child: HotMovieGrid(key: _hotMovieKey)),
-          SliverToBoxAdapter(child: _introductionImage('introduction2.png')),
-          SliverToBoxAdapter(child: MovieCards()),
-          SliverToBoxAdapter(child: _introductionImage('shanghai.png')),
-          SliverToBoxAdapter(child: _forYouRecommendText()),
-          SliverPersistentHeader(
-            pinned: true,
-            floating: true,
-            delegate: SliverAppBarDelegate(
-                maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
-          ),
-          SliverToBoxAdapter(child: _moviePoster()),
-          SliverToBoxAdapter(child: MovieBottomList()),
-        ],
-      ),
+      slivers: <Widget>[
+        SliverToBoxAdapter(child: _headerView()),
+        SliverToBoxAdapter(child: _introductionImage('introduction.jpg')),
+        SliverToBoxAdapter(child: TabGrid(key: _tabGridKey)),
+        SliverToBoxAdapter(child: HotMovieGrid(key: _hotMovieKey)),
+        SliverToBoxAdapter(child: _introductionImage('introduction2.png')),
+        SliverToBoxAdapter(child: MovieCards()),
+        SliverToBoxAdapter(child: _introductionImage('shanghai.png')),
+        SliverToBoxAdapter(child: _forYouRecommendText()),
+        SliverPersistentHeader(
+          pinned: true,
+          floating: true,
+          delegate: SliverAppBarDelegate(
+              maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
+        ),
+        SliverToBoxAdapter(child: _moviePoster()),
+        SliverToBoxAdapter(child: MovieBottomList()),
+      ],
     );
   }
 

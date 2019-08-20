@@ -76,7 +76,8 @@ class MovieCards extends StatelessWidget {
       onTap: () {
         switch (assetName) {
           case 'card1.png':
-            NavigatorUtil.push(context, KouBeiPage(), rootNavigator: true);
+            ToastUtil.show('进入口碑电影页面');
+//            NavigatorUtil.push(context, KouBeiPage(), rootNavigator: true);
             break;
           case 'card3.jpg':
             ToastUtil.show('进入Top250电影页面');

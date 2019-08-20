@@ -49,8 +49,9 @@ class HotMovieGridState extends State<HotMovieGrid>
         _hotShowSubjectData = _hotShowEntity.subjects;
         removeSomeData();
         hasData = true;
+      }).whenComplete(() {
+        setState(() {});
       });
-      setState(() {});
     });
   }
 
@@ -58,8 +59,7 @@ class HotMovieGridState extends State<HotMovieGrid>
   Future refreshData() async {
     hasData = false;
     _hotShowSubjectData = null;
-    setState(() {});
-    await _requestData();
+    _requestData();
   }
 
   @override

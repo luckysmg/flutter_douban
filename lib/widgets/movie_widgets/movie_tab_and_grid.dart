@@ -54,15 +54,18 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
       await MockRequest.mock(Constants.URL_IN_THEATERS).then((data) {
         _hotShowEntity = EntityFactory.generateOBJ(data);
         _hotShowSubjectData = _hotShowEntity.subjects;
+        return;
       });
 
       ///请求即将上映数据
       await MockRequest.mock(Constants.URL_COMMING_SOON).then((data) {
         _comingSoonEntity = EntityFactory.generateOBJ(data);
         _comingSoonSubjectData = _comingSoonEntity.subjects;
+        return;
+      }).whenComplete(() {
+        setState(() {});
+        return;
       });
-
-      setState(() {});
     });
   }
 
@@ -70,13 +73,13 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
   Future refreshData() async {
     _hotShowSubjectData = null;
     _comingSoonSubjectData = null;
-    setState(() {});
-    await _requestData();
+    _requestData();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     if (_hotShowSubjectData == null || _comingSoonSubjectData == null) {
       return _emptyDataBody();
     } else {

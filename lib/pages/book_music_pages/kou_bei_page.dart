@@ -14,9 +14,6 @@ class _KouBeiPageState extends State<KouBeiPage> {
   @override
   void initState() {
     super.initState();
-    if(context == null){
-      print('null');
-    }
   }
 
   @override

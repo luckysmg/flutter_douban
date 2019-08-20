@@ -10,7 +10,10 @@ class DioUtil {
   Future get(String url, Map map) async {
     Response response =
         await Dio().get(Constants.BASE_URL + url, queryParameters: map);
-    print('回调数据::' + response.data.toString());
+
+    if (Constants.isDebug) {
+      print('回调数据::' + response.data.toString());
+    }
     return response.data;
   }
 }

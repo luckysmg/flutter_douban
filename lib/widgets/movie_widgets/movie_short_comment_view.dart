@@ -17,17 +17,19 @@ class MovieShortCommentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 30),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Color.fromARGB(100, 0, 0, 0),
-      ),
-      child: Column(
-        children: <Widget>[
-          _header(),
-          _shortCommentList(context),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: 30),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color.fromARGB(100, 0, 0, 0),
+        ),
+        child: Column(
+          children: <Widget>[
+            _header(),
+            _shortCommentList(context),
+          ],
+        ),
       ),
     );
   }

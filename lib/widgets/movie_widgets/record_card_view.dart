@@ -10,24 +10,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RecordCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Color.fromARGB(100, 0, 0, 0)),
-      height: ScreenUtil().setHeight(70),
-      child: Stack(
-        alignment: Alignment.centerRight,
-        children: <Widget>[
-          _stars(),
-          Container(
-              margin: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-                color: Colors.white54,
-              )),
-        ],
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Color.fromARGB(100, 0, 0, 0)),
+        height: ScreenUtil().setHeight(70),
+        child: Stack(
+          alignment: Alignment.centerRight,
+          children: <Widget>[
+            _stars(),
+            Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                  color: Colors.white54,
+                )),
+          ],
+        ),
       ),
     );
   }
