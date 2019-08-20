@@ -83,21 +83,31 @@ class MovieDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Stack(
-          children: <Widget>[
-            Align(
-                alignment: Alignment.center,
-                child: MovieDetailAppbarTitle(
-                  key: _movieDetailAppbarTitleStateKey,
-                )),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: MovieDetailAppbarIndicator(
-                key: _movieDetailAppbarIndicatorStateKey,
-                data: _detailData,
-              ),
-            )
-          ],
+        title: GestureDetector(
+          onTap: _scrollToTop,
+          child: Container(
+            width: ScreenUtil().setWidth(800),
+
+            ///设置这个颜色是因为如果不设置可能在appbar上点击可能失效的bug，可能是flutter本身的原因，所以设置了一个
+            color: Colors.transparent,
+            child: Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: MovieDetailAppbarTitle(
+                    key: _movieDetailAppbarTitleStateKey,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MovieDetailAppbarIndicator(
+                    key: _movieDetailAppbarIndicatorStateKey,
+                    data: _detailData,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         centerTitle: true,
         leading: _backIcon(context),
@@ -361,5 +371,14 @@ class MovieDetailPage extends StatelessWidget {
     _movieDetailAppbarIndicatorStateKey.currentState
         .updateOpacity(indicatorOpacity, indicatorOffsetY);
     _movieDetailAppbarTitleStateKey.currentState.updateOpacity(titleOpacity);
+  }
+
+  ///滚动到顶部
+  void _scrollToTop() {
+    if (scrollController.offset != 0) {
+      print('top');
+      scrollController.animateTo(0,
+          duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+    }
   }
 }
