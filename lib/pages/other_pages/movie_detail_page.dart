@@ -22,6 +22,7 @@ import 'package:flutter_douban/widgets/movie_widgets/trailers_photo_view.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'dart:io';
 
 ///
 /// @created by 文景睿
@@ -46,13 +47,15 @@ class MovieDetailPage extends StatelessWidget {
   BuildContext context;
 
   ///appbar交互的判断临界offset
-  var edgeOffsetY = 200.0;
+  static const edgeOffsetY = 200.0;
 
   ///appbar上退出按钮右边的电影指示的初始化透明度
   var indicatorOpacity = 0.0;
 
   ///appbar上标题的初始化透明度
   var titleOpacity = 1.0;
+
+  var indicatorOffsetY;
 
   MovieDetailPage({Key key, this.movieId}) : super(key: key);
 
@@ -147,10 +150,10 @@ class MovieDetailPage extends StatelessWidget {
   Widget _mainBody() {
     ///这里添加刷新布局是因为需要回弹效果，flutter自带的回弹效果有动画bug
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+      margin: const EdgeInsets.only(left: 10, right: 10),
       child: EasyRefresh.custom(
         ///这里因为用了custom构造器(推荐），所以里面子元素内部都需要SliverToBoxAdapter包裹
-        scrollController: scrollController..addListener(scrollListenerEffect),
+        scrollController: scrollController..addListener(scrollEffect),
         slivers: <Widget>[
           _movieDetailHeader(),
           RecordCardView(),
@@ -170,7 +173,7 @@ class MovieDetailPage extends StatelessWidget {
   Widget _movieDetailHeader() {
     return SliverToBoxAdapter(
       child: Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         height: ScreenUtil().setHeight(250),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +189,7 @@ class MovieDetailPage extends StatelessWidget {
   ///电影图片
   Widget _movieImage() {
     return Container(
-      margin: EdgeInsets.only(right: 20),
+      margin: const EdgeInsets.only(right: 20),
       height: ScreenUtil().setHeight(250),
       width: ScreenUtil().setWidth(200),
       child: ClipRRect(
@@ -206,7 +209,7 @@ class MovieDetailPage extends StatelessWidget {
       children: <Widget>[
         ///电影名字 eg:上海堡垒
         Container(
-          margin: EdgeInsets.only(top: 5, bottom: 5),
+          margin: const EdgeInsets.only(top: 5, bottom: 5),
           width: ScreenUtil().setWidth(340),
           child: Text(
             _detailData.title,
@@ -277,7 +280,7 @@ class MovieDetailPage extends StatelessWidget {
       child: CupertinoButton(
         color: Colors.white,
         minSize: 35,
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         child: Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
           height: ScreenUtil().setHeight(30),
@@ -315,7 +318,7 @@ class MovieDetailPage extends StatelessWidget {
         height: ScreenUtil().setHeight(210),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Color.fromARGB(120, 0, 0, 0),
+          color: const Color.fromARGB(120, 0, 0, 0),
         ),
         child: Column(
           children: <Widget>[
@@ -354,11 +357,11 @@ class MovieDetailPage extends StatelessWidget {
   }
 
   ///滚动监听动画交互
-  void scrollListenerEffect() {
+  void scrollEffect() {
     double offset = scrollController.offset;
-    if (offset <= 0) {
+    if (offset < 0) {
       offset = 0;
-    } else if (offset >= edgeOffsetY) {
+    } else if (offset > edgeOffsetY) {
       offset = edgeOffsetY;
     }
 
@@ -376,7 +379,6 @@ class MovieDetailPage extends StatelessWidget {
   ///滚动到顶部
   void _scrollToTop() {
     if (scrollController.offset != 0) {
-      print('top');
       scrollController.animateTo(0,
           duration: Duration(milliseconds: 300), curve: Curves.decelerate);
     }
