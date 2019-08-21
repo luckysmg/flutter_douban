@@ -43,7 +43,6 @@ class MovieDetailModel extends BaseModel {
     return entity;
   }
 
-  // ignore: missing_return
   Future<MovieLongCommentEntity> getMovieLongCommentData() async {
     MovieLongCommentEntity entity;
 
