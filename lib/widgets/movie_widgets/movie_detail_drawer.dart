@@ -10,7 +10,6 @@ import 'long_comment_list_view.dart';
 /// @created by 文景睿
 /// description:电影底部的上拉抽屉
 ///
-// ignore: must_be_immutable
 class MovieDetailDrawer extends StatelessWidget {
   final MovieLongCommentEntity longCommentData;
 
@@ -21,7 +20,7 @@ class MovieDetailDrawer extends StatelessWidget {
     return Positioned(
       bottom: 0,
       child: BottomDraggableDrawer(
-        maxOffsetDistance: ScreenUtil.screenHeightDp * 0.16,
+        maxOffsetDistance: ScreenUtil.screenHeightDp * 0.18,
         originalOffset: ScreenUtil.screenHeightDp * 0.98,
         draggableHeader: _header(),
         content: LongCommentListView(longCommentData: longCommentData),

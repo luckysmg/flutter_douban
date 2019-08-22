@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 ///
 /// @created by 文景睿
@@ -38,9 +39,9 @@ class MovieDetailAppbarIndicatorState
               ///图片
               Container(
                 margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
-                child: Image.network(
-                  this.widget.data.images.small,
-                  height: 30,
+                child: CachedNetworkImage(
+                  imageUrl: this.widget.data.images.small,
+                  height: ScreenUtil().setHeight(40),
                 ),
               ),
 

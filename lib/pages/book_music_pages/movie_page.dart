@@ -40,6 +40,8 @@ class MovieView extends StatelessWidget {
       onRefresh: () async {
         await _tabGridKey.currentState.refreshData();
         await _hotMovieKey.currentState.refreshData();
+
+        ///这里一秒钟是模拟网络请求的时间
         await Future.delayed(Duration(milliseconds: 1000));
         easyRefreshController.finishRefresh(success: true, noMore: false);
       },
