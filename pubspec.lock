@@ -22,6 +22,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  auto_orientation:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: dd9923557ae89d9a2b3168d523bb23f2f0c51838
+      url: "git://github.com/bytepark/auto_orientation.git"
+    source: git
+    version: "1.0.5"
   boolean_selector:
     dependency: transitive
     description:

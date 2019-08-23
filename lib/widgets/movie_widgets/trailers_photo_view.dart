@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_douban/entity/movie_detail_entity.dart';
+import 'package:flutter_douban/pages/book_music_pages/movie_video_player_page.dart';
+import 'package:flutter_douban/routes/custom_routes.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -69,6 +71,7 @@ class TrailersPhotoView extends StatelessWidget {
 
   ///展示预告片，剧照等的水平布局
   Widget _horizontalList(BuildContext context) {
+    ///这个是控制视频播放的状态控制model，因为这个节点是其视频页面的和进度条控制器的共同父节点，所以放在这里
     return Container(
       margin: EdgeInsets.only(top: 10),
       height: ScreenUtil().setHeight(200),
@@ -78,7 +81,7 @@ class TrailersPhotoView extends StatelessWidget {
           itemCount: 2 + data.photos.length,
           itemBuilder: (context, index) {
             if (index == 0 || index == 1) {
-              return _videoTypeView(index);
+              return _videoTypeView(context, index);
             } else {
               return _photoView(index);
             }
@@ -89,43 +92,52 @@ class TrailersPhotoView extends StatelessWidget {
   }
 
   ///带预告片的类型item
-  Widget _videoTypeView(index) {
-    return Container(
-      margin: EdgeInsets.only(right: 4),
-      child: Stack(
-        children: <Widget>[
-          CachedNetworkImage(
-            imageUrl: data.trailers[index].medium,
+  Widget _videoTypeView(context, index) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          GradualChangePageRoute(
+            MovieVideoPlayerPage(data: data, dataIndex: index),
           ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(left: ScreenUtil().setWidth(180)),
-              child: Icon(
-                Icons.play_circle_outline,
-                color: Colors.white,
-                size: 40,
-              ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 4),
+        child: Stack(
+          children: <Widget>[
+            CachedNetworkImage(
+              imageUrl: data.trailers[index].medium,
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-              decoration: BoxDecoration(
-                color: Colors.amber[600],
-                borderRadius: BorderRadius.circular(4),
-              ),
-              margin: EdgeInsets.only(top: 3, left: 3),
-              child: Text(
-                '预告片',
-                style: TextStyle(
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(left: ScreenUtil().setWidth(180)),
+                child: Icon(
+                  Icons.play_circle_outline,
                   color: Colors.white,
-                  fontSize: ScreenUtil().setSp(21),
+                  size: 40,
                 ),
               ),
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.amber[600],
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                margin: EdgeInsets.only(top: 3, left: 3),
+                child: Text(
+                  '预告片',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: ScreenUtil().setSp(21),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

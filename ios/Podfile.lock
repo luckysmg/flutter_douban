@@ -1,4 +1,6 @@
 PODS:
+  - auto_orientation (0.0.1):
+    - Flutter
   - camera (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -20,6 +22,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - auto_orientation (from `.symlinks/plugins/auto_orientation/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
@@ -34,6 +37,8 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
+  auto_orientation:
+    :path: ".symlinks/plugins/auto_orientation/ios"
   camera:
     :path: ".symlinks/plugins/camera/ios"
   Flutter:
@@ -52,6 +57,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/video_player/ios"
 
 SPEC CHECKSUMS:
+  auto_orientation: 2941c44ebe5c3d41016001597ab03e81a92a26ce
   camera: d56ad165545ae5a0ffb892376033760a969c68c8
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b

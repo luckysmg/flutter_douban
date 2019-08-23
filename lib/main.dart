@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
 import 'routes/custom_transition_builder.dart';
+import 'package:auto_orientation/auto_orientation.dart';
 
 ///
 /// @created by 文景睿

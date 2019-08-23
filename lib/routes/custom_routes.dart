@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-//渐变效果
-class CustomRouteJianBian extends PageRouteBuilder {
+///渐变效果
+class GradualChangePageRoute extends PageRouteBuilder {
   final Widget widget;
 
-  CustomRouteJianBian(this.widget)
+  GradualChangePageRoute(this.widget)
       : super(
-            transitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 600),
             pageBuilder: (BuildContext context, Animation<double> animation1,
                 Animation<double> animation2) {
               return widget;
@@ -23,13 +23,13 @@ class CustomRouteJianBian extends PageRouteBuilder {
             });
 }
 
-//缩放效果
+///缩放效果
 class CustomRouteZoom extends PageRouteBuilder {
   final Widget widget;
 
   CustomRouteZoom(this.widget)
       : super(
-            transitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 500),
             pageBuilder: (BuildContext context, Animation<double> animation1,
                 Animation<double> animation2) {
               return widget;
@@ -45,7 +45,7 @@ class CustomRouteZoom extends PageRouteBuilder {
             });
 }
 
-//旋转+缩放效果
+///旋转+缩放效果
 class CustomRouteRotateZoom extends PageRouteBuilder {
   final Widget widget;
 
@@ -71,7 +71,7 @@ class CustomRouteRotateZoom extends PageRouteBuilder {
             });
 }
 
-//滑动效果
+///滑动效果
 class CustomRouteSlide extends PageRouteBuilder {
   final Widget widget;
 

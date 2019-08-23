@@ -22,7 +22,6 @@ import 'package:flutter_douban/widgets/movie_widgets/trailers_photo_view.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'dart:io';
 
 ///
 /// @created by 文景睿
