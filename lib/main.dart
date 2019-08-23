@@ -4,16 +4,17 @@ import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_orientation/auto_orientation.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
 import 'routes/custom_transition_builder.dart';
-import 'package:auto_orientation/auto_orientation.dart';
 
 ///
 /// @created by 文景睿
 /// description:程序入口
 
 void main() {
+  AutoOrientation.portraitAutoMode();
   Provider.debugCheckInvalidValueType = null;
   runApp(MyApp());
 }
