@@ -104,22 +104,25 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  '简介',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700),
-                )),
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                '简介',
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
             Container(
               margin: const EdgeInsets.only(left: 10, right: 10),
               child: Text(
                 this.widget.text,
-                style:
-                    TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                    fontSize: ScreenUtil().setSp(24)),
               ),
-            )
+            ),
           ],
         ),
       ),
