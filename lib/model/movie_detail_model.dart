@@ -62,10 +62,6 @@ class MovieDetailModel extends BaseModel {
     return temp;
   }
 
-  void printTest() {
-    print('打印打印');
-  }
-
   @override
   void dispose() {
     super.dispose();
