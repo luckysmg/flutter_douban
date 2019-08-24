@@ -49,6 +49,9 @@ dependencies:
   auto_orientation:
     git:
       url: git://github.com/bytepark/auto_orientation.git
+  permission_handler:
+    git:
+      url: git://github.com/BaseflowIT/flutter-permission-handler.git
 
 dev_dependencies:
   build_runner: ^1.0.0

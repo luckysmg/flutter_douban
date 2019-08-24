@@ -79,7 +79,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.6"
+    version: "1.6.7"
   build_runner_core:
     dependency: transitive
     description:
@@ -527,6 +527,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: f70496147ae6712511b731445cb3c81ae70e4534
+      url: "git://github.com/BaseflowIT/flutter-permission-handler.git"
+    source: git
+    version: "3.2.2"
   platform:
     dependency: transitive
     description:
@@ -622,7 +631,7 @@ packages:
       name: source_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.4+3"
+    version: "0.9.4+4"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -755,7 +764,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.1+6"
+    version: "0.10.2"
   vm_service_client:
     dependency: transitive
     description:

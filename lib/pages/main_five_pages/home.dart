@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           Stack(
             children: <Widget>[
               _searchBox(),
-              _scanBottom(),
+              _scanButton(),
               _searchIcon(),
             ],
           ),
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _scanBottom() {
+  Widget _scanButton() {
     return Container(
       margin: EdgeInsets.only(
           top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),

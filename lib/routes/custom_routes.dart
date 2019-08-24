@@ -71,13 +71,13 @@ class CustomRouteRotateZoom extends PageRouteBuilder {
             });
 }
 
-///滑动效果
-class CustomRouteSlide extends PageRouteBuilder {
+///从底部滑出效果
+class CustomBottomSlideRoute extends PageRouteBuilder {
   final Widget widget;
 
-  CustomRouteSlide(this.widget)
+  CustomBottomSlideRoute(this.widget)
       : super(
-            transitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 500),
             pageBuilder: (BuildContext context, Animation<double> animation1,
                 Animation<double> animation2) {
               return widget;
@@ -88,9 +88,9 @@ class CustomRouteSlide extends PageRouteBuilder {
                 Widget child) {
               return SlideTransition(
                 position: Tween<Offset>(
-                        begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))
+                        begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
                     .animate(CurvedAnimation(
-                        parent: animation1, curve: Curves.fastOutSlowIn)),
+                        parent: animation1, curve: Curves.linearToEaseOut)),
                 child: child,
               );
             });

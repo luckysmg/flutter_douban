@@ -5,10 +5,14 @@ import 'package:flutter_douban/model/book_music_view_tab_index_model.dart';
 import 'package:flutter_douban/pages/book_music_pages/book_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/movie_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/music_page.dart';
+import 'package:flutter_douban/pages/other_pages/camera_page.dart';
+import 'package:flutter_douban/routes/custom_routes.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 ///
 /// @created by 文景睿
@@ -108,7 +112,7 @@ class _BookMusicState extends State<BookMusicPage>
             children: <Widget>[
               _searchBox(),
               _searchIcon(),
-              _scanBottom(),
+              _scanButton(),
             ],
           ),
           _emailIcon(),
@@ -147,14 +151,12 @@ class _BookMusicState extends State<BookMusicPage>
     );
   }
 
-  Widget _scanBottom() {
+  Widget _scanButton() {
     return Container(
       margin: EdgeInsets.only(
           top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
       child: GestureDetector(
-        onTap: () {
-          debugPrint('打开相机');
-        },
+        onTap: _openCamera,
         child: Icon(
           Icons.center_focus_weak,
           color: Colors.black38,
@@ -179,5 +181,21 @@ class _BookMusicState extends State<BookMusicPage>
         ),
       ),
     );
+  }
+
+  void _openCamera() async {
+    await PermissionHandler()
+        .requestPermissions([PermissionGroup.camera]).then((_) async {
+      PermissionStatus permission = await PermissionHandler()
+          .checkPermissionStatus(PermissionGroup.camera);
+
+      if (permission == PermissionStatus.granted) {
+        Navigator.of(context, rootNavigator: true).push(
+          CustomBottomSlideRoute(
+            CameraPage(),
+          ),
+        );
+      }
+    });
   }
 }
