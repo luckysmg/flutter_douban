@@ -27,36 +27,38 @@ class MovieDetailAppbarIndicatorState
   @override
   Widget build(BuildContext context) {
     ///这里是平移动画+透明度渐变动画
-    return Transform.translate(
-      offset: Offset(0, currentOffsetY),
-      child: Opacity(
-        opacity: opacity,
-        child: Container(
-          alignment: Alignment.center,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ///图片
-              Container(
-                margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
-                child: CachedNetworkImage(
-                  imageUrl: this.widget.data.images.small,
-                  height: ScreenUtil().setHeight(40),
+    return RepaintBoundary(
+      child: Transform.translate(
+        offset: Offset(0, currentOffsetY),
+        child: Opacity(
+          opacity: opacity,
+          child: Container(
+            alignment: Alignment.center,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ///图片
+                Container(
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
+                  child: CachedNetworkImage(
+                    imageUrl: this.widget.data.images.small,
+                    height: ScreenUtil().setHeight(40),
+                  ),
                 ),
-              ),
 
-              ///文字
-              Container(
-                margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _movieName(),
-                    _starScore(),
-                  ],
+                ///文字
+                Container(
+                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _movieName(),
+                      _starScore(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

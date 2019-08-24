@@ -18,11 +18,13 @@ class MovieDetailAppbarTitleState extends State<MovieDetailAppbarTitle> {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: opacity,
-      child: Text(
-        '电影',
-        style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+    return RepaintBoundary(
+      child: Opacity(
+        opacity: opacity,
+        child: Text(
+          '电影',
+          style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+        ),
       ),
     );
   }
