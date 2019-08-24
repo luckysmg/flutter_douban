@@ -12,6 +12,7 @@ import 'routes/custom_transition_builder.dart';
 ///
 /// @created by 文景睿
 /// description:程序入口
+///
 
 void main() {
   AutoOrientation.portraitAutoMode();
