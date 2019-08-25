@@ -25,7 +25,7 @@ import 'package:provider/provider.dart';
 
 ///
 /// @created by 文景睿
-/// description:电影详情页(利用状态管理完成，而非用StatefulWidget,此页面布局较为复杂）
+/// description:电影详情页(利用状态管理完成,此页面布局较为复杂）
 ///
 class MovieDetailPage extends StatefulWidget {
   final String movieId;
