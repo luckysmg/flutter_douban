@@ -18,7 +18,8 @@ class MovieDetailModel extends BaseModel {
 
   MovieLongCommentEntity get longCommentData => _longCommentData;
 
-  MovieDetailModel({this.movieId}) {
+  @override
+  void init() {
     ///构造函数传入id之后就开始请求模拟数据
     getMovieDetailData().then((data) {
       _detailData = data;

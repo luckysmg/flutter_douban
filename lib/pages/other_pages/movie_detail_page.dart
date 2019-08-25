@@ -27,26 +27,40 @@ import 'package:provider/provider.dart';
 /// @created by 文景睿
 /// description:电影详情页(利用状态管理完成，而非用StatefulWidget,此页面布局较为复杂）
 ///
-// ignore: must_be_immutable
-class MovieDetailPage extends StatelessWidget {
+class MovieDetailPage extends StatefulWidget {
   final String movieId;
+
+  ///appbar交互的判断临界offset
+  static const edgeOffsetY = 200.0;
+
+  const MovieDetailPage({Key key, this.movieId}) : super(key: key);
+
+  @override
+  _MovieDetailPageState createState() => _MovieDetailPageState();
+}
+
+class _MovieDetailPageState extends State<MovieDetailPage> {
   final Color _textColor = Colors.white;
+
   final Color _bgColor = Colors.blueGrey[600];
+
   final ScrollController scrollController = ScrollController();
+
   final GlobalKey<MovieDetailAppbarIndicatorState>
       _movieDetailAppbarIndicatorStateKey = GlobalKey();
+
   final GlobalKey<MovieDetailAppbarTitleState> _movieDetailAppbarTitleStateKey =
       GlobalKey();
+
+  final MovieDetailModel _movieDetailModel = MovieDetailModel();
 
   ///电影详情数据实体
   MovieDetailEntity _detailData;
 
   ///电影长评数据实体（用于抽屉中）
   MovieLongCommentEntity _longCommentData;
-  BuildContext context;
 
-  ///appbar交互的判断临界offset
-  static const edgeOffsetY = 200.0;
+  BuildContext context;
 
   ///appbar上退出按钮右边的电影指示的初始化透明度
   var indicatorOpacity = 0.0;
@@ -56,16 +70,18 @@ class MovieDetailPage extends StatelessWidget {
 
   var indicatorOffsetY;
 
-  MovieDetailPage({Key key, this.movieId}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+    _movieDetailModel.init();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (context) => MovieDetailModel(movieId: this.movieId),
+      builder: (context) => _movieDetailModel,
       child: Consumer<MovieDetailModel>(
         builder: (context, value, child) {
-          ///builder方法会在model中 notifyListener被调用的时候重复调用一次，而在数据到来之前我们使用的是空布局，所以在主体布局里面
-          ///我们拿到的context和data一定不为空
           _detailData = value.detailData;
           _longCommentData = value.longCommentData;
           this.context = context;
@@ -360,13 +376,14 @@ class MovieDetailPage extends StatelessWidget {
     double offset = scrollController.offset;
     if (offset < 0) {
       offset = 0;
-    } else if (offset > edgeOffsetY) {
-      offset = edgeOffsetY;
+    } else if (offset > MovieDetailPage.edgeOffsetY) {
+      offset = MovieDetailPage.edgeOffsetY;
     }
 
     ///这里用初中数学知识就可以算出来
-    indicatorOpacity = offset / edgeOffsetY;
-    titleOpacity = (edgeOffsetY - offset) / edgeOffsetY;
+    indicatorOpacity = offset / MovieDetailPage.edgeOffsetY;
+    titleOpacity =
+        (MovieDetailPage.edgeOffsetY - offset) / MovieDetailPage.edgeOffsetY;
     double indicatorOffsetY = -(1 / 5) * offset + 40;
 
     ///拿到所有数据之后利用key更新状态
