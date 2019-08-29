@@ -48,7 +48,9 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     });
 
     _controller = VideoPlayerController.network(
-        this.widget.data.trailers[this.widget.dataIndex].resourceUrl)
+      'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //豆瓣视频API失效了随便加一个
+    )
+//        this.widget.data.trailers[this.widget.dataIndex].resourceUrl)
       ..addListener(() {
         ///播放完毕自动退出
         _autoQuitWhenFinished();
@@ -96,10 +98,30 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
         },
         child: Scaffold(
           backgroundColor: Colors.black,
-          body: Center(
-            child: CupertinoActivityIndicator(
-              radius: 15,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: GestureDetector(
+              onTap: () {
+                _setQuitEffect().then((_) {
+                  Navigator.pop(context);
+                });
+              },
+              child: Container(
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white70,
+                ),
+              ),
             ),
+            title: Text(widget.data.trailers[widget.dataIndex].title,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          ),
+          body: Center(
+            child: Text('加载中...',
+                style: TextStyle(
+                    color: Colors.white54,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
           ),
         ),
       ),
@@ -221,7 +243,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       child: Text(
         this.widget.data.trailers[this.widget.dataIndex].title,
         style: TextStyle(
-            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -229,14 +251,14 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   ///控制拖动条
   Widget _videoIndicator() {
     return Container(
-      width: ScreenUtil.screenWidthDp * 0.7,
+      width: ScreenUtil.screenWidthDp * 0.77,
       height: ScreenUtil().setHeight(30),
       margin: EdgeInsets.only(top: 2),
       child: VideoProgressIndicator(
         _controller,
         colors: VideoProgressColors(
-            bufferedColor: Colors.white70,
-            backgroundColor: Colors.white24,
+            bufferedColor: Colors.white54,
+            backgroundColor: Colors.white12,
             playedColor: Colors.white),
         allowScrubbing: true,
       ),
