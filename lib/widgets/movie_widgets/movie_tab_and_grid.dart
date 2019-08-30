@@ -291,7 +291,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 200),
+                fadeInDuration: Duration(milliseconds: 0),
                 width: 150,
                 height: 180,
                 imageUrl: _hotShowSubjectData[index].images.medium,
@@ -365,7 +365,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 200),
+                fadeInDuration: Duration(milliseconds: 0),
                 width: 150,
                 height: 180,
                 imageUrl: _comingSoonSubjectData[index].images.medium,

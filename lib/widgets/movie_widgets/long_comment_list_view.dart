@@ -56,7 +56,7 @@ class LongCommentListView extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: longCommentData.reviews[index].author.avatar,
                 height: ScreenUtil().setHeight(40),
-                fadeInDuration: Duration(milliseconds: 200),
+                fadeInDuration: Duration(milliseconds: 0),
               ),
             ),
           ),
