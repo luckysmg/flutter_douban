@@ -52,6 +52,8 @@ dependencies:
   permission_handler:
     git:
       url: git://github.com/BaseflowIT/flutter-permission-handler.git
+  flutter_ijkplayer: ^0.3.3
+
 
 dev_dependencies:
   build_runner: ^1.0.0
