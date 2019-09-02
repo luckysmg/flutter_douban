@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
-import 'package:auto_orientation/auto_orientation.dart';
 
 ///
 /// @created by 文景睿
@@ -29,13 +29,13 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   bool isDragging = false;
   var opacity = 1.0;
   Timer timer;
+  bool isPortrait = true;
 
   @override
   void initState() {
     super.initState();
 
     ///将屏幕改变为自动改变方向
-    AutoOrientation.fullAutoMode();
 
     ///延时隐藏状态栏，主要是因为直接隐藏屏幕会跳动，进入播放页跳动基本看不出来
     Future.delayed(Duration(milliseconds: 500), () {
@@ -188,11 +188,12 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
         margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(60)),
         color: Colors.black38,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             _playerStateIcon(),
             _videoIndicator(),
             _videoTimeText(),
+            _switchIcon(),
           ],
         ),
       ),
@@ -201,9 +202,12 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
 
   ///显示播放状态的图标
   Widget _playerStateIcon() {
+    var margin = isPortrait ? EdgeInsets.only(top: 5) : null;
+
     return GestureDetector(
       onTap: _controlPlayer,
       child: Container(
+        margin: margin,
         child: !isPlaying
             ? Icon(
                 Icons.play_arrow,
@@ -250,10 +254,11 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
 
   ///控制拖动条
   Widget _videoIndicator() {
+    var width = isPortrait ? 480.0 : 600.0;
     return Container(
-      width: ScreenUtil.screenWidthDp * 0.77,
+      width: ScreenUtil().setWidth(width),
       height: ScreenUtil().setHeight(30),
-      margin: EdgeInsets.only(top: 2),
+      margin: EdgeInsets.only(top: 2, left: 10),
       child: VideoProgressIndicator(
         _controller,
         colors: VideoProgressColors(
@@ -275,6 +280,50 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
             fontSize: 12, color: Colors.white70, fontWeight: FontWeight.w500),
       ),
     );
+  }
+
+  ///切换横竖屏的
+  Widget _switchIcon() {
+    var margin = isPortrait
+        ? EdgeInsets.only(left: 10, top: 5)
+        : EdgeInsets.only(left: 10);
+
+    return GestureDetector(
+      onTap: () => _switchScreen(),
+      child: Container(
+        margin: margin,
+        child: Icon(
+          isPortrait ? Icons.fullscreen : Icons.fullscreen_exit,
+          color: Colors.white54,
+        ),
+      ),
+    );
+  }
+
+  ///改变屏幕方向
+  void _switchScreen() async {
+    if (opacity == 0.0) {
+      opacity = 1.0;
+      setTimer();
+      setState(() {});
+      return;
+    }
+    setTimer();
+    if (isPortrait) {
+      isPortrait = false;
+      setState(() {});
+      await AutoOrientation.landscapeAutoMode();
+
+      Future.delayed(Duration(milliseconds: 1000), () {
+        setState(() {});
+      });
+    } else {
+      isPortrait = true;
+      await AutoOrientation.portraitAutoMode();
+      Future.delayed(Duration(milliseconds: 1000), () {
+        setState(() {});
+      });
+    }
   }
 
   ///控制播放
