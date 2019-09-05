@@ -30,7 +30,8 @@ class MovieDetailAppbarIndicatorState
     return RepaintBoundary(
       child: Transform.translate(
         offset: Offset(0, currentOffsetY),
-        child: Opacity(
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 0),
           opacity: opacity,
           child: Container(
             alignment: Alignment.center,

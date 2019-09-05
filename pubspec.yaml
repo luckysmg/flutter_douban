@@ -30,7 +30,6 @@ dependencies:
   cached_network_image: ^1.1.1
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^0.5.3
-  flutter_easyrefresh: ^2.0.3
   bubble_tab_indicator: ^0.1.4
   keyboard_actions: ^2.1.2
   shared_preferences: ^0.5.3+4
@@ -46,6 +45,9 @@ dependencies:
   oktoast: ^2.1.9
   flutter_slidable: ^0.5.3
   fish_redux: ^0.2.5
+  flutter_easyrefresh:
+    git:
+      url: git://github.com/xuelongqy/flutter_easyrefresh.git
   auto_orientation:
     git:
       url: git://github.com/bytepark/auto_orientation.git

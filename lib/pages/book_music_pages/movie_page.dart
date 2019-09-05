@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_douban/delegate/movie_sliver_tab_delegate.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
@@ -65,7 +66,8 @@ class MovieView extends StatelessWidget {
               maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
         ),
         SliverToBoxAdapter(child: _moviePoster()),
-        SliverToBoxAdapter(child: MovieBottomList()),
+        MovieBottomList(),
+//        SliverToBoxAdapter(child: MovieBottomList()),
       ],
     );
   }

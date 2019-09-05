@@ -50,18 +50,26 @@ class _MovieBottomListState extends State<MovieBottomList> {
   Widget build(BuildContext context) {
     return _dataList == null
         ? _emptyView()
-        : ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: _dataList.length,
-            itemBuilder: (context, index) {
-              return _item(index);
-            });
+        : SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => _item(index),
+                childCount: _dataList.length,
+                addRepaintBoundaries: true,
+                addAutomaticKeepAlives: true),
+          );
+
+//    ListView.builder(
+//        physics: NeverScrollableScrollPhysics(),
+//        shrinkWrap: true,
+//        itemCount: _dataList.length,
+//        itemBuilder: (context, index) {
+//          return _item(index);
+//        });
   }
 
-  ///随便做一个空的占位布局吧
+  ///随便做一个空的占位布局
   Widget _emptyView() {
-    return Container();
+    return SliverToBoxAdapter(child: Container());
   }
 
   Widget _item(index) {

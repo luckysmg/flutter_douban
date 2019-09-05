@@ -19,7 +19,8 @@ class MovieDetailAppbarTitleState extends State<MovieDetailAppbarTitle> {
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: Opacity(
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 0),
         opacity: opacity,
         child: Text(
           '电影',
