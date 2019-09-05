@@ -78,6 +78,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return ChangeNotifierProvider(
       builder: (context) => _movieDetailModel,
       child: Consumer<MovieDetailModel>(
@@ -166,9 +167,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     ///这里添加刷新布局是因为需要回弹效果，flutter自带的回弹效果有动画bug
     return Container(
       margin: const EdgeInsets.only(left: 10, right: 10),
-      child: EasyRefresh.custom(
-        ///这里因为用了custom构造器(推荐），所以里面子元素内部都需要SliverToBoxAdapter包裹
-        scrollController: scrollController..addListener(scrollEffect),
+      child: CustomScrollView(
+        controller: scrollController..addListener(scrollEffect),
+        physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           _movieDetailHeader(),
           RecordCardView(),
