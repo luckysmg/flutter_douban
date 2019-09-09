@@ -335,6 +335,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.2"
+  fluwx:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "30c09d3156e497100e198e38bcd3490f983572d4"
+      url: "https://github.com/OpenFlutter/fluwx"
+    source: git
+    version: "1.0.5"
   front_end:
     dependency: transitive
     description:

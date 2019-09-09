@@ -55,6 +55,9 @@ dependencies:
     git:
       url: git://github.com/BaseflowIT/flutter-permission-handler.git
   flutter_ijkplayer: ^0.3.3
+  fluwx:
+    git:
+      url: https://github.com/OpenFlutter/fluwx
 
 
 dev_dependencies:
