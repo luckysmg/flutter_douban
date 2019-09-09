@@ -78,7 +78,8 @@ class HotMovieGridState extends State<HotMovieGrid>
       children: <Widget>[
         Expanded(
           child: Container(
-            margin: EdgeInsets.fromLTRB(12, 10, 8, 10),
+            margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(24),
+                ScreenUtil().setHeight(18), 0, ScreenUtil().setHeight(18)),
             child: Text(
               '豆瓣热门',
               style: TextStyle(

@@ -83,11 +83,14 @@ class _BookMusicState extends State<BookMusicPage>
 
   Widget _tabBar() {
     return PreferredSize(
-      preferredSize: Size.fromHeight(40),
+      preferredSize: Size.fromHeight(30),
       child: Container(
         alignment: Alignment.topLeft,
         child: TabBarNoRipple(
-          labelPadding: EdgeInsets.all(10),
+          labelPadding: EdgeInsets.only(
+              left: ScreenUtil().setWidth(20),
+              right: ScreenUtil().setWidth(20),
+              bottom: ScreenUtil().setHeight(10)),
           isScrollable: true,
           unselectedLabelColor: Colors.grey,
           tabs: _tabs,
@@ -132,7 +135,7 @@ class _BookMusicState extends State<BookMusicPage>
         margin: EdgeInsets.only(
             left: ScreenUtil().setWidth(10), top: ScreenUtil().setHeight(18)),
         width: ScreenUtil.getInstance().setWidth(550),
-        height: 40,
+        height: ScreenUtil().setHeight(60),
         decoration: BoxDecoration(
             color: Colors.grey[200], borderRadius: BorderRadius.circular(30.0)),
       ),
@@ -143,10 +146,11 @@ class _BookMusicState extends State<BookMusicPage>
   Widget _searchIcon() {
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(25)),
+          top: ScreenUtil().setHeight(26), left: ScreenUtil().setWidth(25)),
       child: Icon(
         Icons.search,
         color: Colors.grey,
+        size: ScreenUtil().setHeight(40),
       ),
     );
   }
@@ -160,6 +164,7 @@ class _BookMusicState extends State<BookMusicPage>
         child: Icon(
           Icons.center_focus_weak,
           color: Colors.black38,
+          size: ScreenUtil().setHeight(35),
         ),
       ),
     );
@@ -177,6 +182,7 @@ class _BookMusicState extends State<BookMusicPage>
             top: ScreenUtil().setHeight(15), left: ScreenUtil().setWidth(50)),
         child: Icon(
           Icons.email,
+          size: ScreenUtil().setHeight(40),
           color: Colors.black38,
         ),
       ),

@@ -42,7 +42,7 @@ class MovieShortCommentView extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(left: 15, top: 15),
+              margin: const EdgeInsets.only(left: 15, top: 15),
               child: Text(
                 '短评',
                 style: TextStyle(

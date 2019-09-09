@@ -116,7 +116,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
   ///点击的tab布局
   Widget _tabs(bool hasData) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(24)),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -163,9 +163,9 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
                     ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
               height: 2,
-              width: 72,
+              width: ScreenUtil().setWidth(140),
               color: isHotShow ? Colors.black : Colors.white12,
             )
           ],
@@ -177,7 +177,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
   ///即将上映
   Widget _comingSoonTab(bool hasData) {
     return Container(
-      margin: EdgeInsets.only(left: 20),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
       child: GestureDetector(
         onTap: () {
           if (hasData) {
@@ -203,9 +203,9 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
                     ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
               height: 2,
-              width: 72,
+              width: ScreenUtil().setWidth(140),
               color: isHotShow ? Colors.white12 : Colors.black,
             )
           ],

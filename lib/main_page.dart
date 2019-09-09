@@ -29,7 +29,9 @@ class _MainPageState extends State<MainPage> {
   final List<BottomNavigationBarItem> barItems = [
     BottomNavigationBarItem(
       title: Text('首页'),
-      activeIcon: Image.asset(Constants.ASSETS_IMG + "ic_tab_home_active.png"),
+      activeIcon: Image.asset(
+        Constants.ASSETS_IMG + "ic_tab_home_active.png",
+      ),
       icon: Image.asset(Constants.ASSETS_IMG + "ic_tab_home_normal.png"),
     ),
     BottomNavigationBarItem(

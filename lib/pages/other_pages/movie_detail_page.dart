@@ -78,7 +78,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return ChangeNotifierProvider(
       builder: (context) => _movieDetailModel,
       child: Consumer<MovieDetailModel>(
@@ -99,39 +98,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget _filledDataView(BuildContext context) {
     return Scaffold(
       backgroundColor: _bgColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: GestureDetector(
-          onTap: _scrollToTop,
-          child: Container(
-            width: ScreenUtil().setWidth(800),
-
-            ///设置这个颜色是因为如果不设置可能在appbar上点击可能失效的bug，可能是flutter本身的原因，所以设置了一个
-            color: Colors.transparent,
-            child: Stack(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.center,
-                  child: MovieDetailAppbarTitle(
-                    key: _movieDetailAppbarTitleStateKey,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: MovieDetailAppbarIndicator(
-                    key: _movieDetailAppbarIndicatorStateKey,
-                    data: _detailData,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        centerTitle: true,
-        leading: _backIcon(context),
-        actions: <Widget>[_moreIcon()],
-      ),
+      appBar: _appBar(context),
       body: Stack(
         children: <Widget>[
           _mainBody(),
@@ -143,6 +110,51 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     );
   }
 
+  Widget _appBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+      title: GestureDetector(
+        onTap: _scrollToTop,
+        child: Container(
+          ///设置这个颜色是因为如果不设置可能在appbar上点击可能失效的bug，可能是flutter本身的原因，所以设置了一个
+          color: Colors.transparent,
+          child: Stack(
+            children: <Widget>[
+              _backIcon(context),
+              _movieAppBarIndicator(),
+              _movieDetailAppbarTitle(),
+            ],
+          ),
+        ),
+      ),
+      automaticallyImplyLeading: false,
+      actions: <Widget>[_moreIcon()],
+    );
+  }
+
+  Widget _movieAppBarIndicator() {
+    return Container(
+      color: Colors.transparent,
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(80)),
+      child: MovieDetailAppbarIndicator(
+        key: _movieDetailAppbarIndicatorStateKey,
+        data: _detailData,
+      ),
+    );
+  }
+
+  Widget _movieDetailAppbarTitle() {
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(64)),
+      child: MovieDetailAppbarTitle(
+        key: _movieDetailAppbarTitleStateKey,
+      ),
+    );
+  }
+
   ///返回键
   Widget _backIcon(context) {
     return GestureDetector(
@@ -150,8 +162,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         Navigator.pop(context);
       },
       child: Container(
-        height: 50,
-        child: Icon(Icons.arrow_back_ios),
+        alignment: Alignment.centerLeft,
+        child: Icon(
+          Icons.arrow_back_ios,
+          size: ScreenUtil().setHeight(30),
+        ),
       ),
     );
   }
@@ -159,7 +174,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ///appbar右边的'更多'按钮
   Widget _moreIcon() {
     return Container(
-        margin: EdgeInsets.only(right: 10), child: Icon(Icons.more_horiz));
+        margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
+        child: Icon(
+          Icons.more_horiz,
+          size: ScreenUtil().setHeight(40),
+        ));
   }
 
   ///主体布局（除开抽屉的布局）
@@ -189,7 +208,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget _movieDetailHeader() {
     return SliverToBoxAdapter(
       child: Container(
-        margin: const EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
         height: ScreenUtil().setHeight(250),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,7 +269,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
         ///电影描述eg:中国大陆/爱情战争科幻/上映时间....
         Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
           width: ScreenUtil().setWidth(450),
           child: Text(
             '${_detailData.countries[0]} / ${Provider.of<MovieDetailModel>(context).getTypes()}'
@@ -295,8 +314,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return Expanded(
       child: CupertinoButton(
         color: Colors.white,
-        minSize: 35,
-        padding: const EdgeInsets.all(5),
+        minSize: ScreenUtil().setHeight(40),
+        padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
         child: Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
           height: ScreenUtil().setHeight(30),
@@ -321,7 +340,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         onPressed: () {
           ToastUtil.show('知道了，你$text');
         },
-        pressedOpacity: 0.3,
+        pressedOpacity: 0.2,
       ),
     );
   }

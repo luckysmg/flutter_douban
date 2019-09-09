@@ -74,13 +74,16 @@ class MovieView extends StatelessWidget {
 
   ///顶部四个按钮
   Widget _headerView() {
-    return Row(
-      children: <Widget>[
-        _headerItem('find_movie.png', '找电影'),
-        _headerItem('douban_top.png', '豆瓣榜单'),
-        _headerItem('douban_guess.png', '豆瓣猜'),
-        _headerItem('douban_film_list.png', '豆瓣片单'),
-      ],
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          _headerItem('find_movie.png', '找电影'),
+          _headerItem('douban_top.png', '豆瓣榜单'),
+          _headerItem('douban_guess.png', '豆瓣猜'),
+          _headerItem('douban_film_list.png', '豆瓣片单'),
+        ],
+      ),
     );
   }
 
@@ -88,7 +91,9 @@ class MovieView extends StatelessWidget {
   Widget _headerItem(String assetImageName, String text) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.only(top: 15, bottom: 15),
+        margin: EdgeInsets.only(
+            top: ScreenUtil().setHeight(24),
+            bottom: ScreenUtil().setHeight(24)),
         child: GestureDetector(
           onTap: () {
             ToastUtil.show('点击了' + text);
@@ -97,7 +102,7 @@ class MovieView extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 Constants.ASSETS_IMG + assetImageName,
-                width: 40,
+                height: ScreenUtil().setHeight(60),
               ),
               SizedBox(height: 5),
               Text(
@@ -125,7 +130,8 @@ class MovieView extends StatelessWidget {
   ///为你推荐
   Widget _forYouRecommendText() {
     return Container(
-      margin: EdgeInsets.fromLTRB(12, 10, 10, 10),
+      margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(24),
+          ScreenUtil().setHeight(18), 0, ScreenUtil().setHeight(10)),
       child: Text(
         '为你推荐',
         style: TextStyle(
@@ -160,7 +166,11 @@ class MovieView extends StatelessWidget {
   Widget _recommendTabItem(String text) {
     return Container(
       margin: EdgeInsets.only(left: 12),
-      padding: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
+      padding: EdgeInsets.only(
+          left: ScreenUtil().setWidth(20),
+          top: ScreenUtil().setHeight(8),
+          right: ScreenUtil().setWidth(20),
+          bottom: ScreenUtil().setHeight(8)),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[350]),
         borderRadius: BorderRadius.circular(18),
@@ -175,18 +185,23 @@ class MovieView extends StatelessWidget {
 
   Widget _availablePlayItem() {
     return Container(
-      margin: EdgeInsets.only(left: 12),
-      padding: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(24)),
+      padding: EdgeInsets.only(
+          left: ScreenUtil().setWidth(14),
+          top: ScreenUtil().setHeight(8),
+          right: ScreenUtil().setWidth(14),
+          bottom: ScreenUtil().setHeight(8)),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[350]),
         borderRadius: BorderRadius.circular(18),
       ),
       child: Row(
         children: <Widget>[
-          Icon(Icons.play_circle_outline, size: 12),
+          Icon(Icons.play_circle_outline, size: ScreenUtil().setHeight(18)),
           Text(
             '可播放',
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(18), fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -196,12 +211,12 @@ class MovieView extends StatelessWidget {
   ///筛选按钮
   Widget _filterButton() {
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: ScreenUtil().setHeight(18)),
       child: Row(
         children: <Widget>[
           Icon(
             Icons.find_replace,
-            size: 15,
+            size: ScreenUtil().setHeight(24),
           ),
           Text(
             '筛选',
@@ -215,7 +230,9 @@ class MovieView extends StatelessWidget {
   ///下面的大的电影海报
   Widget _moviePoster() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(15, 15, 15, 30),
+      margin: EdgeInsets.symmetric(
+          vertical: ScreenUtil().setHeight(20),
+          horizontal: ScreenUtil().setWidth(18)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Image.asset(Constants.ASSETS_IMG + 'movie_poster.png'),

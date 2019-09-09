@@ -30,7 +30,8 @@ class MovieCards extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Container(
-            margin: EdgeInsets.fromLTRB(12, 10, 10, 10),
+            margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(24),
+                ScreenUtil().setHeight(12), 0, ScreenUtil().setHeight(15)),
             child: Text(
               '豆瓣榜单',
               style: TextStyle(
@@ -90,7 +91,9 @@ class MovieCards extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8),
         child: ClipRRect(
-          child: Image.asset(Constants.ASSETS_IMG + assetName),
+          child: Image.asset(
+            Constants.ASSETS_IMG + assetName,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

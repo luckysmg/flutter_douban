@@ -22,45 +22,35 @@ class MovieDetailAppbarIndicator extends StatefulWidget {
 class MovieDetailAppbarIndicatorState
     extends State<MovieDetailAppbarIndicator> {
   double opacity = 0.0;
-  double currentOffsetY = 40.0;
+  double currentOffsetY = 0;
 
   @override
   Widget build(BuildContext context) {
     ///这里是平移动画+透明度渐变动画
-    return RepaintBoundary(
-      child: Transform.translate(
-        offset: Offset(0, currentOffsetY),
-        child: AnimatedOpacity(
-          duration: Duration(milliseconds: 0),
-          opacity: opacity,
-          child: Container(
-            alignment: Alignment.center,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ///图片
-                Container(
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
-                  child: CachedNetworkImage(
-                    imageUrl: this.widget.data.images.small,
-                    height: ScreenUtil().setHeight(40),
-                  ),
-                ),
-
-                ///文字
-                Container(
-                  margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      _movieName(),
-                      _starScore(),
-                    ],
-                  ),
-                ),
-              ],
+    return Transform.translate(
+      offset: Offset(0, currentOffsetY),
+      child: AnimatedOpacity(
+        opacity: opacity,
+        duration: Duration(milliseconds: 0),
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(4)),
+              child: CachedNetworkImage(
+                imageUrl: this.widget.data.images.small,
+                height: ScreenUtil().setHeight(40),
+              ),
             ),
-          ),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _movieName(),
+                  _starScore(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

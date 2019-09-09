@@ -28,28 +28,29 @@ class _HomePageState extends State<HomePage> {
         ScreenUtil(width: 750, height: 1334, allowFontScaling: false)
           ..init(context);
     return Scaffold(
-      appBar: _homeAppBar(),
+      appBar: _appBar(),
       body: isLogin ? _alreadyLoginMainBody() : _noLoginMainBody(),
     );
   }
 
-  /// 首页的appbar
-  Widget _homeAppBar() {
+  Widget _appBar() {
     return AppBar(
-      backgroundColor: Constants.APP_THEME_COLOR,
+      backgroundColor: Colors.green,
+      elevation: 0.5,
+      brightness: Brightness.light,
       title: Row(
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Stack(
             children: <Widget>[
               _searchBox(),
-              _scanButton(),
               _searchIcon(),
+              _scanButton(),
             ],
           ),
           _emailIcon(),
         ],
       ),
-      elevation: 0.0,
     );
   }
 
@@ -61,10 +62,9 @@ class _HomePageState extends State<HomePage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: ScreenUtil.getInstance().setWidth(10),
-            top: ScreenUtil().setHeight(18)),
+            left: ScreenUtil().setWidth(10), top: ScreenUtil().setHeight(18)),
         width: ScreenUtil.getInstance().setWidth(550),
-        height: 40,
+        height: ScreenUtil().setHeight(60),
         decoration: BoxDecoration(
             color: Colors.grey[200], borderRadius: BorderRadius.circular(30.0)),
       ),
@@ -75,10 +75,11 @@ class _HomePageState extends State<HomePage> {
   Widget _searchIcon() {
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(25)),
+          top: ScreenUtil().setHeight(26), left: ScreenUtil().setWidth(25)),
       child: Icon(
         Icons.search,
         color: Colors.grey,
+        size: ScreenUtil().setHeight(40),
       ),
     );
   }
@@ -88,12 +89,10 @@ class _HomePageState extends State<HomePage> {
       margin: EdgeInsets.only(
           top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
       child: GestureDetector(
-        onTap: () {
-          debugPrint('打开相机');
-        },
         child: Icon(
           Icons.center_focus_weak,
           color: Colors.black38,
+          size: ScreenUtil().setHeight(35),
         ),
       ),
     );
@@ -101,13 +100,19 @@ class _HomePageState extends State<HomePage> {
 
   ///邮件按钮
   Widget _emailIcon() {
-    return Container(
-      alignment: Alignment.centerRight,
-      margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(15), left: ScreenUtil().setWidth(50)),
-      child: Icon(
-        Icons.email,
-        color: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        ToastUtil.show('进入邮件');
+      },
+      child: Container(
+        alignment: Alignment.centerRight,
+        margin: EdgeInsets.only(
+            top: ScreenUtil().setHeight(15), left: ScreenUtil().setWidth(50)),
+        child: Icon(
+          Icons.email,
+          size: ScreenUtil().setHeight(40),
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -119,8 +124,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: 100,
-              height: 100,
+              height: ScreenUtil().setHeight(160),
               child: Image.asset(
                   Constants.ASSETS_IMG + 'ic_new_empty_view_default.png'),
             ),
@@ -138,8 +142,8 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             Container(
-              width: 120,
-              height: 45,
+              width: ScreenUtil().setWidth(240),
+              height: ScreenUtil().setHeight(60),
               decoration: Decorations.homeButtonDecoration,
               child: CupertinoButton(
                   padding: EdgeInsets.all(0),

@@ -31,7 +31,7 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
   Widget _notExpandedLayout() {
     return SliverToBoxAdapter(
       child: Container(
-        padding: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(12)),
         constraints: BoxConstraints(
           minHeight: 50,
         ),
@@ -92,7 +92,7 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
   Widget _expandedLayout() {
     return SliverToBoxAdapter(
       child: Container(
-        padding: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(12)),
         constraints: BoxConstraints(
           minHeight: 50,
         ),

@@ -12,7 +12,7 @@ class RecordCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        margin: EdgeInsets.only(top: 15),
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: Color.fromARGB(100, 0, 0, 0)),

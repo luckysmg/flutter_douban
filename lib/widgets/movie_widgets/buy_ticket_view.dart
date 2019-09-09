@@ -11,7 +11,7 @@ class BuyTicketView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
         child: Row(
           children: <Widget>[
             Expanded(

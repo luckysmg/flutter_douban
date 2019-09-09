@@ -10,7 +10,7 @@ PODS:
   - flutter_tab_bar_no_ripple (0.0.1):
     - Flutter
   - FlutterIJK (0.1.0)
-  - fluttertoast (0.0.2):
+  - fluwx (0.0.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_ijkplayer (from `.symlinks/plugins/flutter_ijkplayer/ios`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
-  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -56,8 +56,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_ijkplayer/ios"
   flutter_tab_bar_no_ripple:
     :path: ".symlinks/plugins/flutter_tab_bar_no_ripple/ios"
-  fluttertoast:
-    :path: ".symlinks/plugins/fluttertoast/ios"
+  fluwx:
+    :path: ".symlinks/plugins/fluwx/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   flutter_ijkplayer: ef9006131553deb6d8ae6d7fbd3bcbf93b135930
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
   FlutterIJK: 68b00c1d11162b5016f3611853aa699e198bd1d2
-  fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
+  fluwx: 19524c5e4c9c539a646407259139c9c1e4eaf9e5
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
   permission_handler: d59f41439f5bc6c4d1005f3355e98f05ddc68ece

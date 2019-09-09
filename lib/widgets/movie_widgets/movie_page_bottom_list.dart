@@ -74,7 +74,8 @@ class _MovieBottomListState extends State<MovieBottomList> {
 
   Widget _item(index) {
     return Container(
-      margin: EdgeInsets.only(bottom: 30),
+      margin: EdgeInsets.only(
+          bottom: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(18)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -101,10 +102,9 @@ class _MovieBottomListState extends State<MovieBottomList> {
   Widget _imageItem(String url) {
     return Expanded(
       child: Container(
-        height: 110,
         margin: EdgeInsets.only(left: 10),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(5),
           child: CachedNetworkImage(
             imageUrl: url,
           ),
