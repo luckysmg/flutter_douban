@@ -44,19 +44,11 @@ dependencies:
   oktoast: ^2.1.9
   flutter_slidable: ^0.5.3
   fish_redux: ^0.2.5
-  flutter_easyrefresh:
-    git:
-      url: git://github.com/xuelongqy/flutter_easyrefresh.git
-  auto_orientation:
-    git:
-      url: git://github.com/bytepark/auto_orientation.git
-  permission_handler:
-    git:
-      url: git://github.com/BaseflowIT/flutter-permission-handler.git
+  flutter_easyrefresh: ^2.0.4
+  auto_orientation: ^1.0.5
+  permission_handler: ^3.2.2
   flutter_ijkplayer: ^0.3.3
-  fluwx:
-    git:
-      url: https://github.com/OpenFlutter/fluwx
+  fluwx: ^1.0.5
 
 
 dev_dependencies:

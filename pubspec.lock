@@ -21,15 +21,13 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   auto_orientation:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: dd9923557ae89d9a2b3168d523bb23f2f0c51838
-      url: "git://github.com/bytepark/auto_orientation.git"
-    source: git
+      name: auto_orientation
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.5"
   boolean_selector:
     dependency: transitive
@@ -37,7 +35,7 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   bubble_tab_indicator:
     dependency: "direct main"
     description:
@@ -170,7 +168,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.1+1"
   csslib:
     dependency: transitive
     description:
@@ -219,7 +217,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.8"
+    version: "5.0.8+1"
   fish_redux:
     dependency: "direct main"
     description:
@@ -261,11 +259,9 @@ packages:
   flutter_easyrefresh:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "244c0571ad397f681736fdb632ddb31367137c74"
-      url: "git://github.com/xuelongqy/flutter_easyrefresh.git"
-    source: git
+      name: flutter_easyrefresh
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "2.0.4"
   flutter_ijkplayer:
     dependency: "direct main"
@@ -331,11 +327,9 @@ packages:
   fluwx:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "30c09d3156e497100e198e38bcd3490f983572d4"
-      url: "https://github.com/OpenFlutter/fluwx"
-    source: git
+      name: fluwx
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.5"
   front_end:
     dependency: transitive
@@ -474,7 +468,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.6"
+    version: "1.1.7"
   mime:
     dependency: transitive
     description:
@@ -523,7 +517,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.2"
+    version: "1.6.4"
   path_provider:
     dependency: transitive
     description:
@@ -537,15 +531,13 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0+1"
   permission_handler:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f70496147ae6712511b731445cb3c81ae70e4534
-      url: "git://github.com/BaseflowIT/flutter-permission-handler.git"
-    source: git
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "3.2.2"
   platform:
     dependency: transitive
@@ -553,7 +545,7 @@ packages:
       name: platform
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   pool:
     dependency: transitive
     description:
@@ -567,7 +559,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.9"
+    version: "3.0.11"
   provider:
     dependency: "direct main"
     description:
@@ -595,7 +587,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -698,7 +690,7 @@ packages:
       name: string_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   synchronized:
     dependency: transitive
     description:
@@ -796,7 +788,7 @@ packages:
       name: web_socket_channel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.13"
+    version: "1.0.15"
   yaml:
     dependency: transitive
     description:
