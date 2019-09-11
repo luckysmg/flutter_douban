@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -86,7 +84,7 @@ class _CameraPageState extends State<CameraPage> {
   Widget _takePhotoButton() {
     return GestureDetector(
       onTap: () {
-        ToastUtil.show('拍照！');
+        ToastUtil.show('拍照');
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100),

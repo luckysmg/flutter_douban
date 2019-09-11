@@ -196,11 +196,8 @@ class _BookMusicState extends State<BookMusicPage>
           .checkPermissionStatus(PermissionGroup.camera);
 
       if (permission == PermissionStatus.granted) {
-        Navigator.of(context, rootNavigator: true).push(
-          CustomBottomSlideRoute(
-            CameraPage(),
-          ),
-        );
+        NavigatorUtil.push(context, CameraPage(),
+            fullScreenDialog: true, rootNavigator: true);
       }
     });
   }

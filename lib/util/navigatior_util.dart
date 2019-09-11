@@ -1,5 +1,9 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as prefix1;
 
 import 'package:flutter_douban/pages/other_pages/image_preview_page.dart';
 
@@ -9,9 +13,26 @@ import 'package:flutter_douban/pages/other_pages/image_preview_page.dart';
 ///
 class NavigatorUtil {
   static void push(BuildContext context, Widget destinationPage,
-      {bool rootNavigator = false}) {
-    Navigator.of(context, rootNavigator: rootNavigator).push(
-        MaterialPageRoute(builder: (BuildContext context) => destinationPage));
+      {bool rootNavigator = false,
+      bool fullScreenDialog = false,
+      bool finishCurrentPage = false}) {
+    if (fullScreenDialog) {
+      Navigator.of(context, rootNavigator: rootNavigator).push(
+        CupertinoPageRoute(
+            builder: (BuildContext context) => destinationPage,
+            fullscreenDialog: true),
+      );
+    } else if (finishCurrentPage) {
+      Navigator.of(context, rootNavigator: rootNavigator).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => destinationPage,
+          ),
+          (route) => route == null);
+    } else {
+      Navigator.of(context, rootNavigator: rootNavigator).push(
+          MaterialPageRoute(
+              builder: (BuildContext context) => destinationPage));
+    }
   }
 
   static void pushToImagePreviewPage(

@@ -278,11 +278,12 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
         ///由于这里是在tabView页面上面跳转，由于iOS的tab脚手架每个页面都是一个独立的导航栏，所以加上rootNavigator参数才能正常
         ///否则安卓上按返回键就直接退出app！
         NavigatorUtil.push(
-            context,
-            MovieDetailPage(
-              movieId: _comingSoonSubjectData[index].id,
-            ),
-            rootNavigator: true);
+          context,
+          MovieDetailPage(
+            movieId: _comingSoonSubjectData[index].id,
+          ),
+          rootNavigator: true,
+        );
       },
       child: Column(
         children: <Widget>[
