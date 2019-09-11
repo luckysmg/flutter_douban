@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
       backgroundColor: Constants.APP_THEME_COLOR,
       movingOnWindowChange: true,
       child: MaterialApp(
-
         theme: ThemeData(
           pageTransitionsTheme: PageTransitionsTheme(
             builders: {
