@@ -13,7 +13,7 @@ class Constants {
   static const String BASE_URL = 'https://douban.uieee.com/v2';
   static const String ASSETS_IMG = 'assets/images/';
   static final Color APP_THEME_COLOR = Colors.green[600];
-  static final Color APP_skeleton_COLOR = Colors.grey[200];
+  static final Color APP_SKELETON_COLOR = Colors.grey[200];
 
   ///影院热映模拟地址
   static const String URL_IN_THEATERS = 'in_theaters';

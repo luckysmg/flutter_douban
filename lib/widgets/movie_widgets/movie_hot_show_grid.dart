@@ -212,13 +212,13 @@ class HotMovieGridState extends State<HotMovieGrid>
           child: Container(
             width: 150,
             height: 180,
-            color: Constants.APP_skeleton_COLOR,
+            color: Constants.APP_SKELETON_COLOR,
           ),
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: Constants.APP_skeleton_COLOR,
+            color: Constants.APP_SKELETON_COLOR,
           ),
           height: 8,
           width: 70,
@@ -229,7 +229,7 @@ class HotMovieGridState extends State<HotMovieGrid>
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_skeleton_COLOR,
+                color: Constants.APP_SKELETON_COLOR,
               ),
               height: 6,
               width: 50,
@@ -240,7 +240,7 @@ class HotMovieGridState extends State<HotMovieGrid>
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_skeleton_COLOR,
+                color: Constants.APP_SKELETON_COLOR,
               ),
               height: 6,
               width: 30,

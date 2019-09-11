@@ -72,7 +72,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   auto_orientation: 2941c44ebe5c3d41016001597ab03e81a92a26ce
   camera: d56ad165545ae5a0ffb892376033760a969c68c8
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_ijkplayer: ef9006131553deb6d8ae6d7fbd3bcbf93b135930
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
   FlutterIJK: 68b00c1d11162b5016f3611853aa699e198bd1d2
