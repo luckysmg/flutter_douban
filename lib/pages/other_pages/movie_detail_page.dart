@@ -110,33 +110,30 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   Widget _appBar(BuildContext context) {
-    return AppBar(
+    return CupertinoNavigationBar(
       backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      title: GestureDetector(
+      trailing: _moreIcon(),
+      actionsForegroundColor: Colors.white,
+      middle: GestureDetector(
         onTap: _scrollToTop,
         child: Container(
           ///设置这个颜色是因为如果不设置可能在appbar上点击可能失效的bug，可能是flutter本身的原因，所以设置了一个
           color: Colors.transparent,
           child: Stack(
             children: <Widget>[
-              _backIcon(context),
-              _movieAppBarIndicator(),
               _movieDetailAppbarTitle(),
+              _movieAppBarIndicator(),
             ],
           ),
         ),
       ),
-      automaticallyImplyLeading: false,
-      actions: <Widget>[_moreIcon()],
     );
   }
 
   Widget _movieAppBarIndicator() {
     return Container(
       color: Colors.transparent,
-      alignment: Alignment.centerLeft,
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(80)),
+      alignment: Alignment.center,
       child: MovieDetailAppbarIndicator(
         key: _movieDetailAppbarIndicatorStateKey,
         data: _detailData,
@@ -147,25 +144,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget _movieDetailAppbarTitle() {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(64)),
       child: MovieDetailAppbarTitle(
         key: _movieDetailAppbarTitleStateKey,
-      ),
-    );
-  }
-
-  ///返回键
-  Widget _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Container(
-        alignment: Alignment.centerLeft,
-        child: Icon(
-          Icons.arrow_back_ios,
-          size: ScreenUtil().setHeight(30),
-        ),
       ),
     );
   }

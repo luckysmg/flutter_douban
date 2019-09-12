@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ///
@@ -24,7 +24,8 @@ class MovieDetailAppbarTitleState extends State<MovieDetailAppbarTitle> {
         opacity: opacity,
         child: Text(
           '电影',
-          style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+          style:
+          TextStyle(fontSize: ScreenUtil().setSp(28), color: Colors.white),
         ),
       ),
     );
