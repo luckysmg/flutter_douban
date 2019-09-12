@@ -20,7 +20,24 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var _splashDisplay = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 1500), () {
+      setState(() {
+        _splashDisplay = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return OKToast(
@@ -43,11 +60,21 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: '豆瓣客户端',
-        home: MultiProvider(providers: [
-          Provider<BookMusicViewTabIndexModel>.value(
-              value: BookMusicViewTabIndexModel()),
-        ], child: MainPage()),
+        home: MultiProvider(
+          providers: [
+            Provider<BookMusicViewTabIndexModel>.value(
+                value: BookMusicViewTabIndexModel()),
+          ],
+          child: _splashDisplay ? _splashScreen() : MainPage(),
+        ),
       ),
     );
+  }
+
+  Widget _splashScreen() {
+    return Scaffold(
+        body: Container(
+      child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
+    ));
   }
 }
