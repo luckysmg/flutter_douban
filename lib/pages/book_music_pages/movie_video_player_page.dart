@@ -50,7 +50,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     _controller = VideoPlayerController.network(
       'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //豆瓣视频API失效了随便加一个
     )
-//        this.widget.data.trailers[this.widget.dataIndex].resourceUrl)
       ..addListener(() {
         ///播放完毕自动退出
         _autoQuitWhenFinished();
@@ -254,18 +253,18 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
 
   ///控制拖动条
   Widget _videoIndicator() {
-    var width = isPortrait ? 480.0 : 600.0;
-    return Container(
-      width: ScreenUtil().setWidth(width),
-      height: ScreenUtil().setHeight(30),
-      margin: EdgeInsets.only(top: 2, left: 10),
-      child: VideoProgressIndicator(
-        _controller,
-        colors: VideoProgressColors(
-            bufferedColor: Colors.white54,
-            backgroundColor: Colors.white12,
-            playedColor: Colors.white),
-        allowScrubbing: true,
+    return Expanded(
+      child: Container(
+        height: ScreenUtil().setHeight(30),
+        margin: EdgeInsets.only(top: 2, left: 10),
+        child: VideoProgressIndicator(
+          _controller,
+          colors: VideoProgressColors(
+              bufferedColor: Colors.white54,
+              backgroundColor: Colors.white12,
+              playedColor: Colors.white),
+          allowScrubbing: true,
+        ),
       ),
     );
   }
@@ -285,8 +284,8 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   ///切换横竖屏的
   Widget _switchIcon() {
     var margin = isPortrait
-        ? EdgeInsets.only(left: 10, top: 5)
-        : EdgeInsets.only(left: 10);
+        ? EdgeInsets.only(left: 2, top: 5)
+        : EdgeInsets.only(left: 2);
 
     return GestureDetector(
       onTap: () => _switchScreen(),

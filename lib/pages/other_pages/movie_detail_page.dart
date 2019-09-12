@@ -19,7 +19,6 @@ import 'package:flutter_douban/widgets/movie_widgets/performing_people_view.dart
 import 'package:flutter_douban/widgets/movie_widgets/record_card_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/score_star_detail.dart';
 import 'package:flutter_douban/widgets/movie_widgets/trailers_photo_view.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
