@@ -1,10 +1,11 @@
+import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/status_bar_util.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:auto_orientation/auto_orientation.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
 import 'routes/custom_transition_builder.dart';
@@ -16,6 +17,7 @@ import 'routes/custom_transition_builder.dart';
 
 void main() {
   AutoOrientation.portraitAutoMode();
+  StatusBarUtil.hideStatusBar();
   Provider.debugCheckInvalidValueType = null;
   runApp(MyApp());
 }
@@ -31,7 +33,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 1500), () {
+
+    Future.delayed(Duration(milliseconds: 1500), () async {
+      await StatusBarUtil.showStatusBar();
       setState(() {
         _splashDisplay = false;
       });
@@ -74,7 +78,7 @@ class _MyAppState extends State<MyApp> {
   Widget _splashScreen() {
     return Scaffold(
         body: Container(
-      child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
-    ));
+          child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
+        ));
   }
 }

@@ -326,7 +326,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   }
 
   ///控制播放
-  void _controlPlayer() {
+  void _controlPlayer() async {
     ///播放暂停逻辑
     ///如果没有显示，那么就显示,并且不做播放暂停操作
     if (opacity != 1.0) {
