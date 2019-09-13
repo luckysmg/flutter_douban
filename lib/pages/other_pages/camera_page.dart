@@ -71,7 +71,6 @@ class _CameraPageState extends State<CameraPage> {
     return Container(
       height: ScreenUtil.screenHeight,
       child: FittedBox(
-
         ///进行fitHeight形式的缩放，是全屏的相机
         fit: BoxFit.fitHeight,
         child: Container(
