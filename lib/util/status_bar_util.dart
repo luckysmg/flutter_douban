@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class StatusBarUtil {
@@ -9,5 +10,12 @@ class StatusBarUtil {
   ///隐藏状态栏
   static Future<void> hideStatusBar() async {
     await SystemChrome.setEnabledSystemUIOverlays([]);
+  }
+
+  static void setTransParentStatusBar() {
+    SystemUiOverlayStyle _style = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    );
+    SystemChrome.setSystemUIOverlayStyle(_style);
   }
 }

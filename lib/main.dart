@@ -1,9 +1,11 @@
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/status_bar_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +19,8 @@ import 'routes/custom_transition_builder.dart';
 
 void main() {
   AutoOrientation.portraitAutoMode();
-  StatusBarUtil.hideStatusBar();
   Provider.debugCheckInvalidValueType = null;
+  StatusBarUtil.setTransParentStatusBar();
   runApp(MyApp());
 }
 
@@ -35,7 +37,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     Future.delayed(Duration(milliseconds: 1500), () async {
-      await StatusBarUtil.showStatusBar();
       setState(() {
         _splashDisplay = false;
       });
@@ -77,6 +78,10 @@ class _MyAppState extends State<MyApp> {
 
   Widget _splashScreen() {
     return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Container(),
+        ),
         body: Container(
           child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
         ));
