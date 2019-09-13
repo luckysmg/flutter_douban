@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 ///
 /// @created by 文景睿
@@ -53,7 +53,7 @@ class _ImagePreviewPageState extends State<ImagePreviewPage> {
             fit: this.widget.fit,
             enableSlideOutPage: true,
             cache: true,
-            mode: ExtendedImageMode.Gesture,
+            mode: ExtendedImageMode.gesture,
           ),
         ),
       ),

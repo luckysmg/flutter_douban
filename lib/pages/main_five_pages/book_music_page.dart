@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/model/book_music_view_tab_index_model.dart';
 import 'package:flutter_douban/pages/book_music_pages/book_page.dart';
+import 'package:flutter_douban/pages/book_music_pages/image_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/movie_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/music_page.dart';
 import 'package:flutter_douban/pages/other_pages/camera_page.dart';
-import 'package:flutter_douban/routes/custom_routes.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
-import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 ///
 /// @created by 文景睿
@@ -26,6 +27,7 @@ class BookMusicPage extends StatefulWidget {
 class _BookMusicState extends State<BookMusicPage>
     with SingleTickerProviderStateMixin {
   TabController _controller;
+  ValueKey<ScaffoldState> key = ValueKey(ScaffoldState());
 
   final _tabBarViews = [
     MovieView(),
@@ -72,6 +74,7 @@ class _BookMusicState extends State<BookMusicPage>
           ..init(context);
 
     return Scaffold(
+      key: key,
       appBar: _topAppBar(),
       body: _mainBodyView(),
     );
@@ -118,7 +121,7 @@ class _BookMusicState extends State<BookMusicPage>
               _scanButton(),
             ],
           ),
-          _emailIcon(),
+          _selectImageIcon(),
         ],
       ),
       bottom: _tabBar(),
@@ -171,11 +174,9 @@ class _BookMusicState extends State<BookMusicPage>
   }
 
   ///邮件按钮
-  Widget _emailIcon() {
+  Widget _selectImageIcon() {
     return GestureDetector(
-      onTap: () {
-        ToastUtil.show('进入邮件');
-      },
+      onTap: _showDialog,
       child: Container(
         alignment: Alignment.centerRight,
         margin: EdgeInsets.only(
@@ -192,12 +193,84 @@ class _BookMusicState extends State<BookMusicPage>
   void _openCamera() async {
     await PermissionHandler()
         .requestPermissions([PermissionGroup.camera]).then((_) async {
-      PermissionStatus permission = await PermissionHandler()
+      PermissionStatus cameraPermission = await PermissionHandler()
           .checkPermissionStatus(PermissionGroup.camera);
-
-      if (permission == PermissionStatus.granted) {
+      if (cameraPermission == PermissionStatus.granted) {
         NavigatorUtil.push(context, CameraPage(),
             fullScreenDialog: true, rootNavigator: true);
+      } else {
+        ToastUtil.show('权限获取失败');
+      }
+    });
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            height: ScreenUtil().setHeight(250),
+            width: ScreenUtil().setWidth(600),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: ScreenUtil().setHeight(40),
+                ),
+                _dialogButton('相册获取', context),
+                SizedBox(
+                  height: ScreenUtil().setHeight(40),
+                ),
+                _dialogButton('拍照获取', context),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _dialogButton(String text, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (text == '相册获取') {
+          _pickImage(ImageSource.gallery);
+        } else {
+          _pickImage(ImageSource.camera);
+        }
+        Navigator.pop(context);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            vertical: ScreenUtil().setHeight(10),
+            horizontal: ScreenUtil().setWidth(10)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
+        child: Text(
+          text,
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none),
+        ),
+      ),
+    );
+  }
+
+  void _pickImage(ImageSource source) async {
+    ImagePicker.pickImage(source: source).then((data) {
+      if (data != null) {
+        NavigatorUtil.push(
+            context,
+            ImagePage(
+              image: data,
+            ),
+            rootNavigator: true);
       }
     });
   }
