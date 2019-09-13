@@ -18,11 +18,7 @@ class _CameraPageState extends State<CameraPage> {
   CameraController controller;
   List cameras;
 
-  String timestamp() =>
-      DateTime
-          .now()
-          .millisecondsSinceEpoch
-          .toString();
+  String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
   @override
   void initState() {
