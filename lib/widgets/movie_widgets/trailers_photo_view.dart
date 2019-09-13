@@ -78,9 +78,9 @@ class TrailersPhotoView extends StatelessWidget {
       child: EasyRefresh(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 2 + data.photos.length,
+          itemCount: data.trailers.length + data.photos.length,
           itemBuilder: (context, index) {
-            if (index == 0 || index == 1) {
+            if (index < data.trailers.length) {
               return _videoTypeView(context, index);
             } else {
               return _photoView(index);
@@ -147,7 +147,7 @@ class TrailersPhotoView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(right: 2),
       child: CachedNetworkImage(
-        imageUrl: data.photos[index - 2].image,
+        imageUrl: data.photos[index - data.trailers.length].image,
         fadeInDuration: Duration(milliseconds: 200),
       ),
     );

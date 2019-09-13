@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/pages/book_music_pages/image_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
+import 'package:flutter_douban/util/status_bar_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
