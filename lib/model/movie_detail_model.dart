@@ -51,13 +51,6 @@ class MovieDetailModel extends BaseModel {
       _longCommentData = data;
     });
 
-    await PaletteGenerator.fromImageProvider(
-            NetworkImage(_detailData.images.large))
-        .then((paletteGenerator) {
-      if (paletteGenerator != null && paletteGenerator.colors.isNotEmpty) {
-        _bgColor = paletteGenerator.colors.toList()[0];
-      }
-    });
     await Future.delayed(Duration(milliseconds: 800));
     hasData = true;
     notifyListeners();
