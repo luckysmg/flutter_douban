@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/coming_soon_entity.dart';
 import 'package:flutter_douban/entity/hot_show_entity.dart';
+import 'package:flutter_douban/http/dio_util.dart';
 import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/other_pages/movie_detail_page.dart';
 import 'package:flutter_douban/util/Decorations.dart';
@@ -21,14 +23,15 @@ import '../../entity_factory.dart';
 /// description:由于带Tab的网格布局这一块是一个单独的有状态部件，所以单独拿出来，作为一个类进行操作
 ///
 
-class TabGrid extends StatefulWidget {
-  TabGrid({Key key}) : super(key: key);
+class MovieTabGrid extends StatefulWidget {
+  MovieTabGrid({Key key}) : super(key: key);
 
   @override
-  TabGridState createState() => TabGridState();
+  MovieTabGridState createState() => MovieTabGridState();
 }
 
-class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
+class MovieTabGridState extends State<MovieTabGrid>
+    with AutomaticKeepAliveClientMixin {
   bool isHotShow = true;
 
   ///保存页面状态
@@ -43,14 +46,18 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
-    _requestData();
+    if (Constants.isRealNetworkData) {
+      _requestHttpData();
+    } else {
+      _requestMockData();
+    }
   }
 
   ///请求模拟json数据
-  Future _requestData() async {
+  Future _requestMockData() async {
     ///这里用600毫秒延迟来模拟网络请求时间
     Timer(Duration(milliseconds: 300), () async {
-      ///请求'影院热映数据'
+      ///请求影院热映数据
       await MockRequest.mock(Constants.URL_IN_THEATERS).then((data) {
         _hotShowEntity = EntityFactory.generateOBJ(data);
         _hotShowSubjectData = _hotShowEntity.subjects;
@@ -58,7 +65,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
       });
 
       ///请求即将上映数据
-      await MockRequest.mock(Constants.URL_COMMING_SOON).then((data) {
+      await MockRequest.mock(Constants.URL_COMING_SOON).then((data) {
         _comingSoonEntity = EntityFactory.generateOBJ(data);
         _comingSoonSubjectData = _comingSoonEntity.subjects;
         return;
@@ -69,11 +76,31 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
     });
   }
 
+  ///真实网络请求
+  void _requestHttpData() async {
+    ///请求影院热映数据
+    await DioUtil.getInstance()
+        .get(url: '/v2/movie/in_theaters?apikey=${Constants.API_KEY}')
+        .then((data) {
+      _hotShowEntity = EntityFactory.generateOBJ(data);
+      _hotShowSubjectData = _hotShowEntity.subjects;
+    });
+
+    ///请求即将上映数据
+    await DioUtil.getInstance()
+        .get(url: '/v2/movie/coming_soon?apikey=${Constants.API_KEY}')
+        .then((data) {
+      _comingSoonEntity = EntityFactory.generateOBJ(data);
+      _comingSoonSubjectData = _comingSoonEntity.subjects;
+    });
+
+    setState(() {});
+  }
+
   ///刷新数据
   Future refreshData() async {
-    _hotShowSubjectData = null;
-    _comingSoonSubjectData = null;
-    _requestData();
+    await Future.delayed(Duration(milliseconds: 1000));
+    return null;
   }
 
   @override
@@ -280,7 +307,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
         NavigatorUtil.push(
           context,
           MovieDetailPage(
-            movieId: _comingSoonSubjectData[index].id,
+            movieId: _hotShowSubjectData[index].id,
           ),
           rootNavigator: true,
         );
@@ -332,10 +359,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
               ),
               Container(
                 child: Text(
-                  ((_hotShowSubjectData[index].rating.average /
-                              _hotShowSubjectData[index].rating.max) *
-                          5)
-                      .toString(),
+                  (_hotShowSubjectData[index].rating.average.toString()),
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.w500),
@@ -356,6 +380,7 @@ class TabGridState extends State<TabGrid> with AutomaticKeepAliveClientMixin {
             context,
             MovieDetailPage(
               movieId: _comingSoonSubjectData[index].id,
+              isComingSoon: true,
             ),
             rootNavigator: true);
       },

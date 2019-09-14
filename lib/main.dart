@@ -8,6 +8,7 @@ import 'package:flutter_douban/util/status_bar_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
 import 'routes/custom_transition_builder.dart';
@@ -35,7 +36,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
+    SharedPreferences.getInstance().then((data) {
+      Constants.isRealNetworkData = data.getBool(Constants.USE_REAL_NETWORK);
+    });
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {
         _splashDisplay = false;

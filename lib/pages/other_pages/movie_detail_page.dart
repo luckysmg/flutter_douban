@@ -5,6 +5,7 @@ import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/palette_generator.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/empty_movie_detail_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
@@ -28,11 +29,13 @@ import 'package:provider/provider.dart';
 ///
 class MovieDetailPage extends StatefulWidget {
   final String movieId;
+  final bool isComingSoon;
 
   ///appbar交互的判断临界offset
   static const edgeOffsetY = 200.0;
 
-  const MovieDetailPage({Key key, this.movieId}) : super(key: key);
+  const MovieDetailPage({Key key, this.movieId, this.isComingSoon = false})
+      : super(key: key);
 
   @override
   _MovieDetailPageState createState() => _MovieDetailPageState();
@@ -41,7 +44,7 @@ class MovieDetailPage extends StatefulWidget {
 class _MovieDetailPageState extends State<MovieDetailPage> {
   final Color _textColor = Colors.white;
 
-  final Color _bgColor = Colors.blueGrey[600];
+  Color _bgColor = Colors.blueGrey[600];
 
   final ScrollController scrollController = ScrollController();
 
@@ -72,7 +75,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void initState() {
     super.initState();
-    _movieDetailModel.init();
+    _movieDetailModel.init(
+        movieId: widget.movieId, isComingSoon: widget.isComingSoon);
   }
 
   @override
@@ -83,6 +87,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         builder: (context, value, child) {
           _detailData = value.detailData;
           _longCommentData = value.longCommentData;
+          _bgColor = value.bgColor;
           this.context = context;
 
           return value.hasData
@@ -103,6 +108,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           _mainBody(),
           MovieDetailDrawer(
             longCommentData: _longCommentData,
+            isComingSoon: widget.isComingSoon,
           ),
         ],
       ),
@@ -218,6 +224,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   ///电影图片右边的描述布局
   Widget _movieInfo() {
+    var duration;
+    if (_detailData.durations.length != 0) {
+      duration = '片长${_detailData.durations[0]}';
+    } else {
+      duration = '';
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -252,7 +264,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           width: ScreenUtil().setWidth(450),
           child: Text(
             '${_detailData.countries[0]} / ${Provider.of<MovieDetailModel>(context).getTypes()}'
-            ' / 上映时间:${_detailData.pubdates[0]} / 片长:${_detailData.durations[0]}',
+            ' / 上映时间:${_detailData.pubdates[0]} / $duration',
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(20),
                 color: _textColor,
@@ -329,7 +341,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return SliverToBoxAdapter(
       child: Container(
         margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-        height: ScreenUtil().setHeight(210),
+        height: widget.isComingSoon
+            ? ScreenUtil().setHeight(180)
+            : ScreenUtil().setHeight(210),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: const Color.fromARGB(120, 0, 0, 0),
@@ -337,14 +351,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         child: Column(
           children: <Widget>[
             MovieScoreHeader(),
-            ScoreStarDetail(
-              rating: _detailData.rating,
-            ),
-            _divider(),
-            MovieScoreFooter(
-              lookedCount: _detailData.collectCount,
-              wishCount: _detailData.wishCount,
-            ),
+            widget.isComingSoon
+                ? _emptyScoreDetail()
+                : ScoreStarDetail(
+                    rating: _detailData.rating,
+                  ),
+            widget.isComingSoon ? Container() : _divider(),
+            widget.isComingSoon
+                ? Container()
+                : MovieScoreFooter(
+                    lookedCount: _detailData.collectCount,
+                    wishCount: _detailData.wishCount,
+                  ),
           ],
         ),
       ),
@@ -358,6 +376,30 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       height: 1,
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
       color: Colors.white12,
+    );
+  }
+
+  ///即将上映的条目所使用的空的评分板
+  Widget _emptyScoreDetail() {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(
+              left: ScreenUtil().setWidth(120),
+              top: ScreenUtil().setHeight(40),
+            ),
+            child: Text('尚未上映', style: TextStyle(color: Colors.white70)),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+                top: ScreenUtil().setHeight(40),
+                left: ScreenUtil().setWidth(220)),
+            child: Text('${_detailData.wishCount}人想看',
+                style: TextStyle(color: Colors.white70)),
+          ),
+        ],
+      ),
     );
   }
 

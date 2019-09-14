@@ -50,6 +50,7 @@ dependencies:
   flutter_ijkplayer: ^0.3.3
   fluwx: ^1.0.5
   image_picker: ^0.6.1+4
+  flare_flutter: ^1.5.8
 
 
 dev_dependencies:

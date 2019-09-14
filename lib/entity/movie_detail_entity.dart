@@ -293,7 +293,7 @@ class MovieDetailEntity {
 }
 
 class MovieDetailRating {
-  double average;
+  dynamic average;
   int min;
   int max;
   MovieDetailRatingDetails details;
@@ -326,11 +326,11 @@ class MovieDetailRating {
 }
 
 class MovieDetailRatingDetails {
-  double one;
-  double two;
-  double three;
-  double four;
-  double five;
+  dynamic one;
+  dynamic two;
+  dynamic three;
+  dynamic four;
+  dynamic five;
 
   MovieDetailRatingDetails(
       {this.one, this.two, this.three, this.four, this.five});
@@ -521,7 +521,7 @@ class MovieDetailPopularReviewsAuthor {
 class MovieDetailPopularReviewsRating {
   int min;
   int max;
-  double value;
+  dynamic value;
 
   MovieDetailPopularReviewsRating({this.min, this.max, this.value});
 
@@ -728,7 +728,7 @@ class MovieDetailPopularCommentsAuthor {
 class MovieDetailPopularCommentsRating {
   int min;
   int max;
-  double value;
+  dynamic value;
 
   MovieDetailPopularCommentsRating({this.min, this.max, this.value});
 

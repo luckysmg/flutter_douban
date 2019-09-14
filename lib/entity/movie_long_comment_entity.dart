@@ -1,8 +1,3 @@
-///
-/// @created by 文景睿
-/// description:电影长评
-///
-
 class MovieLongCommentEntity {
   int total;
   int nextStart;
@@ -163,7 +158,7 @@ class MovieLongCommentReviewsAuthor {
 class MovieLongCommentReviewsRating {
   int min;
   int max;
-  double value;
+  dynamic value;
 
   MovieLongCommentReviewsRating({this.min, this.max, this.value});
 
@@ -360,7 +355,7 @@ class MovieLongCommentSubjectDirectorsAvatars {
 }
 
 class MovieLongCommentSubjectRating {
-  double average;
+  dynamic average;
   int min;
   int max;
   MovieLongCommentSubjectRatingDetails details;
@@ -393,11 +388,11 @@ class MovieLongCommentSubjectRating {
 }
 
 class MovieLongCommentSubjectRatingDetails {
-  double one;
-  double two;
-  double three;
-  double four;
-  double five;
+  dynamic one;
+  dynamic two;
+  dynamic three;
+  dynamic four;
+  dynamic five;
 
   MovieLongCommentSubjectRatingDetails(
       {this.one, this.two, this.three, this.four, this.five});

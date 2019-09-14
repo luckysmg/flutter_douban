@@ -92,7 +92,7 @@ class PerformingPeopleView extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         child: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: dataList[index].avatars.large,
+          imageUrl: dataList[index].avatars.small,
           fadeInDuration: Duration(milliseconds: 100),
         ),
       ),

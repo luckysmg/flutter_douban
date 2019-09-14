@@ -173,9 +173,7 @@ class HotMovieGridState extends State<HotMovieGrid>
               Container(
                 child: FlutterRatingBarIndicator(
                   itemPadding: EdgeInsets.all(0),
-                  rating: (_hotShowSubjectData[index].rating.average /
-                          _hotShowSubjectData[index].rating.max) *
-                      5,
+                  rating: _hotShowSubjectData[index].rating.average.toDouble(),
                   itemCount: 5,
                   itemSize: 10.0,
                   emptyColor: Colors.black.withAlpha(50),
@@ -186,10 +184,7 @@ class HotMovieGridState extends State<HotMovieGrid>
               ),
               Container(
                 child: Text(
-                  ((_hotShowSubjectData[index].rating.average /
-                              _hotShowSubjectData[index].rating.max) *
-                          5)
-                      .toString(),
+                  _hotShowSubjectData[index].rating.average.toString(),
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(21),
                       fontWeight: FontWeight.w500),
@@ -253,7 +248,7 @@ class HotMovieGridState extends State<HotMovieGrid>
 
   ///这里为了让它和上面数据不一样象征性的移除几个元素，没有任何用处
   void removeSomeData() {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 6; i++) {
       _hotShowSubjectData.removeAt(0);
     }
   }

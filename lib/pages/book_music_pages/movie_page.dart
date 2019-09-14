@@ -7,7 +7,7 @@ import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/refresh_footer.dart';
 import 'package:flutter_douban/widgets/movie_widgets//movie_hot_show_grid.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_page_bottom_list.dart';
-import 'package:flutter_douban/widgets/movie_widgets/movie_tab_and_grid.dart';
+import 'package:flutter_douban/widgets/movie_widgets/movie_tab_grid.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_top_cards.dart';
 import 'package:flutter_douban/widgets/common_widgets/refresh_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -26,7 +26,7 @@ class MovieView extends StatelessWidget {
   static final EasyRefreshController easyRefreshController =
       EasyRefreshController();
 
-  final GlobalKey<TabGridState> _tabGridKey = GlobalKey();
+  final GlobalKey<MovieTabGridState> _tabGridKey = GlobalKey();
   final GlobalKey<HotMovieGridState> _hotMovieKey = GlobalKey();
 
   @override
@@ -53,7 +53,7 @@ class MovieView extends StatelessWidget {
       slivers: <Widget>[
         SliverToBoxAdapter(child: _headerView()),
         SliverToBoxAdapter(child: _introductionImage('introduction.jpg')),
-        SliverToBoxAdapter(child: TabGrid(key: _tabGridKey)),
+        SliverToBoxAdapter(child: MovieTabGrid(key: _tabGridKey)),
         SliverToBoxAdapter(child: HotMovieGrid(key: _hotMovieKey)),
         SliverToBoxAdapter(child: _introductionImage('introduction2.png')),
         SliverToBoxAdapter(child: MovieCards()),

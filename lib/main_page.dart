@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
     ),
   ];
 
-  final List<Widget> pages = [
+  List<Widget> pages = [
     HomePage(),
     BookMusicPage(),
     GroupPage(),

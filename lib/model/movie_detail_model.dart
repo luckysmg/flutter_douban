@@ -1,6 +1,13 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
+import 'package:flutter_douban/http/dio_util.dart';
 import 'package:flutter_douban/http/mock_request.dart';
+import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/palette_generator.dart';
 
 import '../entity_factory.dart';
 import 'base_model.dart';
@@ -13,26 +20,78 @@ class MovieDetailModel extends BaseModel {
   MovieDetailEntity _detailData;
   MovieLongCommentEntity _longCommentData;
   String movieId;
+  bool isComingSoon = false;
+
+  Color _bgColor = Colors.blueGrey[600];
+
+  Color get bgColor => _bgColor;
 
   MovieDetailEntity get detailData => _detailData;
 
   MovieLongCommentEntity get longCommentData => _longCommentData;
 
   @override
-  void init() {
-    ///构造函数传入id之后就开始请求模拟数据
-    getMovieDetailData().then((data) {
-      _detailData = data;
-    }).whenComplete(() {
-      getMovieLongCommentData().then((data) async {
-        _longCommentData = data;
-        hasData = true;
+  void init({movieId, isComingSoon}) async {
+    this.movieId = movieId;
+    this.isComingSoon = isComingSoon;
+    if (Constants.isRealNetworkData) {
+      _requestHttpData(isComingSoon);
+    } else {
+      _requestMockData();
+    }
+  }
 
-        ///模拟请求网络的延迟
-        await Future.delayed(Duration(milliseconds: 800));
-        notifyListeners();
-      });
+  ///请求模拟数据
+  void _requestMockData() async {
+    await getMovieDetailData().then((data) {
+      _detailData = data;
     });
+
+    await getMovieLongCommentData().then((data) {
+      _longCommentData = data;
+    });
+
+    await PaletteGenerator.fromImageProvider(
+            NetworkImage(_detailData.images.large))
+        .then((paletteGenerator) {
+      if (paletteGenerator != null && paletteGenerator.colors.isNotEmpty) {
+        _bgColor = paletteGenerator.colors.toList()[0];
+      }
+    });
+    await Future.delayed(Duration(milliseconds: 800));
+    hasData = true;
+    notifyListeners();
+  }
+
+  ///请求真实数据
+  void _requestHttpData(bool isComingSoon) async {
+    ///获取电影基本条目信息
+    await DioUtil.getInstance()
+        .get(url: '/v2/movie/subject/$movieId?apikey=${Constants.API_KEY}')
+        .then((data) {
+      _detailData = EntityFactory.generateOBJ(data);
+    });
+
+    if (!isComingSoon) {
+      ///获取抽屉中的评论数据
+      await DioUtil.getInstance()
+          .get(
+              url:
+                  '/v2/movie/subject/$movieId/reviews?apikey=${Constants.API_KEY}')
+          .then((data) {
+        _longCommentData = EntityFactory.generateOBJ(data);
+      });
+    }
+
+    await PaletteGenerator.fromImageProvider(
+            NetworkImage(_detailData.images.large))
+        .then((paletteGenerator) {
+      if (paletteGenerator != null && paletteGenerator.colors.isNotEmpty) {
+        _bgColor = paletteGenerator.colors.toList()[0];
+      }
+    });
+    hasData = true;
+    notifyListeners();
   }
 
   Future<MovieDetailEntity> getMovieDetailData() async {
@@ -61,10 +120,5 @@ class MovieDetailModel extends BaseModel {
       temp = temp + ' ' + _detailData.genres[i];
     }
     return temp;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

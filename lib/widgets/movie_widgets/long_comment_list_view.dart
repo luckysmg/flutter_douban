@@ -79,7 +79,7 @@ class LongCommentListView extends StatelessWidget {
                 bottom: ScreenUtil().setHeight(10),
                 left: ScreenUtil().setWidth(10)),
             child: FlutterRatingBarIndicator(
-              rating: longCommentData.reviews[index].rating.value,
+              rating: longCommentData.reviews[index].rating.value.toDouble(),
               itemSize: 8,
               itemPadding: EdgeInsets.all(ScreenUtil().setWidth(1)),
               emptyColor: Colors.grey[300],

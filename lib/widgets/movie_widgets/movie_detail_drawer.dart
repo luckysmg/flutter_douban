@@ -12,8 +12,10 @@ import 'long_comment_list_view.dart';
 ///
 class MovieDetailDrawer extends StatelessWidget {
   final MovieLongCommentEntity longCommentData;
+  final bool isComingSoon;
 
-  MovieDetailDrawer({Key key, this.longCommentData}) : super(key: key);
+  MovieDetailDrawer({Key key, this.longCommentData, this.isComingSoon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,25 @@ class MovieDetailDrawer extends StatelessWidget {
         maxOffsetDistance: ScreenUtil.screenHeightDp * 0.18,
         originalOffset: ScreenUtil.screenHeightDp * 0.98,
         draggableHeader: _header(),
-        content: LongCommentListView(longCommentData: longCommentData),
+        content: isComingSoon
+            ? _comingSoonEmptyDrawer()
+            : LongCommentListView(longCommentData: longCommentData),
+      ),
+    );
+  }
+
+  ///因为即将上映的没有评论
+  Widget _comingSoonEmptyDrawer() {
+    return Container(
+      color: Colors.white,
+      width: ScreenUtil.screenWidthDp,
+      height: ScreenUtil.screenHeightDp,
+      child: Container(
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
+        alignment: Alignment.topCenter,
+        child: Text('还未上映，暂无影评',
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(26), fontWeight: FontWeight.w500)),
       ),
     );
   }
@@ -73,7 +93,7 @@ class MovieDetailDrawer extends StatelessWidget {
       margin: EdgeInsets.only(
           top: ScreenUtil().setHeight(24), left: ScreenUtil().setWidth(20)),
       child: Text(
-        '影评（${longCommentData.total}）',
+        '影评（${isComingSoon ? '暂无' : longCommentData.total}）',
         style: TextStyle(fontSize: ScreenUtil().setSp(25)),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_douban/util/constants.dart';
 
 ///
@@ -6,14 +7,26 @@ import 'package:flutter_douban/util/constants.dart';
 /// description:真实网络请求工具类
 ///
 
-class DioUtil {
-  Future get(String url, Map map) async {
-    Response response =
-        await Dio().get(Constants.BASE_URL + url, queryParameters: map);
+class DioUtil<T> {
+  static DioUtil _dioUtil;
+  Dio _dio;
 
-    if (Constants.isDebug) {
-      print('回调数据::' + response.data.toString());
+  static DioUtil getInstance() {
+    if (_dioUtil == null) {
+      _dioUtil = DioUtil();
+      _dioUtil._dio = Dio();
+      _dioUtil._dio.options.baseUrl = Constants.BASE_URL;
     }
+    return _dioUtil;
+  }
+
+  Future get({@required String url, Map queryParameters}) async {
+    Response response = await _dio.get(url, queryParameters: queryParameters);
+    if (Constants.isDebug) {
+      print('Http接口地址::' + url);
+      print('Http回调数据::' + response.data.toString());
+    }
+
     return response.data;
   }
 }

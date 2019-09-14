@@ -156,14 +156,16 @@ class MovieShortCommentView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ///评论内容
           Text(
-            data.popularComments[index].content,
+            "    " + data.popularComments[index].content,
             style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: ScreenUtil().setSp(24)),
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: ScreenUtil().setSp(24),
+            ),
           ),
 
           ///点赞的图片和数量

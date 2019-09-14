@@ -15,7 +15,7 @@ class MockRequest {
     var responseJson = json.decode(responseStr);
 
     if (Constants.isDebug) {
-      print(action + responseJson.toString());
+      print('Mock回调数据::${responseJson.toString()}');
     }
     return responseJson;
   }

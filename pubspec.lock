@@ -63,7 +63,7 @@ packages:
       name: build_daemon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   build_resolvers:
     dependency: transitive
     description:
@@ -77,14 +77,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.9"
+    version: "1.7.0"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.0"
   built_collection:
     dependency: transitive
     description:
@@ -232,6 +232,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.9"
+  flare_dart:
+    dependency: transitive
+    description:
+      name: flare_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.6"
+  flare_flutter:
+    dependency: "direct main"
+    description:
+      name: flare_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.8"
   fluro:
     dependency: "direct main"
     description:
@@ -805,4 +819,4 @@ packages:
     version: "2.1.16"
 sdks:
   dart: ">=2.3.0 <3.0.0"
-  flutter: ">=1.5.9-pre.94 <2.0.0"
+  flutter: ">=1.7.8+hotfix.3 <2.0.0"
