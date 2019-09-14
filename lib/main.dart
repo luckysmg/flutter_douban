@@ -37,7 +37,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     SharedPreferences.getInstance().then((data) {
-      Constants.isRealNetworkData = data.getBool(Constants.USE_REAL_NETWORK);
+      Constants.isRealNetworkData =
+          data.getBool(Constants.USE_REAL_NETWORK) ?? false;
     });
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {
