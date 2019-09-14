@@ -128,7 +128,8 @@ class MovieShortCommentView extends StatelessWidget {
                     FlutterRatingBarIndicator(
                       itemSize: 7,
                       itemPadding: EdgeInsets.all(1),
-                      rating: data.popularComments[index].rating.value,
+                      rating:
+                          data.popularComments[index].rating.value.toDouble(),
                     ),
 
                     ///日期

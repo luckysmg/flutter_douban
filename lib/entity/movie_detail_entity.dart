@@ -728,7 +728,7 @@ class MovieDetailPopularCommentsAuthor {
 class MovieDetailPopularCommentsRating {
   int min;
   int max;
-  dynamic value;
+  num value;
 
   MovieDetailPopularCommentsRating({this.min, this.max, this.value});
 
