@@ -149,13 +149,13 @@ class TrailersPhotoView extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         NavigatorUtil.pushToImagePreviewPage(context,
-            data.photos[index - data.trailers.length].cover, BoxFit.fitWidth);
+            data.photos[index - data.trailers.length].image, BoxFit.fitWidth);
       },
       child: Container(
         margin: EdgeInsets.only(right: 2),
         child: Hero(
           transitionOnUserGestures: true,
-          tag: data.photos[index - data.trailers.length].cover,
+          tag: data.photos[index - data.trailers.length].image,
           child: CachedNetworkImage(
             imageUrl: data.photos[index - data.trailers.length].image,
             fadeInDuration: Duration(milliseconds: 200),

@@ -26,7 +26,6 @@ class _ImagePreviewPageState extends State<ImagePreviewPage> {
   Widget build(BuildContext context) {
     return ExtendedImageSlidePage(
       resetPageDuration: Duration(milliseconds: 0),
-      slideType: SlideType.onlyImage,
       slideEndHandler: (offset) {
         return _slideEndHandler(offset: offset);
       },
@@ -52,8 +51,10 @@ class _ImagePreviewPageState extends State<ImagePreviewPage> {
                 this.widget.url,
                 enableLoadState: true,
                 enableSlideOutPage: true,
-                cache: false,
+                cache: true,
+                gaplessPlayback: true,
                 fit: BoxFit.fitWidth,
+                filterQuality: FilterQuality.high,
                 mode: ExtendedImageMode.gesture,
               );
             } else {
