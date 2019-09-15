@@ -275,20 +275,20 @@ class KouBeiSubjectsSubjectRatingDetails {
       {this.one, this.two, this.three, this.four, this.five});
 
   KouBeiSubjectsSubjectRatingDetails.fromJson(Map<String, dynamic> json) {
-    one = json['1'];
-    two = json['2'];
-    three = json['3'];
-    four = json['4'];
-    five = json['5'];
+    this.one = json['one'];
+    this.three = json['three'];
+    this.two = json['two'];
+    this.five = json['five'];
+    this.four = json['four'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['one'] = this.one;
-    data['two'] = this.two;
     data['three'] = this.three;
-    data['four'] = this.four;
+    data['two'] = this.two;
     data['five'] = this.five;
+    data['four'] = this.four;
     return data;
   }
 }

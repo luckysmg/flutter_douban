@@ -13,6 +13,7 @@ class SkeletonGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       highlightColor: Colors.white,
+      period: Duration(milliseconds: 600),
       baseColor: Constants.APP_SKELETON_COLOR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

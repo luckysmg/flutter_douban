@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/page.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,8 +79,9 @@ class MovieCards extends StatelessWidget {
       onTap: () {
         switch (assetName) {
           case 'card1.png':
-            ToastUtil.show('进入口碑电影页面');
-//            NavigatorUtil.push(context, KouBeiPage(), rootNavigator: true);
+            NavigatorUtil.push(
+                context, KouBeiPage().buildPage({'data': 'hahaha'}),
+                rootNavigator: true);
             break;
           case 'card3.jpg':
             ToastUtil.show('进入Top250电影页面');

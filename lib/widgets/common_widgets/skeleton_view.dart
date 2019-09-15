@@ -8,7 +8,7 @@ import 'package:shimmer/shimmer.dart';
 /// @created by 文景睿
 /// description:电影详情在没有数据时候的空占位布局
 ///
-class EmptyMovieDetailView extends StatelessWidget {
+class SkeletonView extends StatelessWidget {
   final Color _color = Colors.grey[200];
 
   @override

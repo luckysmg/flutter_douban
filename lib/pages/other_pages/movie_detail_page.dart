@@ -7,7 +7,7 @@ import 'package:flutter_douban/model/movie_detail_model.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/palette_generator.dart';
 import 'package:flutter_douban/util/toast_util.dart';
-import 'package:flutter_douban/widgets/common_widgets/empty_movie_detail_view.dart';
+import 'package:flutter_douban/widgets/common_widgets/skeleton_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/buy_ticket_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_detail_appbar_indicator.dart';
@@ -90,9 +90,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           _bgColor = value.bgColor;
           this.context = context;
 
-          return value.hasData
-              ? _filledDataView(context)
-              : EmptyMovieDetailView();
+          return value.hasData ? _filledDataView(context) : SkeletonView();
         },
       ),
     );
