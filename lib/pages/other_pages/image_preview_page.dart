@@ -71,7 +71,6 @@ class _ImagePreviewPageState extends State<ImagePreviewPage> {
       {Offset offset, Size pageSize, Color color, SlideAxis pageGestureAxis}) {
     if (offset.dy >= 0) {
       if (offset.dy <= 255) {
-        print(offset.dy);
         return Color.fromARGB(255 - ((offset.dy) * 0.6).toInt(), 0, 0, 0);
       } else {
         return Color.fromARGB(25, 0, 0, 0);
