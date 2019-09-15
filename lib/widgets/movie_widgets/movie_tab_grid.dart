@@ -59,14 +59,16 @@ class MovieTabGridState extends State<MovieTabGrid>
     Timer(Duration(milliseconds: 300), () async {
       ///请求影院热映数据
       await MockRequest.mock(Constants.URL_IN_THEATERS).then((data) {
-        _hotShowEntity = EntityFactory.generateOBJ(data);
+//        _hotShowEntity = EntityFactory.generateOBJ(data);
+        _hotShowEntity = HotShowEntity.fromJson(data);
         _hotShowSubjectData = _hotShowEntity.subjects;
         return;
       });
 
       ///请求即将上映数据
       await MockRequest.mock(Constants.URL_COMING_SOON).then((data) {
-        _comingSoonEntity = EntityFactory.generateOBJ(data);
+//        _comingSoonEntity = EntityFactory.generateOBJ(data);
+        _comingSoonEntity = ComingSoonEntity.fromJson(data);
         _comingSoonSubjectData = _comingSoonEntity.subjects;
         return;
       }).whenComplete(() {
@@ -82,7 +84,7 @@ class MovieTabGridState extends State<MovieTabGrid>
     await DioUtil.getInstance()
         .get(url: '/v2/movie/in_theaters?apikey=${Constants.API_KEY}')
         .then((data) {
-      _hotShowEntity = EntityFactory.generateOBJ(data);
+      _hotShowEntity = HotShowEntity.fromJson(data);
       _hotShowSubjectData = _hotShowEntity.subjects;
     });
 
@@ -90,7 +92,7 @@ class MovieTabGridState extends State<MovieTabGrid>
     await DioUtil.getInstance()
         .get(url: '/v2/movie/coming_soon?apikey=${Constants.API_KEY}')
         .then((data) {
-      _comingSoonEntity = EntityFactory.generateOBJ(data);
+      _comingSoonEntity = ComingSoonEntity.fromJson(data);
       _comingSoonSubjectData = _comingSoonEntity.subjects;
     });
 

@@ -6,7 +6,7 @@ import 'package:flutter_douban/util/constants.dart';
 
 ///
 /// @created by 文景睿
-/// description:模拟网络请求工具类
+/// description:模拟请求工具类
 ///
 
 class MockRequest {

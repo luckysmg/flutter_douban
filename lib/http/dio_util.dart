@@ -4,10 +4,10 @@ import 'package:flutter_douban/util/constants.dart';
 
 ///
 /// @created by 文景睿
-/// description:真实网络请求工具类
+/// description:网络请求工具类
 ///
 
-class DioUtil<T> {
+class DioUtil {
   static DioUtil _dioUtil;
   Dio _dio;
 

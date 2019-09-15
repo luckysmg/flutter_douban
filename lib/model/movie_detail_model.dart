@@ -62,7 +62,7 @@ class MovieDetailModel extends BaseModel {
     await DioUtil.getInstance()
         .get(url: '/v2/movie/subject/$movieId?apikey=${Constants.API_KEY}')
         .then((data) {
-      _detailData = EntityFactory.generateOBJ(data);
+      _detailData = MovieDetailEntity.fromJson(data);
     });
 
     if (!isComingSoon) {
@@ -72,7 +72,7 @@ class MovieDetailModel extends BaseModel {
               url:
                   '/v2/movie/subject/$movieId/reviews?apikey=${Constants.API_KEY}')
           .then((data) {
-        _longCommentData = EntityFactory.generateOBJ(data);
+        _longCommentData = MovieLongCommentEntity.fromJson(data);
       });
     }
 
