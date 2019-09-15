@@ -95,3 +95,27 @@ class CustomBottomSlideRoute extends PageRouteBuilder {
               );
             });
 }
+
+///图片预览的路由builder
+class ImagePreViewPageRoute extends PageRouteBuilder {
+  final Widget widget;
+
+  ImagePreViewPageRoute(this.widget)
+      : super(
+            opaque: false,
+            transitionDuration: const Duration(milliseconds: 600),
+            pageBuilder: (BuildContext context, Animation<double> animation1,
+                Animation<double> animation2) {
+              return widget;
+            },
+            transitionsBuilder: (BuildContext context,
+                Animation<double> animation1,
+                Animation<double> animation2,
+                Widget child) {
+              return FadeTransition(
+                opacity: Tween(begin: 0.0, end: 2.0).animate(CurvedAnimation(
+                    parent: animation1, curve: Curves.fastOutSlowIn)),
+                child: child,
+              );
+            });
+}

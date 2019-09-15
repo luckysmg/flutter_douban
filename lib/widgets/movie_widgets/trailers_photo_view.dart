@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/pages/book_music_pages/movie_video_player_page.dart';
 import 'package:flutter_douban/routes/custom_routes.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -83,7 +85,7 @@ class TrailersPhotoView extends StatelessWidget {
             if (index < data.trailers.length) {
               return _videoTypeView(context, index);
             } else {
-              return _photoView(index);
+              return _photoView(context, index);
             }
           },
         ),
@@ -143,12 +145,22 @@ class TrailersPhotoView extends StatelessWidget {
   }
 
   ///剧照类型item
-  Widget _photoView(index) {
-    return Container(
-      margin: EdgeInsets.only(right: 2),
-      child: CachedNetworkImage(
-        imageUrl: data.photos[index - data.trailers.length].image,
-        fadeInDuration: Duration(milliseconds: 200),
+  Widget _photoView(context, index) {
+    return GestureDetector(
+      onTap: () {
+        NavigatorUtil.pushToImagePreviewPage(context,
+            data.photos[index - data.trailers.length].cover, BoxFit.fitWidth);
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 2),
+        child: Hero(
+          transitionOnUserGestures: true,
+          tag: data.photos[index - data.trailers.length].cover,
+          child: CachedNetworkImage(
+            imageUrl: data.photos[index - data.trailers.length].image,
+            fadeInDuration: Duration(milliseconds: 200),
+          ),
+        ),
       ),
     );
   }

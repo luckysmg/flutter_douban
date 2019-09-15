@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as prefix1;
 
 import 'package:flutter_douban/pages/other_pages/image_preview_page.dart';
+import 'package:flutter_douban/routes/custom_routes.dart';
 
 ///
 /// @created by 文景睿
@@ -38,11 +40,6 @@ class NavigatorUtil {
   static void pushToImagePreviewPage(
       BuildContext context, String url, BoxFit boxFit) {
     Navigator.push(
-        context,
-        PageRouteBuilder(
-            opaque: false,
-            pageBuilder: (context, anim1, anim2) {
-              return ImagePreviewPage(url, boxFit);
-            }));
+        context, ImagePreViewPageRoute(ImagePreviewPage(url, boxFit)));
   }
 }

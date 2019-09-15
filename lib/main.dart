@@ -36,10 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((data) {
-      Constants.isRealNetworkData =
-          data.getBool(Constants.USE_REAL_NETWORK) ?? false;
-    });
+    initCacheData();
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {
         _splashDisplay = false;
@@ -89,5 +86,13 @@ class _MyAppState extends State<MyApp> {
         body: Container(
           child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
         ));
+  }
+
+  ///初始化缓存数据
+  void initCacheData() {
+    SharedPreferences.getInstance().then((data) {
+      Constants.isRealNetworkData =
+          data.getBool(Constants.USE_REAL_NETWORK) ?? false;
+    });
   }
 }
