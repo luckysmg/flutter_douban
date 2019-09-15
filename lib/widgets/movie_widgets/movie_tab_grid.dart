@@ -13,8 +13,10 @@ import 'package:flutter_douban/util/Decorations.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
+import 'package:flutter_douban/widgets/common_widgets/skeleton_grid_item.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../entity_factory.dart';
 
@@ -59,7 +61,6 @@ class MovieTabGridState extends State<MovieTabGrid>
     Timer(Duration(milliseconds: 300), () async {
       ///请求影院热映数据
       await MockRequest.mock(Constants.URL_IN_THEATERS).then((data) {
-//        _hotShowEntity = EntityFactory.generateOBJ(data);
         _hotShowEntity = HotShowEntity.fromJson(data);
         _hotShowSubjectData = _hotShowEntity.subjects;
         return;
@@ -67,7 +68,6 @@ class MovieTabGridState extends State<MovieTabGrid>
 
       ///请求即将上映数据
       await MockRequest.mock(Constants.URL_COMING_SOON).then((data) {
-//        _comingSoonEntity = EntityFactory.generateOBJ(data);
         _comingSoonEntity = ComingSoonEntity.fromJson(data);
         _comingSoonSubjectData = _comingSoonEntity.subjects;
         return;
@@ -82,7 +82,7 @@ class MovieTabGridState extends State<MovieTabGrid>
   void _requestHttpData() async {
     ///请求影院热映数据
     await DioUtil.getInstance()
-        .get(url: '/v2/movie/in_theaters?apikey=${Constants.API_KEY}')
+        .get(url: Constants.URL_HTTP_IN_THEATERS)
         .then((data) {
       _hotShowEntity = HotShowEntity.fromJson(data);
       _hotShowSubjectData = _hotShowEntity.subjects;
@@ -90,7 +90,7 @@ class MovieTabGridState extends State<MovieTabGrid>
 
     ///请求即将上映数据
     await DioUtil.getInstance()
-        .get(url: '/v2/movie/coming_soon?apikey=${Constants.API_KEY}')
+        .get(url: Constants.URL_HTTP_COMING_SOON)
         .then((data) {
       _comingSoonEntity = ComingSoonEntity.fromJson(data);
       _comingSoonSubjectData = _comingSoonEntity.subjects;
@@ -276,7 +276,7 @@ class MovieTabGridState extends State<MovieTabGrid>
   Widget _movieGrid(bool hasData) {
     return Container(
       child: GridView.builder(
-          padding: EdgeInsets.only(top: 0),
+          padding: EdgeInsets.only(top: 0, bottom: 0),
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemCount: 6,
@@ -284,12 +284,12 @@ class MovieTabGridState extends State<MovieTabGrid>
             crossAxisCount: 3,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: isHotShow ? 0.48 : 0.42,
+            childAspectRatio: isHotShow ? 0.55 : 0.48,
           ),
           itemBuilder: (context, index) {
             ///若没有数据直接返回骨架布局
             if (!hasData) {
-              return _skeletonGridItem();
+              return SkeletonGridItem();
             } else {
               ///若有数据，根据tab的高亮状态来判定显示哪个布局的item，因为两个item的有些布局属性不一样
               return isHotShow
@@ -321,9 +321,9 @@ class MovieTabGridState extends State<MovieTabGrid>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 0),
-                width: 150,
-                height: 180,
+                fadeInDuration: Duration(milliseconds: 500),
+                width: ScreenUtil().setWidth(220),
+                height: ScreenUtil().setHeight(260),
                 imageUrl: _hotShowSubjectData[index].images.medium,
                 fit: BoxFit.fitHeight,
               ),
@@ -332,7 +332,7 @@ class MovieTabGridState extends State<MovieTabGrid>
 
           ///电影文字
           Container(
-            margin: EdgeInsets.only(top: 5),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(8)),
             alignment: Alignment.topLeft,
             child: Text(
               _hotShowSubjectData[index].title,
@@ -393,16 +393,18 @@ class MovieTabGridState extends State<MovieTabGrid>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 0),
-                width: 150,
-                height: 180,
+                fadeInDuration: Duration(milliseconds: 500),
+                width: ScreenUtil().setWidth(220),
+                height: ScreenUtil().setHeight(260),
                 imageUrl: _comingSoonSubjectData[index].images.medium,
                 fit: BoxFit.fitHeight,
               ),
             ),
           ),
+
+          ///电影文字
           Container(
-            margin: EdgeInsets.only(top: 5),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(8)),
             alignment: Alignment.topLeft,
             child: Text(
               _comingSoonSubjectData[index].title,
@@ -415,14 +417,16 @@ class MovieTabGridState extends State<MovieTabGrid>
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: 4),
+            margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
             child: Text(
               '${_comingSoonSubjectData[index].collectCount}人想看',
               style: TextStyle(fontSize: ScreenUtil().setSp(21)),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 2, bottom: 2),
+            padding: EdgeInsets.symmetric(
+                horizontal: ScreenUtil().setWidth(12),
+                vertical: ScreenUtil().setHeight(4)),
             decoration: Decorations.movieGridPubDataDecoration,
             child: Text(
               _comingSoonSubjectData[index].pubdates[0].substring(5, 10) + "日",
@@ -435,55 +439,6 @@ class MovieTabGridState extends State<MovieTabGrid>
           ),
         ],
       ),
-    );
-  }
-
-  ///在数据加载的时候用的骨架布局
-  Widget _skeletonGridItem() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Container(
-            width: 150,
-            height: 180,
-            color: Constants.APP_SKELETON_COLOR,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Constants.APP_SKELETON_COLOR,
-          ),
-          height: 8,
-          width: 70,
-          margin: EdgeInsets.only(top: 5, bottom: 5),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_SKELETON_COLOR,
-              ),
-              height: 6,
-              width: 50,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_SKELETON_COLOR,
-              ),
-              height: 6,
-              width: 30,
-            )
-          ],
-        ),
-      ],
     );
   }
 }

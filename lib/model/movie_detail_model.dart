@@ -51,7 +51,7 @@ class MovieDetailModel extends BaseModel {
       _longCommentData = data;
     });
 
-    await Future.delayed(Duration(milliseconds: 800));
+    await Future.delayed(Duration(milliseconds: 1000));
     hasData = true;
     notifyListeners();
   }

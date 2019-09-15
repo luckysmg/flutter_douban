@@ -51,6 +51,7 @@ dependencies:
   fluwx: ^1.0.5
   image_picker: ^0.6.1+4
   flare_flutter: ^1.5.8
+  shimmer: ^1.0.1
 
 
 dev_dependencies:

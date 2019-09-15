@@ -33,4 +33,12 @@ class Constants {
 
   ///电影长评模拟地址
   static const String URL_MOVIE_LONG_COMMENT = 'movie_long_commments';
+
+  ///影院热映真实请求接口
+  static const String URL_HTTP_IN_THEATERS =
+      '/v2/movie/in_theaters?apikey=$API_KEY';
+
+  ///即将上映真实请求接口
+  static const String URL_HTTP_COMING_SOON =
+      '/v2/movie/coming_soon?apikey=$API_KEY';
 }

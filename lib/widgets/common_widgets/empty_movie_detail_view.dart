@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 ///
 /// @created by 文景睿
@@ -17,15 +19,20 @@ class EmptyMovieDetailView extends StatelessWidget {
         backgroundColor: _color,
         leading: Icon(Icons.arrow_back_ios),
       ),
-      body: Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _header(),
-            _ban(),
-            _columns(),
-          ],
+      body: Shimmer.fromColors(
+        period: const Duration(milliseconds: 600),
+        baseColor: Constants.APP_SKELETON_COLOR,
+        highlightColor: Colors.white,
+        child: Container(
+          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _header(),
+              _ban(),
+              _columns(),
+            ],
+          ),
         ),
       ),
     );
@@ -132,6 +139,18 @@ class EmptyMovieDetailView extends StatelessWidget {
             color: _color,
             height: ScreenUtil().setHeight(16),
             width: ScreenUtil.screenWidthDp * 0.7,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            color: _color,
+            height: ScreenUtil().setHeight(16),
+            width: ScreenUtil.screenWidthDp * 0.7,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            color: _color,
+            height: ScreenUtil().setHeight(16),
+            width: ScreenUtil.screenWidthDp * 0.8,
           ),
         ],
       ),

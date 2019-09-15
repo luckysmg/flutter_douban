@@ -9,6 +9,7 @@ import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/other_pages/movie_detail_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
+import 'package:flutter_douban/widgets/common_widgets/skeleton_grid_item.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -78,8 +79,8 @@ class HotMovieGridState extends State<HotMovieGrid>
       children: <Widget>[
         Expanded(
           child: Container(
-            margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(24),
-                ScreenUtil().setHeight(18), 0, ScreenUtil().setHeight(18)),
+            margin: EdgeInsets.fromLTRB(
+                ScreenUtil().setWidth(24), 0, 0, ScreenUtil().setHeight(18)),
             child: Text(
               '豆瓣热门',
               style: TextStyle(
@@ -89,7 +90,7 @@ class HotMovieGridState extends State<HotMovieGrid>
           ),
         ),
         Container(
-            margin: EdgeInsets.only(right: 10),
+            margin: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
             child: Text(
               _hotShowSubjectData == null
                   ? '全部'
@@ -115,12 +116,12 @@ class HotMovieGridState extends State<HotMovieGrid>
             crossAxisCount: 3,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 0.49,
+            childAspectRatio: 0.55,
           ),
           itemBuilder: (context, index) {
             ///若没有数据直接返回骨架布局
             if (!hasData) {
-              return _skeletonGridItem();
+              return SkeletonGridItem();
             } else {
               ///若有数据，根据tab的高亮状态来判定显示哪个布局的item，因为两个item的有些布局属性不一样
               return _movieGridItem(index);
@@ -147,8 +148,9 @@ class HotMovieGridState extends State<HotMovieGrid>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                width: 150,
-                height: 180,
+                fadeInDuration: Duration(milliseconds: 500),
+                width: ScreenUtil().setWidth(220),
+                height: ScreenUtil().setHeight(260),
                 imageUrl: _hotShowSubjectData[index].images.medium,
                 fit: BoxFit.fitHeight,
               ),
@@ -157,7 +159,7 @@ class HotMovieGridState extends State<HotMovieGrid>
 
           ///电影文字
           Container(
-            margin: EdgeInsets.only(top: 5),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(8)),
             alignment: Alignment.topLeft,
             child: Text(
               _hotShowSubjectData[index].title,
@@ -194,55 +196,6 @@ class HotMovieGridState extends State<HotMovieGrid>
           ),
         ],
       ),
-    );
-  }
-
-  ///在数据加载的时候用的骨架布局
-  Widget _skeletonGridItem() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Container(
-            width: 150,
-            height: 180,
-            color: Constants.APP_SKELETON_COLOR,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Constants.APP_SKELETON_COLOR,
-          ),
-          height: 8,
-          width: 70,
-          margin: EdgeInsets.only(top: 5, bottom: 5),
-        ),
-        Row(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_SKELETON_COLOR,
-              ),
-              height: 6,
-              width: 50,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: Constants.APP_SKELETON_COLOR,
-              ),
-              height: 6,
-              width: 30,
-            )
-          ],
-        ),
-      ],
     );
   }
 
