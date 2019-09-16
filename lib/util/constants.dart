@@ -42,5 +42,6 @@ class Constants {
   static const String URL_HTTP_COMING_SOON =
       'movie/coming_soon?apikey=$API_KEY';
 
+  ///口碑真实请求接口
   static const String URL_HTTP_KOU_BEI = 'movie/weekly?apikey=$API_KEY';
 }

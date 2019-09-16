@@ -80,7 +80,7 @@ class MovieCards extends StatelessWidget {
         switch (assetName) {
           case 'card1.png':
             NavigatorUtil.push(
-                context, KouBeiPage().buildPage({'data': 'hahaha'}),
+                context, KouBeiPage().buildPage({'data': 'hahahahahahahhah'}),
                 rootNavigator: true);
             break;
           case 'card3.jpg':

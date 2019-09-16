@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter_douban/entity/kou_bei_entity.dart';
 
 enum KouBeiAction { action, init }
 
@@ -7,8 +8,8 @@ class KouBeiActionCreator {
     return const Action(KouBeiAction.action);
   }
 
-  ///更新数据
-  static Action init() {
-    return const Action(KouBeiAction.init);
+  ///加载数据
+  static Action init(KouBeiEntity data) {
+    return Action(KouBeiAction.init, payload: data);
   }
 }

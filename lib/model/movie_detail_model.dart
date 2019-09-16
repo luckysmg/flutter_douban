@@ -60,7 +60,7 @@ class MovieDetailModel extends BaseModel {
   void _requestHttpData(bool isComingSoon) async {
     ///获取电影基本条目信息
     await DioUtil.getInstance()
-        .get(url: '/v2/movie/subject/$movieId?apikey=${Constants.API_KEY}')
+        .get(url: 'movie/subject/$movieId?apikey=${Constants.API_KEY}')
         .then((data) {
       _detailData = MovieDetailEntity.fromJson(data);
     });
@@ -69,8 +69,7 @@ class MovieDetailModel extends BaseModel {
       ///获取抽屉中的评论数据
       await DioUtil.getInstance()
           .get(
-              url:
-                  '/v2/movie/subject/$movieId/reviews?apikey=${Constants.API_KEY}')
+              url: 'movie/subject/$movieId/reviews?apikey=${Constants.API_KEY}')
           .then((data) {
         _longCommentData = MovieLongCommentEntity.fromJson(data);
       });
