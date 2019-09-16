@@ -36,23 +36,13 @@ class _PersonPageState extends State<PersonPage> {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           _appBar(),
-//          SliverList(
-//            delegate: SliverChildListDelegate(
-//              [
-//                _useNetworkTile(),
-//              ],
-//            ),
-//          )
-
-          SliverFillRemaining(
-            child: ListView(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
                 _useNetworkTile(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

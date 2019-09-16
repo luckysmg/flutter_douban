@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 ///电影页面吸顶tab代理
-class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  SliverAppBarDelegate({
+class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
+  SliverHeaderDelegate({
     @required this.minHeight,
     @required this.maxHeight,
     @required this.child,
@@ -22,11 +22,11 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new SizedBox.expand(child: child);
+    return SizedBox.expand(child: child);
   }
 
   @override
-  bool shouldRebuild(SliverAppBarDelegate oldDelegate) {
+  bool shouldRebuild(SliverHeaderDelegate oldDelegate) {
     return maxHeight != oldDelegate.maxHeight ||
         minHeight != oldDelegate.minHeight ||
         child != oldDelegate.child;

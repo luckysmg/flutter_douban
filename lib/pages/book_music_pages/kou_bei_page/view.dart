@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'state.dart';
 
@@ -16,6 +17,8 @@ Widget buildView(
       slivers: <Widget>[
         ///伸缩appBar
         viewService.buildComponent('appBar'),
+        viewService.buildComponent('topHeader'),
+        viewService.buildComponent('persistentHeader'),
 
         SliverList(
           delegate: SliverChildListDelegate(

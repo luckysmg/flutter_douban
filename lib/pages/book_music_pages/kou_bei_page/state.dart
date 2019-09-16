@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/persistent_header_component/state.dart';
+import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/top_header_component/state.dart';
 
 import 'app_bar_component/state.dart';
 
@@ -37,4 +39,25 @@ class AppBarConnector extends ConnOp<KouBeiState, AppBarState> {
   void set(KouBeiState state, AppBarState subState) {
     state.titleOpacity = subState.titleOpacity;
   }
+}
+
+class TopHeaderConnector extends ConnOp<KouBeiState, TopHeaderState> {
+  @override
+  TopHeaderState get(KouBeiState state) {
+    return null;
+  }
+
+  @override
+  void set(KouBeiState state, TopHeaderState subState) {}
+}
+
+class PersistentHeaderConnector
+    extends ConnOp<KouBeiState, PersistentHeaderState> {
+  @override
+  PersistentHeaderState get(KouBeiState state) {
+    return PersistentHeaderState();
+  }
+
+  @override
+  void set(KouBeiState state, PersistentHeaderState subState) {}
 }

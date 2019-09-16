@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_douban/delegate/movie_sliver_tab_delegate.dart';
+import 'package:flutter_douban/delegate/sliver_header_delegate.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/refresh_footer.dart';
@@ -62,7 +62,7 @@ class MovieView extends StatelessWidget {
         SliverPersistentHeader(
           pinned: true,
           floating: true,
-          delegate: SliverAppBarDelegate(
+          delegate: SliverHeaderDelegate(
               maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
         ),
         SliverToBoxAdapter(child: _moviePoster()),
