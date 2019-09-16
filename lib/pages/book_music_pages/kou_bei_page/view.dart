@@ -1,6 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_view.dart';
 
 import 'state.dart';

@@ -16,9 +16,6 @@ import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_grid_item.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
-
-import '../../entity_factory.dart';
 
 ///
 /// @created by 文景睿

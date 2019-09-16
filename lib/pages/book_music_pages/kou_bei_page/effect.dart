@@ -32,11 +32,11 @@ void _onInit(Action action, Context<KouBeiState> ctx) async {
     DioUtil.getInstance().get(url: Constants.URL_HTTP_KOU_BEI).then((data) {
       KouBeiEntity entity = KouBeiEntity.fromJson(data);
       List<KouBeiListItemState> list = List();
-      for (int i = 0; i < entity.subjects.length; i++) {
+      entity.subjects.forEach((item) {
         KouBeiListItemState kouBeiListItemState = KouBeiListItemState();
-        kouBeiListItemState.title = entity.subjects[i].subject.title;
+        kouBeiListItemState.title = item.subject.title;
         list.add(kouBeiListItemState);
-      }
+      });
       ctx.dispatch((KouBeiActionCreator.init(list)));
     });
   } else {
@@ -45,11 +45,11 @@ void _onInit(Action action, Context<KouBeiState> ctx) async {
     await MockRequest.mock('koubei').then((data) {
       entity = KouBeiEntity.fromJson(data);
       list = List();
-      for (int i = 0; i < entity.subjects.length; i++) {
+      entity.subjects.forEach((item) {
         KouBeiListItemState kouBeiListItemState = KouBeiListItemState();
-        kouBeiListItemState.title = entity.subjects[i].subject.title;
+        kouBeiListItemState.title = item.subject.title;
         list.add(kouBeiListItemState);
-      }
+      });
     });
     await Future.delayed(Duration(milliseconds: 1000));
     ctx.dispatch(KouBeiActionCreator.init(list));
