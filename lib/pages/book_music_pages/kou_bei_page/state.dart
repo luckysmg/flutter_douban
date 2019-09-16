@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_douban/entity/kou_bei_entity.dart';
+import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/kou_bei_list_adapter/kou_bei_list_item_component/state.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/persistent_header_component/state.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/top_header_component/state.dart';
 
@@ -8,14 +10,14 @@ import 'app_bar_component/state.dart';
 class KouBeiState implements Cloneable<KouBeiState> {
   ScrollController scrollController;
   var titleOpacity;
-  String data;
+  List<KouBeiListItemState> itemList;
 
   @override
   KouBeiState clone() {
     return KouBeiState()
       ..scrollController = scrollController
       ..titleOpacity = titleOpacity
-      ..data = data;
+      ..itemList = itemList;
   }
 }
 
@@ -27,6 +29,7 @@ KouBeiState initState(Map<String, dynamic> args) {
   return kouBeiState;
 }
 
+///appBar组件连接器
 class AppBarConnector extends ConnOp<KouBeiState, AppBarState> {
   @override
   AppBarState get(KouBeiState state) {
@@ -41,6 +44,7 @@ class AppBarConnector extends ConnOp<KouBeiState, AppBarState> {
   }
 }
 
+///header连接器
 class TopHeaderConnector extends ConnOp<KouBeiState, TopHeaderState> {
   @override
   TopHeaderState get(KouBeiState state) {
@@ -51,11 +55,12 @@ class TopHeaderConnector extends ConnOp<KouBeiState, TopHeaderState> {
   void set(KouBeiState state, TopHeaderState subState) {}
 }
 
+///吸顶头部连接器
 class PersistentHeaderConnector
     extends ConnOp<KouBeiState, PersistentHeaderState> {
   @override
   PersistentHeaderState get(KouBeiState state) {
-    return PersistentHeaderState();
+    return null;
   }
 
   @override

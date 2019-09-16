@@ -77,15 +77,17 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  ///延时闪屏
   Widget _splashScreen() {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Container(),
-        ),
-        body: Container(
-          child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
-        ));
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(1),
+        child: Container(),
+      ),
+      body: Container(
+        child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
+      ),
+    );
   }
 
   ///初始化缓存数据

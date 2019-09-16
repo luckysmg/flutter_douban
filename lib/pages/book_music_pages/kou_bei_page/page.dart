@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/app_bar_component/component.dart';
+import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/kou_bei_list_adapter/adapter.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/persistent_header_component/component.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/top_header_component/component.dart';
 
@@ -20,7 +21,7 @@ class KouBeiPage extends Page<KouBeiState, Map<String, dynamic>> {
           reducer: buildReducer(),
           view: buildView,
           dependencies: Dependencies<KouBeiState>(
-            adapter: null,
+            adapter: NoneConn<KouBeiState>() + KouBeiListAdapter(),
             slots: <String, Dependent<KouBeiState>>{
               'appBar': AppBarConnector() + AppBarComponent(),
               'topHeader': TopHeaderConnector() + TopHeaderComponent(),

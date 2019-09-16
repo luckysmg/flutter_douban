@@ -31,6 +31,7 @@ Widget buildView(
             ///右边部分
             Row(
               children: <Widget>[
+                ///更新时间
                 Container(
                   alignment: Alignment.center,
                   height: ScreenUtil().setHeight(40),
@@ -41,7 +42,25 @@ Widget buildView(
                   ),
                   child: Text('更新时间 09-13',
                       style: TextStyle(fontSize: ScreenUtil().setSp(18))),
-                )
+                ),
+
+                ///分割线
+                Container(
+                  margin: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(20),
+                      right: ScreenUtil().setWidth(20)),
+                  height: ScreenUtil().setHeight(20),
+                  width: ScreenUtil().setWidth(2),
+                  color: Colors.black26,
+                ),
+                Icon(
+                  Icons.find_replace,
+                  size: ScreenUtil().setHeight(24),
+                ),
+                Text(
+                  '筛选',
+                  style: TextStyle(fontSize: ScreenUtil().setSp(21)),
+                ),
               ],
             )
           ],

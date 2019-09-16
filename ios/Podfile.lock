@@ -32,7 +32,7 @@ PODS:
 DEPENDENCIES:
   - auto_orientation (from `.symlinks/plugins/auto_orientation/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_ijkplayer (from `.symlinks/plugins/flutter_ijkplayer/ios`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
@@ -54,7 +54,7 @@ EXTERNAL SOURCES:
   camera:
     :path: ".symlinks/plugins/camera/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   flutter_ijkplayer:
     :path: ".symlinks/plugins/flutter_ijkplayer/ios"
   flutter_tab_bar_no_ripple:
