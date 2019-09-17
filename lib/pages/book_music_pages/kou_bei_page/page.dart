@@ -11,7 +11,7 @@ import 'view.dart';
 
 ///
 /// @created by 文景睿
-/// description:这个页面开始用的是fish_redux状态管理进行构建
+/// description:一周口碑榜：这个页面开始用的是fish_redux状态管理进行构建
 ///
 class KouBeiPage extends Page<KouBeiState, Map<String, dynamic>> {
   KouBeiPage()

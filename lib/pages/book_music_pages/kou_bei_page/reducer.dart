@@ -18,7 +18,7 @@ KouBeiState _onAction(KouBeiState state, Action action) {
 }
 
 KouBeiState _init(KouBeiState state, Action action) {
-  final KouBeiState newState = state.clone();
+  KouBeiState newState = state.clone();
   newState.itemList = action.payload;
   return newState;
 }

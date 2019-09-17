@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_douban/entity/kou_bei_entity.dart';
 import 'package:flutter_douban/http/dio_util.dart';
 import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/kou_bei_list_adapter/kou_bei_list_item_component/state.dart';
 import 'package:flutter_douban/util/constants.dart';
+
 import 'action.dart';
 import 'app_bar_component/action.dart';
 import 'state.dart';
@@ -34,7 +33,7 @@ void _onInit(Action action, Context<KouBeiState> ctx) async {
       List<KouBeiListItemState> list = List();
       entity.subjects.forEach((item) {
         KouBeiListItemState kouBeiListItemState = KouBeiListItemState();
-        kouBeiListItemState.title = item.subject.title;
+        kouBeiListItemState.data = item;
         list.add(kouBeiListItemState);
       });
       ctx.dispatch((KouBeiActionCreator.init(list)));
@@ -47,7 +46,7 @@ void _onInit(Action action, Context<KouBeiState> ctx) async {
       list = List();
       entity.subjects.forEach((item) {
         KouBeiListItemState kouBeiListItemState = KouBeiListItemState();
-        kouBeiListItemState.title = item.subject.title;
+        kouBeiListItemState.data = item;
         list.add(kouBeiListItemState);
       });
     });

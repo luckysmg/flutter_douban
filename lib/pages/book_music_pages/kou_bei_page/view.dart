@@ -18,8 +18,14 @@ Widget buildView(
       slivers: <Widget>[
         ///伸缩appBar
         viewService.buildComponent('appBar'),
+
+        ///多少部可播放的头部
         viewService.buildComponent('topHeader'),
+
+        ///吸顶头部
         viewService.buildComponent('persistentHeader'),
+
+        ///电影列表
         SliverList(
           delegate: SliverChildBuilderDelegate(
             adapter.itemBuilder,
