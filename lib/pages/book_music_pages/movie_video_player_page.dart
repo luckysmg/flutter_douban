@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
+import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
@@ -35,7 +36,11 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance
+        .addPostFrameCallback((callback) => ToastUtil.show('进入屏幕方向自动适应状态'));
+
     ///将屏幕改变为自动改变方向
+    AutoOrientation.fullAutoMode();
 
     ///延时隐藏状态栏，主要是因为直接隐藏屏幕会跳动，进入播放页跳动基本看不出来
     Future.delayed(Duration(milliseconds: 500), () {
@@ -48,7 +53,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     });
 
     _controller = VideoPlayerController.network(
-//      'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //豆瓣视频API失效了随便加一个
+//      'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //若豆瓣视频API失效了随便加一个
       widget.data.trailers[widget.dataIndex].resourceUrl,
     )
       ..addListener(() {
@@ -68,6 +73,14 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    ///每次刷新进入页面进行状态判断
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      isPortrait = true;
+    } else {
+      isPortrait = false;
+    }
+    print(isPortrait.toString());
+
     if (!_controller.value.initialized) {
       return _emptyView();
     } else {
@@ -193,7 +206,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
             _playerStateIcon(),
             _videoIndicator(),
             _videoTimeText(),
-            _switchIcon(),
           ],
         ),
       ),
@@ -280,50 +292,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
             fontSize: 12, color: Colors.white70, fontWeight: FontWeight.w500),
       ),
     );
-  }
-
-  ///切换横竖屏的
-  Widget _switchIcon() {
-    var margin = isPortrait
-        ? EdgeInsets.only(left: 2, top: 5)
-        : EdgeInsets.only(left: 2);
-
-    return GestureDetector(
-      onTap: () => _switchScreen(),
-      child: Container(
-        margin: margin,
-        child: Icon(
-          isPortrait ? Icons.fullscreen : Icons.fullscreen_exit,
-          color: Colors.white54,
-        ),
-      ),
-    );
-  }
-
-  ///改变屏幕方向
-  void _switchScreen() async {
-    if (opacity == 0.0) {
-      opacity = 1.0;
-      setTimer();
-      setState(() {});
-      return;
-    }
-    setTimer();
-    if (isPortrait) {
-      isPortrait = false;
-      setState(() {});
-      await AutoOrientation.landscapeAutoMode();
-
-      Future.delayed(Duration(milliseconds: 1000), () {
-        setState(() {});
-      });
-    } else {
-      isPortrait = true;
-      await AutoOrientation.portraitAutoMode();
-      Future.delayed(Duration(milliseconds: 1000), () {
-        setState(() {});
-      });
-    }
   }
 
   ///控制播放
