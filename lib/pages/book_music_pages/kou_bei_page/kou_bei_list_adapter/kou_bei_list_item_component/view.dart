@@ -44,44 +44,44 @@ Widget buildView(
     directors += item.name + ' ';
   });
 
-  return GestureDetector(
-    behavior: HitTestBehavior.opaque,
-    onTap: () {
-      NavigatorUtil.push(
-          viewService.context,
-          MovieDetailPage(
-            movieId: state.data.subject.id,
-            isComingSoon: false,
-          ));
-    },
-    child: Container(
-      padding: EdgeInsets.symmetric(
-          vertical: ScreenUtil().setHeight(20),
-          horizontal: ScreenUtil().setWidth(30)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ///No.1的牌子
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: color,
-            ),
-            padding: EdgeInsets.symmetric(
-                vertical: ScreenUtil().setHeight(5),
-                horizontal: ScreenUtil().setWidth(12)),
-            child: Text('No.${state.data.rank}',
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w700)),
+  return Container(
+    padding: EdgeInsets.symmetric(
+        vertical: ScreenUtil().setHeight(20),
+        horizontal: ScreenUtil().setWidth(30)),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        ///No.1的牌子
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            color: color,
           ),
+          padding: EdgeInsets.symmetric(
+              vertical: ScreenUtil().setHeight(5),
+              horizontal: ScreenUtil().setWidth(12)),
+          child: Text('No.${state.data.rank}',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+        ),
 
-          ///中间的主体部分
-          Container(
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(12)),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
+        ///中间的主体部分
+        Container(
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(12)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    NavigatorUtil.push(
+                        viewService.context,
+                        MovieDetailPage(
+                          movieId: state.data.subject.id,
+                          isComingSoon: false,
+                        ));
+                  },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -155,42 +155,42 @@ Widget buildView(
                     ],
                   ),
                 ),
+              ),
 
-                ///分割线
-                Container(
-                  margin: EdgeInsets.only(right: ScreenUtil().setWidth(30)),
-                  height: ScreenUtil().setHeight(80),
-                  width: ScreenUtil().setWidth(2),
-                  color: Colors.black12,
-                ),
+              ///分割线
+              Container(
+                margin: EdgeInsets.only(right: ScreenUtil().setWidth(30)),
+                height: ScreenUtil().setHeight(80),
+                width: ScreenUtil().setWidth(2),
+                color: Colors.black12,
+              ),
 
-                GestureDetector(
-                  onTap: () {
-                    ToastUtil.show('想看');
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          margin:
-                              EdgeInsets.only(top: ScreenUtil().setHeight(10)),
-                          child: Image.asset(
-                            Constants.ASSETS_IMG + 'ic_info_wish.png',
-                            height: ScreenUtil().setHeight(30),
-                          ),
+              GestureDetector(
+                onTap: () {
+                  ToastUtil.show('想看');
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin:
+                            EdgeInsets.only(top: ScreenUtil().setHeight(10)),
+                        child: Image.asset(
+                          Constants.ASSETS_IMG + 'ic_info_wish.png',
+                          height: ScreenUtil().setHeight(30),
                         ),
-                        Text('想看', style: TextStyle(color: Colors.orange)),
-                      ],
-                    ),
+                      ),
+                      Text('想看', style: TextStyle(color: Colors.orange)),
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
