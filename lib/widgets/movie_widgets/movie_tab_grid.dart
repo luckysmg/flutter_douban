@@ -77,7 +77,7 @@ class MovieTabGridState extends State<MovieTabGrid>
   ///真实网络请求
   void _requestHttpData() async {
     ///请求影院热映数据
-    await DioUtil.getInstance()
+    var getInTheaters = DioUtil.getInstance()
         .get(url: Constants.URL_HTTP_IN_THEATERS)
         .then((data) {
       _hotShowEntity = HotShowEntity.fromJson(data);
@@ -85,13 +85,14 @@ class MovieTabGridState extends State<MovieTabGrid>
     });
 
     ///请求即将上映数据
-    await DioUtil.getInstance()
+    var getComingSoon = DioUtil.getInstance()
         .get(url: Constants.URL_HTTP_COMING_SOON)
         .then((data) {
       _comingSoonEntity = ComingSoonEntity.fromJson(data);
       _comingSoonSubjectData = _comingSoonEntity.subjects;
     });
 
+    await Future.wait([getInTheaters, getComingSoon]);
     setState(() {});
   }
 

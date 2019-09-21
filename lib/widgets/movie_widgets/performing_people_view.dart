@@ -33,15 +33,16 @@ class PerformingPeopleView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Expanded(
-              child: Container(
-            child: Text(
-              '演职员',
-              style: TextStyle(
-                  fontSize: ScreenUtil().setSp(35),
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+            child: Container(
+              child: Text(
+                '演职员',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(35),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
             ),
-          )),
+          ),
           Align(
             alignment: Alignment.bottomRight,
             child: Text(
@@ -84,6 +85,21 @@ class PerformingPeopleView extends StatelessWidget {
 
   ///照片
   Widget _photo(index) {
+    if (dataList[index].avatars == null) {
+      return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5), color: Colors.black26),
+        margin: EdgeInsets.only(right: 10, top: 10, bottom: 5),
+        height: ScreenUtil().setHeight(200),
+        width: ScreenUtil().setWidth(160),
+        child: Icon(
+          Icons.info_outline,
+          color: Colors.white,
+          size: ScreenUtil().setHeight(40),
+        ),
+      );
+    }
+
     return Container(
       margin: EdgeInsets.only(right: 10, top: 10, bottom: 5),
       height: ScreenUtil().setHeight(200),

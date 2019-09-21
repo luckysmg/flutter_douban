@@ -5,7 +5,6 @@ import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
 import 'package:flutter_douban/util/constants.dart';
-import 'package:flutter_douban/util/palette_generator.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
