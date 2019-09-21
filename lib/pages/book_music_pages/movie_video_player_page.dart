@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
-import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:video_player/video_player.dart';
 
 ///
@@ -36,8 +36,8 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((callback) => ToastUtil.show('进入屏幕方向自动适应状态'));
+    WidgetsBinding.instance.addPostFrameCallback(
+        (callback) => showToast('屏幕方向自动旋转', backgroundColor: Colors.grey));
 
     ///将屏幕改变为自动改变方向
     AutoOrientation.fullAutoMode();

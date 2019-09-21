@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       backgroundColor: Colors.green,
       elevation: 0.5,
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
       title: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
