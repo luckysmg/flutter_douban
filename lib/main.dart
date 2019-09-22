@@ -1,5 +1,6 @@
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
@@ -34,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     initCacheData();
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {

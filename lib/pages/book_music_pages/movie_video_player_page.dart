@@ -26,15 +26,34 @@ class MovieVideoPlayerPage extends StatefulWidget {
 
 class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   VideoPlayerController _controller;
-  bool isPlaying = false;
   bool isDragging = false;
   var opacity = 1.0;
   Timer timer;
   bool isPortrait = true;
+  var pauseIcon;
+  var playIcon;
+  var currentIcon;
 
   @override
   void initState() {
     super.initState();
+    pauseIcon = Container(
+      key: ValueKey('pauseIcon'),
+      child: Icon(
+        Icons.pause,
+        size: 28,
+        color: Colors.white70,
+      ),
+    );
+    playIcon = Container(
+      key: ValueKey('playIcon'),
+      child: Icon(
+        Icons.play_arrow,
+        size: 28,
+        color: Colors.white70,
+      ),
+    );
+    currentIcon = pauseIcon;
 
     WidgetsBinding.instance.addPostFrameCallback(
         (callback) => showToast('屏幕方向自动旋转', backgroundColor: Colors.grey));
@@ -66,7 +85,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       ..initialize().then((_) {
         setState(() {
           _controller.play();
-          isPlaying = true;
         });
       });
   }
@@ -220,17 +238,13 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       onTap: _controlPlayer,
       child: Container(
         margin: margin,
-        child: !isPlaying
-            ? Icon(
-                Icons.play_arrow,
-                color: Colors.white70,
-                size: 28,
-              )
-            : Icon(
-                Icons.pause,
-                color: Colors.white70,
-                size: 28,
-              ),
+        child: AnimatedSwitcher(
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return ScaleTransition(child: child, scale: animation);
+          },
+          duration: Duration(milliseconds: 300),
+          child: currentIcon,
+        ),
       ),
     );
   }
@@ -285,7 +299,9 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   Widget _videoTimeText() {
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(10), left: ScreenUtil().setWidth(10)),
+          top: ScreenUtil().setHeight(10),
+          left: ScreenUtil().setWidth(10),
+          right: ScreenUtil().setWidth(30)),
       child: Text(
         '${_controller.value.position.toString().substring(2, 7)}/${_controller.value.duration.toString().substring(2, 7)}',
         style: TextStyle(
@@ -304,16 +320,19 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       setState(() {});
       return;
     }
-    if (isPlaying) {
-      isPlaying = false;
+    if (_controller.value.isPlaying) {
+      setState(() {
+        currentIcon = playIcon;
+      });
       _controller.pause();
     } else {
-      isPlaying = true;
+      setState(() {
+        currentIcon = pauseIcon;
+      });
       _controller.play();
     }
 
     setTimer();
-    setState(() {});
   }
 
   ///设置在退出的时候做的一些操作
