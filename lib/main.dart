@@ -1,6 +1,5 @@
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';

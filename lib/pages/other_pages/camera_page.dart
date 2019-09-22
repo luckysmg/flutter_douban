@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_douban/pages/book_music_pages/image_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
@@ -148,6 +149,7 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   Future<String> takePicture() async {
+    HapticFeedback.heavyImpact();
     if (!controller.value.isInitialized) {
       return null;
     }
