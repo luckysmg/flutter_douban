@@ -25,6 +25,7 @@ class DioUtil {
     if (Constants.isDebug) {
       print('Http接口地址::' + url);
       print('Http回调数据::' + response.data.toString());
+      print('完整URL:${Constants.BASE_URL + url}');
     }
 
     return response.data;

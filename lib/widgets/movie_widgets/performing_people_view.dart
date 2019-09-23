@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
+import 'package:flutter_douban/pages/other_pages/celebrity_page/page.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -66,7 +69,7 @@ class PerformingPeopleView extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: dataList.length,
           itemBuilder: (context, index) {
-            return _photoListItem(index);
+            return _photoListItem(context, index);
           },
         ),
       ),
@@ -74,17 +77,26 @@ class PerformingPeopleView extends StatelessWidget {
   }
 
   ///照片的单个item
-  Widget _photoListItem(index) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_photo(index), _name(index), _station(index)],
+  Widget _photoListItem(context, index) {
+    return GestureDetector(
+      onTap: () {
+        if (dataList[index].avatars != null) {
+          NavigatorUtil.push(
+              context, CelebrityPage().buildPage({'id': dataList[index].id}));
+        }
+      },
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[_photo(index), _name(index), _station(index)],
+        ),
       ),
     );
   }
 
   ///照片
   Widget _photo(index) {
+    ///如果返回的头像为空那么就返回占位图片
     if (dataList[index].avatars == null) {
       return Container(
         decoration: BoxDecoration(
@@ -100,6 +112,7 @@ class PerformingPeopleView extends StatelessWidget {
       );
     }
 
+    ///真实图片
     return Container(
       margin: EdgeInsets.only(right: 10, top: 10, bottom: 5),
       height: ScreenUtil().setHeight(200),

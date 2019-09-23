@@ -20,7 +20,8 @@ class SkeletonView extends StatelessWidget {
         leading: Icon(Icons.arrow_back_ios),
       ),
       body: Shimmer.fromColors(
-        period: const Duration(milliseconds: 600),
+        direction: ShimmerDirection.ttb,
+        period: const Duration(milliseconds: 700),
         baseColor: Constants.APP_SKELETON_COLOR,
         highlightColor: Colors.white,
         child: Container(
