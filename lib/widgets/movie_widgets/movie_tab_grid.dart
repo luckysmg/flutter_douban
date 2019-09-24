@@ -340,32 +340,43 @@ class MovieTabGridState extends State<MovieTabGrid>
               ),
             ),
           ),
-          Row(
-            children: <Widget>[
-              Container(
-                child: FlutterRatingBarIndicator(
-                  itemPadding: EdgeInsets.all(0),
-                  rating: (_hotShowSubjectData[index].rating.average /
-                          _hotShowSubjectData[index].rating.max) *
-                      5,
-                  itemCount: 5,
-                  itemSize: 10.0,
-                  emptyColor: Colors.black.withAlpha(50),
+
+          _hotShowSubjectData[index].rating.average == 0
+              ? Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '尚未上映',
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(18),
+                        fontWeight: FontWeight.w400),
+                  ),
+                )
+              : Row(
+                  children: <Widget>[
+                    Container(
+                      child: FlutterRatingBarIndicator(
+                        itemPadding: EdgeInsets.all(0),
+                        rating: (_hotShowSubjectData[index].rating.average /
+                                _hotShowSubjectData[index].rating.max) *
+                            5,
+                        itemCount: 5,
+                        itemSize: 10.0,
+                        emptyColor: Colors.black.withAlpha(50),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      child: Text(
+                        (_hotShowSubjectData[index].rating.average.toString()),
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(22),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
+                  ],
                 ),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Container(
-                child: Text(
-                  (_hotShowSubjectData[index].rating.average.toString()),
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(22),
-                      fontWeight: FontWeight.w500),
-                ),
-              )
-            ],
-          ),
         ],
       ),
     );

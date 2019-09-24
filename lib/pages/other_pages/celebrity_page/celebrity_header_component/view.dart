@@ -55,19 +55,15 @@ Widget buildView(
         }),
   );
 
-  var photo = ClipRRect(
-    borderRadius: BorderRadius.circular(5),
-    child: CachedNetworkImage(
-      fadeInDuration: const Duration(milliseconds: 400),
-      placeholder: (context, string) {
-        return Container(
-          color: Colors.grey,
-          height: ScreenUtil().setHeight(200),
-          width: ScreenUtil().setWidth(170),
-        );
-      },
-      imageUrl: state.photoUrl,
-      height: ScreenUtil().setHeight(200),
+  var photo = Container(
+    height: ScreenUtil().setHeight(200),
+    width: ScreenUtil().setWidth(170),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(5),
+      child: CachedNetworkImage(
+        fadeInDuration: const Duration(milliseconds: 400),
+        imageUrl: state.photoUrl,
+      ),
     ),
   );
 

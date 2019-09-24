@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
@@ -348,7 +349,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         child: Column(
           children: <Widget>[
             MovieScoreHeader(),
-            widget.isComingSoon
+            widget.isComingSoon || _detailData.rating.average == 0
                 ? _emptyScoreDetail()
                 : ScoreStarDetail(
                     rating: _detailData.rating,
@@ -386,7 +387,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               left: ScreenUtil().setWidth(120),
               top: ScreenUtil().setHeight(40),
             ),
-            child: Text('尚未上映', style: TextStyle(color: Colors.white70)),
+            child: Text('暂无评分', style: TextStyle(color: Colors.white70)),
           ),
           Container(
             margin: EdgeInsets.only(
@@ -436,5 +437,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       scrollController.animateTo(0,
           duration: Duration(milliseconds: 300), curve: Curves.decelerate);
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    clearDiskCachedImages();
   }
 }

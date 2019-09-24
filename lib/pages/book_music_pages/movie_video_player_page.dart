@@ -97,7 +97,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     } else {
       isPortrait = false;
     }
-    print(isPortrait.toString());
 
     if (!_controller.value.initialized) {
       return _emptyView();

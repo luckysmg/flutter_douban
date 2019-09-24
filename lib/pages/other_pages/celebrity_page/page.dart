@@ -1,5 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter_douban/pages/other_pages/celebrity_page/celebrity_brief_introduction/component.dart';
 import 'package:flutter_douban/pages/other_pages/celebrity_page/celebrity_header_component/component.dart';
+import 'package:flutter_douban/pages/other_pages/celebrity_page/celebrity_movies_component/component.dart';
+import 'package:flutter_douban/pages/other_pages/celebrity_page/celebrity_photos/component.dart';
 
 import 'effect.dart';
 import 'reducer.dart';
@@ -20,7 +23,14 @@ class CelebrityPage extends Page<CelebrityState, Map<String, dynamic>> {
           dependencies: Dependencies<CelebrityState>(
               slots: <String, Dependent<CelebrityState>>{
                 'CelebrityHeader':
-                    CelebrityHeaderConnector() + CelebrityHeaderComponent()
+                    CelebrityHeaderConnector() + CelebrityHeaderComponent(),
+                'celebrityBriefIntroduction':
+                    CelebrityBriefIntroductionConnector() +
+                        CelebrityBriefIntroductionComponent(),
+                'celebrityMovies':
+                    CelebrityMoviesConnector() + CelebrityMoviesComponent(),
+                'celebrityPhotos':
+                    CelebrityPhotosConnector() + CelebrityPhotosComponent()
               }),
         );
 }

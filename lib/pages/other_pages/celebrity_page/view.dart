@@ -34,8 +34,17 @@ Widget buildView(
     body: ListView(
       physics: BouncingScrollPhysics(),
       children: <Widget>[
-        ///影人的基本信息，头像，名字的header
+        ///基本信息，头像，名字的header
         viewService.buildComponent('CelebrityHeader'),
+
+        ///简介
+        viewService.buildComponent('celebrityBriefIntroduction'),
+
+        ///影视作品
+        viewService.buildComponent('celebrityMovies'),
+
+        ///相册
+        viewService.buildComponent('celebrityPhotos'),
       ],
     ),
   );

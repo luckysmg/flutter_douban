@@ -44,6 +44,7 @@ class MovieDetailAppbarIndicatorState
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   _movieName(),
                   _starScore(),

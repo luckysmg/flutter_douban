@@ -238,14 +238,14 @@ packages:
       name: flare_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.6"
+    version: "1.4.7"
   flare_flutter:
     dependency: "direct main"
     description:
       name: flare_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.8"
+    version: "1.5.9"
   fluro:
     dependency: "direct main"
     description:
@@ -283,7 +283,7 @@ packages:
       name: flutter_ijkplayer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   flutter_page_indicator:
     dependency: transitive
     description:
