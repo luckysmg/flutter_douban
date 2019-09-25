@@ -297,7 +297,7 @@ class CelebrityWorksSubjectDirectorsAvatars {
 }
 
 class CelebrityWorksSubjectRating {
-  double average;
+  dynamic average;
   int min;
   int max;
   CelebrityWorksSubjectRatingDetails details;

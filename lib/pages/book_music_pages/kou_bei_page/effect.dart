@@ -13,7 +13,7 @@ Effect<KouBeiState> buildEffect() {
   return combineEffects(<Object, Effect<KouBeiState>>{
     KouBeiAction.action: _onAction,
     Lifecycle.initState: _onInit,
-    Lifecycle.dispose: _onDispose
+    Lifecycle.dispose: _onDispose,
   });
 }
 

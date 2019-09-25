@@ -20,7 +20,8 @@ class DioUtil {
     return _dioUtil;
   }
 
-  Future get({@required String url, Map queryParameters}) async {
+  Future get(
+      {@required String url, Map<String, dynamic> queryParameters}) async {
     Response response = await _dio.get(url, queryParameters: queryParameters);
     if (Constants.isDebug) {
       print('Http接口地址::' + url);

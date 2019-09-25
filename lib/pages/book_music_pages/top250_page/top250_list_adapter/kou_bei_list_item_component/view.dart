@@ -15,32 +15,25 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(
-    KouBeiListItemState state, Dispatch dispatch, ViewService viewService) {
-  ///显示NO.1 2 3时候的颜色区分
-  Color color;
-  if (state.data.rank == 1) {
-    color = Colors.red;
-  } else if (state.data.rank == 2) {
-    color = Colors.orange;
-  } else if (state.data.rank == 3) {
-    color = Colors.orange[200];
-  } else {
-    color = Colors.grey;
+    Top250ListItemState state, Dispatch dispatch, ViewService viewService) {
+  String country;
+  try {
+    country = state.data.pubdates.last
+        .substring(11, state.data.pubdates.last.length - 1);
+  } catch (e) {
+    country = state.data.pubdates.last
+        .substring(5, state.data.pubdates.last.length - 1);
   }
-
-  ///国家
-  String country = state.data.subject.pubdates.last
-      .substring(11, state.data.subject.pubdates.last.length - 1);
 
   ///类型
   String type = '';
-  state.data.subject.genres.forEach((item) {
+  state.data.genres.forEach((item) {
     type += item + ' ';
   });
 
   ///导演
   String directors = '';
-  state.data.subject.directors.forEach((item) {
+  state.data.directors.forEach((item) {
     directors += item.name + ' ';
   });
 
@@ -55,12 +48,12 @@ Widget buildView(
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
-            color: color,
+            color: Colors.orange,
           ),
           padding: EdgeInsets.symmetric(
               vertical: ScreenUtil().setHeight(5),
               horizontal: ScreenUtil().setWidth(12)),
-          child: Text('No.${state.data.rank}',
+          child: Text('No.${state.pos}',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
         ),
@@ -78,7 +71,7 @@ Widget buildView(
                     NavigatorUtil.push(
                         viewService.context,
                         MovieDetailPage(
-                          movieId: state.data.subject.id,
+                          movieId: state.data.id,
                           isComingSoon: false,
                         ));
                   },
@@ -92,7 +85,7 @@ Widget buildView(
                           child: CachedNetworkImage(
                             height: ScreenUtil().setHeight(200),
                             fadeInDuration: const Duration(milliseconds: 400),
-                            imageUrl: state.data.subject.images.medium,
+                            imageUrl: state.data.images.medium,
                           ),
                         ),
                       ),
@@ -107,7 +100,7 @@ Widget buildView(
                             ///电影名字
                             Container(
                               child: Text(
-                                state.data.subject.title,
+                                state.data.title,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: ScreenUtil().setSp(30),
@@ -122,9 +115,8 @@ Widget buildView(
                                 FlutterRatingBarIndicator(
                                   itemSize: ScreenUtil().setHeight(15),
                                   emptyColor: Colors.grey,
-                                  rating: state.data.subject.rating.average /
-                                      10.0 *
-                                      5.0,
+                                  rating:
+                                      state.data.rating.average / 10.0 * 5.0,
                                   itemPadding: EdgeInsets.only(
                                     right: ScreenUtil().setWidth(2),
                                   ),
@@ -135,8 +127,7 @@ Widget buildView(
                                   margin: EdgeInsets.only(
                                       left: ScreenUtil().setWidth(10)),
                                   child: Text(
-                                    state.data.subject.rating.average
-                                        .toString(),
+                                    state.data.rating.average.toString(),
                                   ),
                                 ),
                               ],
@@ -144,7 +135,7 @@ Widget buildView(
 
                             ///其他介绍 韩国/动作 灾难...
                             Container(
-                              width: ScreenUtil().setWidth(400),
+                              width: ScreenUtil().setWidth(390),
                               child: Text(
                                 '$country / $type / $directors',
                               ),
@@ -186,7 +177,7 @@ Widget buildView(
                     ],
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -199,7 +190,7 @@ Widget buildView(
             margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5), color: Colors.black12),
-            child: Text('${state.data.subject.collectCount}人评价')),
+            child: Text('${state.data.collectCount}人评价')),
       ],
     ),
   );

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 /// description:常量类
 ///
 class Constants {
+  Constants._();
+
   ///这个在判断是否是调试模式时候用，在release模式下设置为false即可
   ///eg：网络请求会打印请求到的数据，如果release模式也打印会耗费性能，所以只在debug模式下打印网络信息
   static const bool isDebug = false;
@@ -44,4 +46,11 @@ class Constants {
 
   ///口碑真实请求接口
   static const String URL_HTTP_KOU_BEI = 'movie/weekly?apikey=$API_KEY';
+
+  static const String URL_DOU_BAN_HOT_MOVIES =
+      'movie/new_movies?apikey=${Constants.API_KEY}';
+
+  ///Top250真实请求接口
+  static const String URL_REAL_TOP250 =
+      'movie/top250?apikey=${Constants.API_KEY}';
 }

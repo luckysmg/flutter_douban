@@ -39,16 +39,14 @@ class MovieView extends StatelessWidget {
       controller: easyRefreshController,
       scrollController: scrollController,
       onRefresh: () async {
-        await _tabGridKey.currentState.refreshData();
-        await _hotMovieKey.currentState.refreshData();
-
         ///这里一秒钟是模拟网络请求的时间
         await Future.delayed(Duration(milliseconds: 1000));
         easyRefreshController.finishRefresh(success: true, noMore: false);
       },
       onLoad: () async {
+        print('load');
         await Future.delayed(Duration(milliseconds: 500));
-        easyRefreshController.finishLoad(success: true, noMore: true);
+        easyRefreshController.finishLoad(success: true, noMore: false);
       },
       slivers: <Widget>[
         SliverToBoxAdapter(child: _headerView()),

@@ -6,6 +6,7 @@ import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_bottom_list_entity.dart';
 import 'package:flutter_douban/entity/celebrity_entity.dart';
 import 'package:flutter_douban/entity/coming_soon_entity.dart';
+import 'package:flutter_douban/entity/dou_ban_hot_movies_entity.dart';
 import 'package:flutter_douban/entity/hot_show_entity.dart';
 
 class EntityFactory {
@@ -28,6 +29,8 @@ class EntityFactory {
       return CelebrityEntity.fromJson(json) as T;
     } else if (T.toString() == "ComingSoonEntity") {
       return ComingSoonEntity.fromJson(json) as T;
+    } else if (T.toString() == "DouBanHotMoviesEntity") {
+      return DouBanHotMoviesEntity.fromJson(json) as T;
     } else if (T.toString() == "HotShowEntity") {
       return HotShowEntity.fromJson(json) as T;
     } else {

@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_douban/entity/hot_show_entity.dart';
-import 'package:flutter_douban/entity_factory.dart';
+import 'package:flutter_douban/entity/dou_ban_hot_movies_entity.dart';
+import 'package:flutter_douban/http/dio_util.dart';
+import 'package:flutter_douban/http/dio_util.dart' as prefix0;
 import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/other_pages/movie_detail_page.dart';
 import 'package:flutter_douban/util/constants.dart';
@@ -30,8 +31,8 @@ class HotMovieGridState extends State<HotMovieGrid>
   @override
   bool get wantKeepAlive => true;
 
-  HotShowEntity _hotShowEntity;
-  List<HotShowSubject> _hotShowSubjectData;
+  DouBanHotMoviesEntity entity;
+  List<DouBanHotMoviesSubject> data;
   bool hasData = false;
 
   ///有无数据的标示
@@ -39,28 +40,33 @@ class HotMovieGridState extends State<HotMovieGrid>
   @override
   void initState() {
     super.initState();
-    _requestData();
+    if (Constants.isRealNetworkData) {
+      _requestHttpData();
+    } else {
+      _requestMockData();
+    }
   }
 
   ///请求模拟json数据
-  Future _requestData() async {
-    Timer(Duration(milliseconds: 300), () async {
-      await MockRequest.mock(Constants.URL_IN_THEATERS).then((data) {
-        _hotShowEntity = EntityFactory.generateOBJ(data);
-        _hotShowSubjectData = _hotShowEntity.subjects;
-        removeSomeData();
-        hasData = true;
-      }).whenComplete(() {
-        setState(() {});
-      });
+  void _requestMockData() async {
+    await Future.delayed(Duration(milliseconds: 1200));
+    MockRequest.mock('douban_hot_movies').then((data) {
+      entity = DouBanHotMoviesEntity.fromJson(data);
+      this.data = entity.subjects;
+      hasData = true;
+      setState(() {});
     });
   }
 
-  ///刷新数据
-  Future refreshData() async {
-    hasData = false;
-    _hotShowSubjectData = null;
-    _requestData();
+  void _requestHttpData() {
+    DioUtil.getInstance()
+        .get(url: Constants.URL_DOU_BAN_HOT_MOVIES)
+        .then((data) {
+      entity = DouBanHotMoviesEntity.fromJson(data);
+      this.data = entity.subjects;
+      hasData = true;
+      setState(() {});
+    });
   }
 
   @override
@@ -92,9 +98,7 @@ class HotMovieGridState extends State<HotMovieGrid>
         Container(
             margin: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
             child: Text(
-              _hotShowSubjectData == null
-                  ? '全部'
-                  : '全部 ${_hotShowSubjectData.length} >',
+              data == null ? '全部' : '全部 ${data.length} >',
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(21),
                 fontWeight: FontWeight.w500,
@@ -137,7 +141,7 @@ class HotMovieGridState extends State<HotMovieGrid>
         NavigatorUtil.push(
             context,
             MovieDetailPage(
-              movieId: _hotShowSubjectData[index].id,
+              movieId: data[index].id,
             ),
             rootNavigator: true);
       },
@@ -151,7 +155,7 @@ class HotMovieGridState extends State<HotMovieGrid>
                 fadeInDuration: Duration(milliseconds: 500),
                 width: ScreenUtil().setWidth(220),
                 height: ScreenUtil().setHeight(260),
-                imageUrl: _hotShowSubjectData[index].images.medium,
+                imageUrl: data[index].images.medium,
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -162,7 +166,7 @@ class HotMovieGridState extends State<HotMovieGrid>
             margin: EdgeInsets.only(top: ScreenUtil().setHeight(8)),
             alignment: Alignment.topLeft,
             child: Text(
-              _hotShowSubjectData[index].title,
+              data[index].title,
               maxLines: 1,
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(26),
@@ -175,7 +179,7 @@ class HotMovieGridState extends State<HotMovieGrid>
               Container(
                 child: FlutterRatingBarIndicator(
                   itemPadding: EdgeInsets.all(0),
-                  rating: _hotShowSubjectData[index].rating.average.toDouble(),
+                  rating: data[index].rating.average.toDouble() / 2.0,
                   itemCount: 5,
                   itemSize: 10.0,
                   emptyColor: Colors.black.withAlpha(50),
@@ -186,7 +190,7 @@ class HotMovieGridState extends State<HotMovieGrid>
               ),
               Container(
                 child: Text(
-                  _hotShowSubjectData[index].rating.average.toString(),
+                  data[index].rating.average.toString(),
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(21),
                       fontWeight: FontWeight.w500),
@@ -197,12 +201,5 @@ class HotMovieGridState extends State<HotMovieGrid>
         ],
       ),
     );
-  }
-
-  ///这里为了让它和上面数据不一样象征性的移除几个元素，没有任何用处
-  void removeSomeData() {
-    for (int i = 0; i < 6; i++) {
-      _hotShowSubjectData.removeAt(0);
-    }
   }
 }

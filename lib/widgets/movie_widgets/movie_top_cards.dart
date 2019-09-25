@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/page.dart';
+import 'package:flutter_douban/pages/book_music_pages/top250_page/page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
@@ -84,7 +85,8 @@ class MovieCards extends StatelessWidget {
                 rootNavigator: true);
             break;
           case 'card3.jpg':
-            ToastUtil.show('进入Top250电影页面');
+            NavigatorUtil.push(context, Top250Page().buildPage(null),
+                rootNavigator: true);
             break;
           case 'card2.jpg':
             ToastUtil.show('进入热门电影页面');

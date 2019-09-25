@@ -442,6 +442,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void dispose() {
     super.dispose();
+    _movieDetailModel.dispose();
     clearDiskCachedImages();
   }
 }
