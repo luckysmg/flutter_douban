@@ -131,8 +131,11 @@ class PerformingPeopleView extends StatelessWidget {
   ///名字
   Widget _name(index) {
     return Container(
+      width: ScreenUtil().setWidth(180),
       child: Text(
         dataList[index].name,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -141,9 +144,10 @@ class PerformingPeopleView extends StatelessWidget {
     );
   }
 
-  ///职位
+  ///英文名字
   Widget _station(index) {
     return Container(
+      width: ScreenUtil().setWidth(180),
       margin: EdgeInsets.only(top: 2),
       child: Text(
         dataList[index].nameEn,

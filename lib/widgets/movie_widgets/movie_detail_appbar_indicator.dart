@@ -74,6 +74,15 @@ class MovieDetailAppbarIndicatorState
     double rating =
         (this.widget.data.rating.average / this.widget.data.rating.max) * 5;
 
+    if (rating == 0.0) {
+      return Container(
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+        child: Text('尚未上映',
+            style: TextStyle(
+                color: Colors.white70, fontSize: ScreenUtil().setSp(20))),
+      );
+    }
+
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
       child: Row(
