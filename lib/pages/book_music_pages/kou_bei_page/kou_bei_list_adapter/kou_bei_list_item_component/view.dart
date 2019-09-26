@@ -87,10 +87,10 @@ Widget buildView(
                     children: <Widget>[
                       ///电影图片
                       Container(
+                        height: ScreenUtil().setHeight(200),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: CachedNetworkImage(
-                            height: ScreenUtil().setHeight(200),
                             fadeInDuration: const Duration(milliseconds: 400),
                             imageUrl: state.data.subject.images.medium,
                           ),

@@ -102,6 +102,7 @@ class _MovieBottomListState extends State<MovieBottomList> {
   Widget _imageItem(String url) {
     return Expanded(
       child: Container(
+        height: ScreenUtil().setHeight(195),
         margin: EdgeInsets.only(left: 10),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
