@@ -29,14 +29,22 @@ Widget buildView(
   }
 
   ///国家
-  String country = state.data.subject.pubdates.last
-      .substring(11, state.data.subject.pubdates.last.length - 1);
+  String country;
+  try {
+    country = state.data.subject.pubdates.last
+        .substring(11, state.data.subject.pubdates.last.length - 1);
+  } catch (e) {
+    country = '法国';
+  }
 
   ///类型
   String type = '';
   state.data.subject.genres.forEach((item) {
     type += item + ' ';
   });
+  if (type.length == 0) {
+    type = '故事';
+  }
 
   ///导演
   String directors = '';
@@ -88,6 +96,7 @@ Widget buildView(
                       ///电影图片
                       Container(
                         height: ScreenUtil().setHeight(200),
+                        width: ScreenUtil().setWidth(170),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: CachedNetworkImage(
