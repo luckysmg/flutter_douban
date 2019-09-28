@@ -17,7 +17,7 @@ import 'routes/custom_transition_builder.dart';
 ///
 
 void main() {
-  AutoOrientation.portraitAutoMode();
+  AutoOrientation.portraitDownMode();
   Provider.debugCheckInvalidValueType = null;
   StatusBarUtil.setTransParentStatusBar();
   runApp(MyApp());
