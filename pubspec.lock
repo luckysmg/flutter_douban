@@ -70,7 +70,7 @@ packages:
       name: build_resolvers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.8"
+    version: "1.1.1"
   build_runner:
     dependency: "direct dev"
     description:
@@ -112,7 +112,7 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.4+2"
+    version: "0.5.4+3"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -595,6 +595,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.5"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.6"
   quiver:
     dependency: transitive
     description:

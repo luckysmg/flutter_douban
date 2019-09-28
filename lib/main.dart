@@ -56,14 +56,15 @@ class _MyAppState extends State<MyApp> {
       movingOnWindowChange: true,
       child: MaterialApp(
         theme: ThemeData(
-            pageTransitionsTheme: PageTransitionsTheme(
-              builders: {
-                ///这里由于安卓本身自带的页面也换动画有点傻逼，所以这里自己给安卓平台自己实现了一个，iOS页面的不动
-                TargetPlatform.android: CustomTransitionsBuilder(),
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-              },
-            ),
-            platform: TargetPlatform.android),
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              ///这里由于安卓本身自带的页面也换动画有点傻逼，所以这里自己给安卓平台自己实现了一个，iOS页面的不动
+              TargetPlatform.android: CustomTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            },
+          ),
+          platform: TargetPlatform.android,
+        ),
         debugShowCheckedModeBanner: false,
         title: '豆瓣客户端',
         home: MultiProvider(

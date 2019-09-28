@@ -590,7 +590,7 @@ class PortraitController extends StatelessWidget {
               Navigator.pop(context);
             },
             child: Container(
-              margin: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
+              margin: EdgeInsets.only(left: ScreenUtil().setWidth(50)),
               child: Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
