@@ -1,10 +1,11 @@
-import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/status_bar_util.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:orientation/orientation.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,10 +18,10 @@ import 'routes/custom_transition_builder.dart';
 ///
 
 void main() {
-  AutoOrientation.portraitDownMode();
   Provider.debugCheckInvalidValueType = null;
   StatusBarUtil.setTransParentStatusBar();
   runApp(MyApp());
+  OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
 }
 
 class MyApp extends StatefulWidget {
@@ -34,7 +35,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
     initCacheData();
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {
