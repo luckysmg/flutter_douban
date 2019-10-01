@@ -21,7 +21,8 @@ void main() {
   Provider.debugCheckInvalidValueType = null;
   StatusBarUtil.setTransParentStatusBar();
   runApp(MyApp());
-  OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
+  OrientationPlugin.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 }
 
 class MyApp extends StatefulWidget {

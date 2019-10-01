@@ -112,7 +112,7 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.4+3"
+    version: "0.5.5"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -238,7 +238,7 @@ packages:
       name: flare_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.7"
+    version: "1.4.8"
   flare_flutter:
     dependency: "direct main"
     description:
@@ -370,7 +370,7 @@ packages:
       name: html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0+2"
+    version: "0.14.0+3"
   http:
     dependency: transitive
     description:
@@ -711,7 +711,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.6+5"
+    version: "1.1.7"
   stack_trace:
     dependency: transitive
     description:
@@ -853,5 +853,5 @@ packages:
     source: hosted
     version: "2.2.0"
 sdks:
-  dart: ">=2.4.0 <3.0.0"
-  flutter: ">=1.7.8+hotfix.3 <2.0.0"
+  dart: ">=2.5.0 <3.0.0"
+  flutter: ">=1.9.1 <2.0.0"
