@@ -277,13 +277,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.4"
-  flutter_ijkplayer:
-    dependency: "direct main"
-    description:
-      name: flutter_ijkplayer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.4"
   flutter_page_indicator:
     dependency: transitive
     description:
@@ -623,6 +616,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.6"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
+  qr_flutter:
+    dependency: "direct main"
+    description:
+      name: qr_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  qrcode:
+    dependency: "direct main"
+    description:
+      name: qrcode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   quiver:
     dependency: transitive
     description:

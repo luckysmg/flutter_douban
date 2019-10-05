@@ -27,7 +27,7 @@ class _CameraPageState extends State<CameraPage> {
     availableCameras().then((data) {
       cameras = data;
     }).whenComplete(() {
-      controller = CameraController(cameras[0], ResolutionPreset.medium);
+      controller = CameraController(cameras[0], ResolutionPreset.max);
       controller.initialize().then((_) {
         if (!mounted) {
           return;

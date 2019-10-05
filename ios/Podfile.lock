@@ -2,12 +2,8 @@ PODS:
   - camera (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_ijkplayer (0.0.1):
-    - Flutter
-    - FlutterIJK (~> 0.1.0)
   - flutter_tab_bar_no_ripple (0.0.1):
     - Flutter
-  - FlutterIJK (0.1.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -18,6 +14,8 @@ PODS:
   - path_provider (0.0.1):
     - Flutter
   - permission_handler (3.2.2):
+    - Flutter
+  - qrcode (0.0.1):
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
@@ -30,19 +28,18 @@ PODS:
 DEPENDENCIES:
   - camera (from `.symlinks/plugins/camera/ios`)
   - Flutter (from `.symlinks/flutter/ios-release`)
-  - flutter_ijkplayer (from `.symlinks/plugins/flutter_ijkplayer/ios`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - orientation (from `.symlinks/plugins/orientation/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - qrcode (from `.symlinks/plugins/qrcode/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - FlutterIJK
     - FMDB
 
 EXTERNAL SOURCES:
@@ -50,8 +47,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/camera/ios"
   Flutter:
     :path: ".symlinks/flutter/ios-release"
-  flutter_ijkplayer:
-    :path: ".symlinks/plugins/flutter_ijkplayer/ios"
   flutter_tab_bar_no_ripple:
     :path: ".symlinks/plugins/flutter_tab_bar_no_ripple/ios"
   image_picker:
@@ -62,6 +57,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  qrcode:
+    :path: ".symlinks/plugins/qrcode/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
@@ -72,14 +69,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   camera: 38cc83ae9a5667bb5a71c7d9edaf60a91920fd4e
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_ijkplayer: ef9006131553deb6d8ae6d7fbd3bcbf93b135930
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
-  FlutterIJK: 68b00c1d11162b5016f3611853aa699e198bd1d2
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_picker: 16e5fec1fbc87fd3b297c53e4048521eaf17cd06
   orientation: 46fe7528896a5c3e6215366bcb462c182ebfd4e9
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
   permission_handler: d59f41439f5bc6c4d1005f3355e98f05ddc68ece
+  qrcode: 703d52352679d9b4284555e9a09c2157062f1989
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
   sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
   video_player: 3964090a33353060ed7f58aa6427c7b4b208ec21

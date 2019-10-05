@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_douban/pages/other_pages/scan_page.dart';
 import 'package:flutter_douban/util/Decorations.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -86,14 +88,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _scanButton() {
-    return Container(
-      margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
-      child: GestureDetector(
-        child: Icon(
-          Icons.center_focus_weak,
-          color: Colors.black38,
-          size: ScreenUtil().setHeight(35),
+    return GestureDetector(
+      onTap: () {
+        NavigatorUtil.push(context, ScanPage(),
+            fullScreenDialog: true, rootNavigator: true);
+      },
+      child: Container(
+        margin: EdgeInsets.only(
+            top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
+        child: GestureDetector(
+          child: Icon(
+            Icons.pages,
+            color: Colors.black38,
+            size: ScreenUtil().setHeight(35),
+          ),
         ),
       ),
     );

@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_douban/pages/other_pages/qr_code_page.dart';
 import 'package:flutter_douban/util/constants.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///
 /// @created by 文景睿
 /// description:我的
 ///
-// ignore: must_be_immutable
 class PersonPage extends StatefulWidget {
   @override
   _PersonPageState createState() => _PersonPageState();
@@ -40,6 +41,7 @@ class _PersonPageState extends State<PersonPage> {
             delegate: SliverChildListDelegate(
               [
                 _useNetworkTile(),
+                _qrCodeEntry(),
               ],
             ),
           ),
@@ -122,6 +124,18 @@ class _PersonPageState extends State<PersonPage> {
             },
           );
         },
+      ),
+    );
+  }
+
+  Widget _qrCodeEntry() {
+    return GestureDetector(
+      onTap: () {
+        NavigatorUtil.push(context, QrCodePage(), rootNavigator: true);
+      },
+      child: ListTile(
+        leading: Icon(Icons.pages),
+        title: Text('进入二维码生成界面'),
       ),
     );
   }

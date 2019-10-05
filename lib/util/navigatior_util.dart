@@ -19,11 +19,9 @@ class NavigatorUtil {
             fullscreenDialog: true),
       );
     } else if (finishCurrentPage) {
-      Navigator.of(context, rootNavigator: rootNavigator).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => destinationPage,
-          ),
-          (route) => route == null);
+      Navigator.of(context, rootNavigator: rootNavigator).pushReplacement(
+        MaterialPageRoute(builder: (context) => destinationPage),
+      );
     } else {
       Navigator.of(context, rootNavigator: rootNavigator).push(
           MaterialPageRoute(
