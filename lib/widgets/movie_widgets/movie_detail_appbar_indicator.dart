@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
+import 'package:flutter_douban/widgets/common_widgets/rating_bar_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rating_bar/rating_bar.dart';
 
 ///
 /// @created by 文景睿
@@ -27,33 +29,40 @@ class MovieDetailAppbarIndicatorState
   @override
   Widget build(BuildContext context) {
     ///这里是平移动画+透明度渐变动画
-    return Transform.translate(
-      offset: Offset(0, currentOffsetY),
-      child: AnimatedOpacity(
-        opacity: opacity,
-        duration: Duration(milliseconds: 0),
-        child: Row(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(4)),
-              child: CachedNetworkImage(
-                imageUrl: this.widget.data.images.small,
-                height: ScreenUtil().setHeight(40),
-              ),
-            ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _movieName(),
-                  _starScore(),
-                ],
-              ),
-            ),
-          ],
+    return RepaintBoundary(
+      child: Transform.translate(
+        offset: Offset(0, currentOffsetY),
+        child: AnimatedOpacity(
+          opacity: opacity,
+          duration: Duration(milliseconds: 0),
+          child: _body(),
         ),
       ),
+    );
+  }
+
+  Widget _body() {
+    return Row(
+      children: <Widget>[
+        ///图片
+        Container(
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(4)),
+          child: CachedNetworkImage(
+            imageUrl: this.widget.data.images.small,
+            height: ScreenUtil().setHeight(40),
+          ),
+        ),
+        Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _movieName(),
+              _starScore(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -88,11 +97,10 @@ class MovieDetailAppbarIndicatorState
       child: Row(
         children: <Widget>[
           ///星星
-          FlutterRatingBarIndicator(
-            itemSize: 7,
+          RatingBarIndicator(
+            size: ScreenUtil().setHeight(12),
             rating: rating,
-            emptyColor: Colors.white60,
-            itemPadding: EdgeInsets.only(left: ScreenUtil().setWidth(0)),
+            filledColor: Colors.orange[300],
           ),
 
           ///评分

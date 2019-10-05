@@ -52,6 +52,7 @@ dependencies:
   shimmer: ^1.0.1
   pull_to_refresh: ^1.5.6
   orientation: ^1.1.0
+  rating_bar: ^0.2.0
 
 
 

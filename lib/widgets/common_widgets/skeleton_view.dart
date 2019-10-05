@@ -14,10 +14,13 @@ class SkeletonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
+      appBar: CupertinoNavigationBar(
         backgroundColor: _color,
-        leading: Icon(Icons.arrow_back_ios),
+        leading: Icon(
+          Icons.arrow_back_ios,
+          size: ScreenUtil().setHeight(30),
+          color: Colors.white,
+        ),
       ),
       body: Shimmer.fromColors(
         direction: ShimmerDirection.ttb,

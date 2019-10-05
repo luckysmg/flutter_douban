@@ -65,7 +65,6 @@ class MovieView extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: _moviePoster()),
         MovieBottomList(),
-//        SliverToBoxAdapter(child: MovieBottomList()),
       ],
     );
   }

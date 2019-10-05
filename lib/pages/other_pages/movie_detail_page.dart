@@ -115,14 +115,19 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Widget _appBar(BuildContext context) {
     return CupertinoNavigationBar(
+      automaticallyImplyLeading: false,
+      leading: Icon(
+        Icons.arrow_back_ios,
+        size: ScreenUtil().setHeight(30),
+        color: Colors.white70,
+      ),
       backgroundColor: Colors.transparent,
       trailing: _moreIcon(),
       actionsForegroundColor: Colors.white,
       middle: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: _scrollToTop,
         child: Container(
-          ///设置这个颜色是因为如果不设置可能在appbar上点击可能失效的bug，可能是flutter本身的原因，所以设置了一个
-          color: Colors.transparent,
           child: Stack(
             children: <Widget>[
               _movieDetailAppbarTitle(),
@@ -136,8 +141,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Widget _movieAppBarIndicator() {
     return Container(
-      color: Colors.transparent,
-      alignment: Alignment.center,
       child: MovieDetailAppbarIndicator(
         key: _movieDetailAppbarIndicatorStateKey,
         data: _detailData,
@@ -157,11 +160,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ///appbar右边的'更多'按钮
   Widget _moreIcon() {
     return Container(
-        margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
-        child: Icon(
-          Icons.more_horiz,
-          size: ScreenUtil().setHeight(40),
-        ));
+      margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
+      child: Icon(
+        Icons.more_horiz,
+        size: ScreenUtil().setHeight(40),
+      ),
+    );
   }
 
   ///主体布局（除开抽屉的布局）
@@ -419,7 +423,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       offset = MovieDetailPage.edgeOffsetY;
     }
 
-    ///这里用初中数学知识就可以算出来
+    ///这里用数学知识就可以算出来的交互效果
     indicatorOpacity = offset / MovieDetailPage.edgeOffsetY;
     titleOpacity =
         (MovieDetailPage.edgeOffsetY - offset) / MovieDetailPage.edgeOffsetY;
@@ -437,12 +441,5 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       scrollController.animateTo(0,
           duration: Duration(milliseconds: 300), curve: Curves.decelerate);
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _movieDetailModel.dispose();
-    clearDiskCachedImages();
   }
 }
