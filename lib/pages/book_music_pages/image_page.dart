@@ -11,7 +11,7 @@ class ImagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.file(image),
+      body: Center(child: Image.file(image)),
     );
   }
 }

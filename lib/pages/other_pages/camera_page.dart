@@ -103,11 +103,11 @@ class _CameraPageState extends State<CameraPage> {
         takePicture().then((path) {
           if (path != null) {
             NavigatorUtil.push(
-              context,
-              ImagePage(
-                image: File(path),
-              ),
-            );
+                context,
+                ImagePage(
+                  image: File(path),
+                ),
+                finishCurrentPage: true);
           }
         });
       },
