@@ -14,6 +14,7 @@
 - 有二维码生成功能
 - 自定义UI（电影详情中的底部抽屉）
 - 两种状态管理（电影详情页是provider，其余的页面部分用的是fish_redux）
+- 可选择用真实网络API的数据还是用本地的模拟数据
 
 
 For help getting started with Flutter, view our
