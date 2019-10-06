@@ -19,7 +19,7 @@
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
-## 最新版的release下载
+## 最新版的release下载（只有安卓的，iOS不方便打包就不提供了）
 ![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/qrcode.png)
 
 
