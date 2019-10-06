@@ -9,14 +9,16 @@ PODS:
   - FMDB/standard (2.7.5)
   - image_picker (0.0.1):
     - Flutter
+  - MTBBarcodeScanner (5.0.11)
   - orientation (0.0.1):
     - Flutter
   - path_provider (0.0.1):
     - Flutter
   - permission_handler (3.2.2):
     - Flutter
-  - qrcode (0.0.1):
+  - qr_code_scanner (0.0.2):
     - Flutter
+    - MTBBarcodeScanner
   - shared_preferences (0.0.1):
     - Flutter
   - sqflite (0.0.1):
@@ -33,7 +35,7 @@ DEPENDENCIES:
   - orientation (from `.symlinks/plugins/orientation/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - qrcode (from `.symlinks/plugins/qrcode/ios`)
+  - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
@@ -41,6 +43,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FMDB
+    - MTBBarcodeScanner
 
 EXTERNAL SOURCES:
   camera:
@@ -57,8 +60,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
-  qrcode:
-    :path: ".symlinks/plugins/qrcode/ios"
+  qr_code_scanner:
+    :path: ".symlinks/plugins/qr_code_scanner/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
@@ -72,10 +75,11 @@ SPEC CHECKSUMS:
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_picker: 16e5fec1fbc87fd3b297c53e4048521eaf17cd06
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   orientation: 46fe7528896a5c3e6215366bcb462c182ebfd4e9
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
   permission_handler: d59f41439f5bc6c4d1005f3355e98f05ddc68ece
-  qrcode: 703d52352679d9b4284555e9a09c2157062f1989
+  qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
   sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
   video_player: 3964090a33353060ed7f58aa6427c7b4b208ec21

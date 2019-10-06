@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScanResultPage extends StatelessWidget {
   final data;
-  const ScanResultPage(this.data);
+  const ScanResultPage({this.data});
 
   @override
   Widget build(BuildContext context) {

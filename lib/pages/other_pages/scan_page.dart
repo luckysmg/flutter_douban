@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_douban/pages/other_pages/scan_result_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qrcode/qrcode.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScanPage extends StatefulWidget {
   @override
@@ -11,58 +11,83 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
-  QRCaptureController _captureController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration(milliseconds: 350), () {
-      _captureController = QRCaptureController();
-      _captureController.onCapture((data) {
-        _captureController.pause();
-        NavigatorUtil.push(context, ScanResultPage(data),
-            finishCurrentPage: true);
-      });
-      setState(() {});
-    });
-  }
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  var qrText = "";
+  QRViewController controller;
 
   @override
   Widget build(BuildContext context) {
-    if (_captureController == null) {
-      return Scaffold(
-        body: Container(),
-        backgroundColor: Colors.black,
-      );
-    }
     return Scaffold(
       body: Stack(
-        alignment: Alignment.center,
         children: <Widget>[
-          QRCaptureView(controller: _captureController),
-          Positioned(
-            bottom: ScreenUtil().setHeight(100),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.white,
-                size: ScreenUtil().setHeight(100),
-              ),
-            ),
+          QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
           ),
+          _buildAppBar(),
+          _buildFlashLightButton(),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _captureController.pause();
-    _captureController = null;
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((data) {
+      controller.dispose();
+      NavigatorUtil.push(
+          context,
+          ScanResultPage(
+            data: data,
+          ),
+          finishCurrentPage: true);
+    });
+  }
+
+  ///Appbar
+  Widget _buildAppBar() {
+    return CupertinoNavigationBar(
+      backgroundColor: Colors.transparent,
+      middle: Text('二维码扫描', style: TextStyle(color: Colors.white)),
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.keyboard_arrow_down,
+          color: Colors.white70,
+        ),
+      ),
+    );
+  }
+
+  ///手电筒图标按钮
+  Widget _buildFlashLightButton() {
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(1000)),
+      child: GestureDetector(
+        onTap: () {
+          controller.toggleFlash();
+        },
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+              child: Icon(
+                Icons.lightbulb_outline,
+                color: Colors.white70,
+                size: ScreenUtil().setHeight(50),
+              ),
+            ),
+            Text('轻触照亮',
+                style: TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold,
+                    fontSize: ScreenUtil().setSp(30)))
+          ],
+        ),
+      ),
+    );
   }
 }
