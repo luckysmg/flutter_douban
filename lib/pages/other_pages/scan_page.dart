@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_douban/pages/other_pages/scan_result_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/scan_qr_code_background.dart';
@@ -13,8 +14,14 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPageState extends State<ScanPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  var qrText = "";
   QRViewController controller;
+  AudioCache audioCache;
+
+  @override
+  void initState() {
+    super.initState();
+    audioCache = AudioCache(prefix: 'audio/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +42,12 @@ class _ScanPageState extends State<ScanPage> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((data) {
+
+    controller.scannedDataStream.listen((data) async {
       controller.dispose();
+
+      await audioCache.play('scan.mp3');
+      await Future.delayed(Duration(milliseconds: 200));
       NavigatorUtil.push(
           context,
           ScanResultPage(
@@ -91,5 +102,10 @@ class _ScanPageState extends State<ScanPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

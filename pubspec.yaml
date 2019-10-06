@@ -54,6 +54,7 @@ dependencies:
   rating_bar: ^0.2.0
   qr_flutter: ^3.0.1
   qr_code_scanner: ^0.0.12
+  audioplayers: ^0.13.2
 
 
 
@@ -81,6 +82,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/audio/
     - mock/
 
 
