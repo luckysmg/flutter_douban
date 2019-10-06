@@ -17,8 +17,10 @@ class _GroupPageState extends State<GroupPage> {
     ScreenUtil.instance =
         ScreenUtil(width: 750, height: 1334, allowFontScaling: false)
           ..init(context);
-    return Center(
-      child: Text('小组'),
-    );
+
+    return Scaffold(
+        body: Center(
+            child: Text('小组',
+                style: TextStyle(fontSize: ScreenUtil().setSp(30)))));
   }
 }

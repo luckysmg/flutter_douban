@@ -4,7 +4,6 @@ import 'package:flutter_douban/pages/other_pages/qr_code_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///
@@ -59,7 +58,7 @@ class _PersonPageState extends State<PersonPage> {
         collapseMode: CollapseMode.parallax,
         background: AnimatedOpacity(
           opacity: headerOpacity,
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 800),
           child: Image.asset(
             Constants.ASSETS_IMG + 'personal_header.jpg',
             fit: BoxFit.fitWidth,

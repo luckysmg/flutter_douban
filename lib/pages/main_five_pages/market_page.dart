@@ -18,6 +18,9 @@ class _MarketPageState extends State<MarketPage> {
         ScreenUtil(width: 750, height: 1334, allowFontScaling: false)
           ..init(context);
 
-    return Center(child: Text('市集'));
+    return Scaffold(
+        body: Center(
+            child: Text('市集',
+                style: TextStyle(fontSize: ScreenUtil().setSp(30)))));
   }
 }
