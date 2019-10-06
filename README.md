@@ -19,6 +19,8 @@
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
+## 截图
+![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/book_music.png)
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
