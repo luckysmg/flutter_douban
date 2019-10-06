@@ -19,6 +19,10 @@
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
+## 最新版的release下载
+![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/qrcode.png)
+
+
 ## 截图(如果网络不好可能load不出来😂)
 ![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/book_music.png)
 ![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/detail.png)
