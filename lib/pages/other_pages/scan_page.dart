@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_douban/pages/other_pages/scan_result_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
+import 'package:flutter_douban/widgets/common_widgets/scan_qr_code_background.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -24,8 +25,9 @@ class _ScanPageState extends State<ScanPage> {
             key: qrKey,
             onQRViewCreated: _onQRViewCreated,
           ),
-          _buildAppBar(),
+          ScanQRCodeBackground(),
           _buildFlashLightButton(),
+          _buildAppBar(),
         ],
       ),
     );

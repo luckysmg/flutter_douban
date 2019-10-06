@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
@@ -116,10 +115,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget _appBar(BuildContext context) {
     return CupertinoNavigationBar(
       automaticallyImplyLeading: false,
-      leading: Icon(
-        Icons.arrow_back_ios,
-        size: ScreenUtil().setHeight(30),
-        color: Colors.white70,
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.arrow_back_ios,
+          size: ScreenUtil().setHeight(30),
+          color: Colors.white70,
+        ),
       ),
       backgroundColor: Colors.transparent,
       trailing: _moreIcon(),

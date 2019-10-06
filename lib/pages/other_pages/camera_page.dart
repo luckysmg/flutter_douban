@@ -10,6 +10,10 @@ import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 
+///
+/// @created by 文景睿
+/// description:照相页面
+///
 class CameraPage extends StatefulWidget {
   @override
   _CameraPageState createState() => _CameraPageState();

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+///
+/// @created by 文景睿
+/// description:扫码结束后的扫码数据反馈页面
+///
 class ScanResultPage extends StatelessWidget {
   final data;
   const ScanResultPage({this.data});
