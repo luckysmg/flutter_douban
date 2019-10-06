@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,6 +81,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     _controller = VideoPlayerController.network(
 //      'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //若豆瓣视频API失效了随便加一个
       widget.data.trailers[widget.dataIndex].resourceUrl,
+      formatHint: VideoFormat.hls,
     )
       ..addListener(() {
         ///播放完毕自动退出
@@ -204,7 +206,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     return Opacity(
       opacity: opacity,
       child: Container(
-        margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+        margin: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
         alignment: Alignment.topCenter,
         child: Row(
           children: <Widget>[
@@ -251,7 +253,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
           transitionBuilder: (Widget child, Animation<double> animation) {
             return ScaleTransition(child: child, scale: animation);
           },
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 200),
           child: currentIcon,
         ),
       ),
@@ -267,9 +269,11 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
         });
       },
       child: Container(
+        margin: EdgeInsets.only(left: 10),
         child: Icon(
           Icons.arrow_back_ios,
           color: Colors.white70,
+          size: 20,
         ),
       ),
     );
@@ -424,7 +428,8 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   void _switchOrientation() async {
     resetTimer();
     if (isPortrait) {
-      await OrientationPlugin.forceOrientation(DeviceOrientation.landscapeLeft);
+      await OrientationPlugin.forceOrientation(
+          DeviceOrientation.landscapeRight);
     } else {
       await OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
     }
