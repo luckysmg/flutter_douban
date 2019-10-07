@@ -9,13 +9,13 @@
 - 双平台都有仿iOS页面的交错动画以及左滑返回手势效果
 - 下拉刷新，上拉加载
 - 有扫二维码功能（二维码页面背景属于自绘UI） 
-- 电影详情预告片可以进行视频播放
+- 电影详情预告片可以进行视频播放，并且有常见的视频页面交互
 - 图片选择
 - 图片拍照以及获取拍照后的图片
 - 自定义的仿微信拍照界面
 - 有二维码生成功能
 - 自定义UI（电影详情中的底部抽屉）
-- 两种状态管理（电影详情页是[provider](https://pub.dev/packages/provider)，其余的页面有一部分使用的是[fish_redux](https://pub.dev/packages/fish_redux)）
+- 两种状态管理（电影详情页是利用[provider](https://pub.dev/packages/provider)，其余的页面有一部分使用的是[fish_redux](https://pub.dev/packages/fish_redux)进行状态管理）
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
