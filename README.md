@@ -20,16 +20,18 @@
 - 图片预览，拖拽返回
 
 ## 最新版的release下载（只有安卓的，iOS不方便打包就不提供了，网络不好可能加载不出来等等就行）
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/qrcode.png)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/WwQHUjCqoU6S7ubyF5gx3bvSBRkQGI7x59gYh*8eUhM!/b/dLgAAAAAAAAA&bo=AAEAAQABAAEDCSw!&rf=viewer_4)
 
 
 ## 截图(同样如果网络不好可能load不出来😂)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/book_music.png)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/detail.png)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/detail2.png)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/home.png)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/koubei.png)
-![image](https://github.com/luckysmg/flutter_douban/blob/master/md_img/top250.png)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/vuAA5r4gyrSCA*UPFw.oDTqNYjWSSXFJDL1F3Vg9M0k!/b/dL4AAAAAAAAA&bo=EAMSBhADEgYDCSw!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/Wxlnjk3DHNwHjnXa*7LjnKNPZFEPqa4hsqfIMbpVJm0!/b/dLgAAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/mMAsEyy5tndSdEkUvPdQbdUjLmYKoeVc.cs54CMn1F0!/b/dFQBAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/2ZjUM52pr3zZEvGSYjEwDYsZdStCA4yY52tNanpGUXs!/b/dL8AAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/R96XJBEM5cOEtg0vfr.WUH4lfpxBtiw83Otm5hYgw00!/b/dLYAAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/2H.NV1wxZCNbn*CPWWlo84lEGgGQmoouY9L8v162fSg!/b/dLgAAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/fFOqa8QWViRAL.57rYewG*7u5snuVWULvS5yZo0Z*WU!/b/dFQBAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
+
 
 
 
