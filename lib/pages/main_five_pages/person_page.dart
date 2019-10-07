@@ -109,11 +109,16 @@ class _PersonPageState extends State<PersonPage> {
                             EdgeInsets.only(top: ScreenUtil().setHeight(20)),
                         child: GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: Text('确定',
-                              style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(35),
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none)),
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                bottom: ScreenUtil().setHeight(20)),
+                            child: Text('确定',
+                                style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(35),
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w500,
+                                    decoration: TextDecoration.none)),
+                          ),
                         ),
                       ),
                     )

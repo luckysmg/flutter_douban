@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -92,9 +93,11 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       })
       ..initialize().then((_) {
         setState(() {
-          _controller.play();
+//          _controller.play();
         });
       });
+
+    checkNetWorkType();
   }
 
   @override
@@ -264,11 +267,19 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   Widget _backIcon() {
     return GestureDetector(
       onTap: () {
+        if (opacity == 0.0) {
+          setState(() {
+            opacity = 1.0;
+          });
+          return;
+        }
         _setQuitEffect().then((_) {
           Navigator.pop(context);
         });
       },
       child: Container(
+        color: Colors.transparent,
+        width: 60,
         margin: EdgeInsets.only(left: 10),
         child: Icon(
           Icons.arrow_back_ios,
@@ -282,7 +293,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
   ///视频的标题
   Widget _videoTitle() {
     return Container(
-      margin: const EdgeInsets.only(left: 30),
       child: Text(
         this.widget.data.trailers[this.widget.dataIndex].title,
         style: TextStyle(
@@ -450,5 +460,87 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]);
+  }
+
+  ///检查网络状态
+  void checkNetWorkType() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      showCupertinoDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: Container(
+                height: ScreenUtil().setHeight(240),
+                width: ScreenUtil().setWidth(500),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                      margin: EdgeInsets.only(
+                          bottom: ScreenUtil().setHeight(40),
+                          top: ScreenUtil().setHeight(20)),
+                      child: Text(
+                        '您目前在使用移动网络，观看将消耗流量,是否继续？',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: ScreenUtil().setSp(35),
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black45),
+                      ),
+                    ),
+
+                    ///下面的按钮
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          margin:
+                              EdgeInsets.only(right: ScreenUtil().setWidth(40)),
+                          child: CupertinoButton(
+                              color: Colors.green,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: ScreenUtil().setHeight(10),
+                                  horizontal: ScreenUtil().setWidth(40)),
+                              minSize: ScreenUtil().setHeight(30),
+                              pressedOpacity: 0.4,
+                              child: Text('继续',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                _controller.play();
+                              }),
+                        ),
+                        Container(
+                          child: CupertinoButton(
+                              color: Colors.red,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: ScreenUtil().setHeight(10),
+                                  horizontal: ScreenUtil().setWidth(40)),
+                              minSize: ScreenUtil().setHeight(30),
+                              pressedOpacity: 0.4,
+                              child: Text('退出',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () async {
+                                Navigator.pop(context);
+                                await _setQuitEffect();
+                                Navigator.pop(this.context);
+                              }),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      _controller.play();
+    }
   }
 }

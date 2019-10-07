@@ -15,13 +15,13 @@
 - 自定义的仿微信拍照界面
 - 有二维码生成功能
 - 自定义UI（电影详情中的底部抽屉）
-- 两种状态管理（电影详情页是provider，其余的页面一部分使用的是fish_redux）
+- 两种状态管理（电影详情页是[provider](https://pub.dev/packages/provider)，其余的页面有一部分使用的是[fish_redux](https://pub.dev/packages/fish_redux)）
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
 ## 最新版的release下载（只有安卓的，iOS不方便打包就不提供了，网络不好可能加载不出来等等就行,或者可以直接点下面的链接）
-[二维码图片链接](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/WwQHUjCqoU6S7ubyF5gx3bvSBRkQGI7x59gYh*8eUhM!/b/dLgAAAAAAAAA&bo=AAEAAQABAAEDCSw!&rf=viewer_4)
-![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/WwQHUjCqoU6S7ubyF5gx3bvSBRkQGI7x59gYh*8eUhM!/b/dLgAAAAAAAAA&bo=AAEAAQABAAEDCSw!&rf=viewer_4)
+[二维码图片链接](http://a1.qpic.cn/psb?/V14ZW7Fv20HeHr/CEABEdmVYcxjhqgpd9kZpxL3wIoPdDi3RvthAJFL4Ng!/m/dLgAAAAAAAAAnull&bo=LAEsASwBLAEDCSw!&rf=photolist&t=5)
+![image](http://a1.qpic.cn/psb?/V14ZW7Fv20HeHr/CEABEdmVYcxjhqgpd9kZpxL3wIoPdDi3RvthAJFL4Ng!/m/dLgAAAAAAAAAnull&bo=LAEsASwBLAEDCSw!&rf=photolist&t=5)
 
 
 ## 截图(同样如果网络不好可能load不出来😂)
@@ -43,9 +43,3 @@
 ![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/2H.NV1wxZCNbn*CPWWlo84lEGgGQmoouY9L8v162fSg!/b/dLgAAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
 ![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/fFOqa8QWViRAL.57rYewG*7u5snuVWULvS5yZo0Z*WU!/b/dFQBAAAAAAAA&bo=EAMSBhADEgYRCT4!&rf=viewer_4)
 
-
-
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

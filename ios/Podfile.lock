@@ -3,6 +3,9 @@ PODS:
     - Flutter
   - camera (0.0.1):
     - Flutter
+  - connectivity (0.0.1):
+    - Flutter
+    - Reachability
   - Flutter (1.0.0)
   - flutter_tab_bar_no_ripple (0.0.1):
     - Flutter
@@ -21,6 +24,7 @@ PODS:
   - qr_code_scanner (0.0.2):
     - Flutter
     - MTBBarcodeScanner
+  - Reachability (3.2)
   - shared_preferences (0.0.1):
     - Flutter
   - sqflite (0.0.1):
@@ -32,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
+  - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
@@ -47,12 +52,15 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FMDB
     - MTBBarcodeScanner
+    - Reachability
 
 EXTERNAL SOURCES:
   audioplayers:
     :path: ".symlinks/plugins/audioplayers/ios"
   camera:
     :path: ".symlinks/plugins/camera/ios"
+  connectivity:
+    :path: ".symlinks/plugins/connectivity/ios"
   Flutter:
     :path: ".symlinks/flutter/ios-release"
   flutter_tab_bar_no_ripple:
@@ -77,6 +85,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
   camera: 38cc83ae9a5667bb5a71c7d9edaf60a91920fd4e
+  connectivity: c72716e202a1225ec4810740d5cb56b8ae3bf4cc
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -86,6 +95,7 @@ SPEC CHECKSUMS:
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
   permission_handler: d59f41439f5bc6c4d1005f3355e98f05ddc68ece
   qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
   sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
   video_player: 3964090a33353060ed7f58aa6427c7b4b208ec21

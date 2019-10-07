@@ -22,7 +22,7 @@ class LongCommentListView extends StatelessWidget {
       height: ScreenUtil.screenHeightDp,
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: longCommentData.count,
+        itemCount: longCommentData.reviews.length,
         itemBuilder: (context, index) => _item(context, index),
       ),
     );
