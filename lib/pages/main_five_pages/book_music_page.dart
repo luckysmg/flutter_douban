@@ -9,6 +9,7 @@ import 'package:flutter_douban/pages/book_music_pages/music_page.dart';
 import 'package:flutter_douban/pages/other_pages/camera_page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
+import 'package:flutter_douban/widgets/common_widgets/custom_scroll_behavior.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 import 'package:image_picker/image_picker.dart';
@@ -81,7 +82,14 @@ class _BookMusicState extends State<BookMusicPage>
   }
 
   Widget _mainBodyView() {
-    return TabBarView(controller: _controller, children: _tabBarViews);
+    return ScrollConfiguration(
+      ///去掉水波纹效果
+      behavior: CustomScrollBehavior(),
+      child: TabBarView(
+          physics: BouncingScrollPhysics(),
+          controller: _controller,
+          children: _tabBarViews),
+    );
   }
 
   Widget _tabBar() {
