@@ -20,8 +20,8 @@
 - 图片预览，拖拽返回
 
 ## 最新版的release下载（只有安卓的，iOS不方便打包就不提供了）
-- [二维码图片链接(图片显示不出来的时候用)](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/EmSnv2ejnZGfr5bD5Dx3BEAmxNnjCBXJm8jG95JPRl4!/b/dDQBAAAAAAAA&bo=AAEAAQAAAAADByI!&rf=viewer_4)
-![image](http://m.qpic.cn/psb?/V14ZW7Fv20HeHr/EmSnv2ejnZGfr5bD5Dx3BEAmxNnjCBXJm8jG95JPRl4!/b/dDQBAAAAAAAA&bo=AAEAAQAAAAADByI!&rf=viewer_4)
+- [二维码图片链接(图片显示不出来的时候用)](http://a3.qpic.cn/psb?/V14ZW7Fv20HeHr/nf*nEma2kvpsORGSFejPCmGOWF.fAXcdVGPnx7DPg4k!/m/dLYAAAAAAAAAnull&bo=AAEAAQAAAAADByI!&rf=photolist&t=5)
+![image](http://a3.qpic.cn/psb?/V14ZW7Fv20HeHr/nf*nEma2kvpsORGSFejPCmGOWF.fAXcdVGPnx7DPg4k!/m/dLYAAAAAAAAAnull&bo=AAEAAQAAAAADByI!&rf=photolist&t=5)
 
 
 ## 截图
