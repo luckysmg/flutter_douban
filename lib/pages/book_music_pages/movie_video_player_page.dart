@@ -82,7 +82,6 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
     _controller = VideoPlayerController.network(
 //      'http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4', //若豆瓣视频API失效了随便加一个
       widget.data.trailers[widget.dataIndex].resourceUrl,
-      formatHint: VideoFormat.hls,
     )
       ..addListener(() {
         ///播放完毕自动退出
@@ -92,9 +91,7 @@ class _MovieVideoPlayerPageState extends State<MovieVideoPlayerPage> {
         _onUpdatePlayerProgress();
       })
       ..initialize().then((_) {
-        setState(() {
-//          _controller.play();
-        });
+        setState(() {});
       });
 
     checkNetWorkType();
