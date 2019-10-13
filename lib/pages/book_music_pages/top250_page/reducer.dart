@@ -35,9 +35,9 @@ Top250State _loadMore(Top250State state, Action action) {
 
   ///这个是判断是否是最后一页的，实际不会这么复杂
   if (oldItemCount + count >= totalCount) {
-    state.easyRefreshController.finishLoad(noMore: true);
+    state.controller.loadNoData();
   } else {
-    state.easyRefreshController.finishLoad();
+    state.controller.loadComplete();
   }
   return newState;
 }

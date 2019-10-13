@@ -5,7 +5,6 @@ import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/pages/book_music_pages/movie_video_player_page.dart';
 import 'package:flutter_douban/routes/custom_routes.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ///
@@ -76,18 +75,17 @@ class TrailersPhotoView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10),
       height: ScreenUtil().setHeight(200),
-      child: EasyRefresh(
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: data.trailers.length + data.photos.length,
-          itemBuilder: (context, index) {
-            if (index < data.trailers.length) {
-              return _videoTypeView(context, index);
-            } else {
-              return _photoView(context, index);
-            }
-          },
-        ),
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: data.trailers.length + data.photos.length,
+        itemBuilder: (context, index) {
+          if (index < data.trailers.length) {
+            return _videoTypeView(context, index);
+          } else {
+            return _photoView(context, index);
+          }
+        },
       ),
     );
   }

@@ -4,14 +4,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_douban/delegate/sliver_header_delegate.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
-import 'package:flutter_douban/widgets/common_widgets/refresh_footer.dart';
 import 'package:flutter_douban/widgets/movie_widgets//movie_hot_show_grid.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_page_bottom_list.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_tab_grid.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_top_cards.dart';
-import 'package:flutter_douban/widgets/common_widgets/refresh_header.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
 /// @created by 文景睿
@@ -23,49 +21,47 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MovieView extends StatelessWidget {
   static final ScrollController scrollController = ScrollController();
-  static final EasyRefreshController easyRefreshController =
-      EasyRefreshController();
+  static final RefreshController controller = RefreshController();
 
   final GlobalKey<MovieTabGridState> _tabGridKey = GlobalKey();
   final GlobalKey<HotMovieGridState> _hotMovieKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh.custom(
-      enableControlFinishLoad: true,
-      enableControlFinishRefresh: false,
-      header: RefreshHeader(),
-      footer: RefreshFooter(),
-      controller: easyRefreshController,
-      scrollController: scrollController,
+    return SmartRefresher(
+      physics: BouncingScrollPhysics(),
+      controller: controller,
       onRefresh: () async {
-        ///这里一秒钟是模拟网络请求的时间
         await Future.delayed(Duration(milliseconds: 1000));
-        easyRefreshController.finishRefresh(success: true, noMore: false);
+        controller.refreshCompleted();
       },
-      onLoad: () async {
-        print('load');
-        await Future.delayed(Duration(milliseconds: 500));
-        easyRefreshController.finishLoad(success: true, noMore: false);
+      onLoading: () async {
+        print('hahah');
+        await Future.delayed(Duration(milliseconds: 1000));
+        controller.loadComplete();
       },
-      slivers: <Widget>[
-        SliverToBoxAdapter(child: _headerView()),
-        SliverToBoxAdapter(child: _introductionImage('introduction.jpg')),
-        SliverToBoxAdapter(child: MovieTabGrid(key: _tabGridKey)),
-        SliverToBoxAdapter(child: HotMovieGrid(key: _hotMovieKey)),
-        SliverToBoxAdapter(child: _introductionImage('introduction2.png')),
-        SliverToBoxAdapter(child: MovieCards()),
-        SliverToBoxAdapter(child: _introductionImage('shanghai.png')),
-        SliverToBoxAdapter(child: _forYouRecommendText()),
-        SliverPersistentHeader(
-          pinned: true,
-          floating: true,
-          delegate: SliverHeaderDelegate(
-              maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
-        ),
-        SliverToBoxAdapter(child: _moviePoster()),
-        MovieBottomList(),
-      ],
+      enablePullUp: true,
+      child: CustomScrollView(
+        controller: scrollController,
+        slivers: <Widget>[
+          SliverToBoxAdapter(child: _headerView()),
+          SliverToBoxAdapter(child: _introductionImage('introduction.jpg')),
+          SliverToBoxAdapter(child: MovieTabGrid(key: _tabGridKey)),
+          SliverToBoxAdapter(child: HotMovieGrid(key: _hotMovieKey)),
+          SliverToBoxAdapter(child: _introductionImage('introduction2.png')),
+          SliverToBoxAdapter(child: MovieCards()),
+          SliverToBoxAdapter(child: _introductionImage('shanghai.png')),
+          SliverToBoxAdapter(child: _forYouRecommendText()),
+          SliverPersistentHeader(
+            pinned: true,
+            floating: true,
+            delegate: SliverHeaderDelegate(
+                maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
+          ),
+          SliverToBoxAdapter(child: _moviePoster()),
+          MovieBottomList(),
+        ],
+      ),
     );
   }
 

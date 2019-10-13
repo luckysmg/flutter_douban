@@ -4,11 +4,11 @@ import 'package:flutter_douban/pages/book_music_pages/top250_page/app_bar_compon
 import 'package:flutter_douban/pages/book_music_pages/top250_page/persistent_header_component/state.dart';
 import 'package:flutter_douban/pages/book_music_pages/top250_page/top250_list_adapter/kou_bei_list_item_component/state.dart';
 import 'package:flutter_douban/pages/book_music_pages/top250_page/top_header_component/state.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class Top250State implements Cloneable<Top250State> {
   ScrollController scrollController;
-  EasyRefreshController easyRefreshController;
+  RefreshController controller;
   var titleOpacity;
   List<Top250ListItemState> list;
   var currentPage;
@@ -18,7 +18,7 @@ class Top250State implements Cloneable<Top250State> {
   Top250State clone() {
     return Top250State()
       ..scrollController = scrollController
-      ..easyRefreshController = easyRefreshController
+      ..controller = controller
       ..titleOpacity = titleOpacity
       ..list = list
       ..currentPage = currentPage
@@ -28,10 +28,10 @@ class Top250State implements Cloneable<Top250State> {
 
 Top250State initState(Map<String, dynamic> args) {
   ScrollController scrollController = ScrollController();
-  EasyRefreshController easyRefreshController = EasyRefreshController();
+  RefreshController easyRefreshController = RefreshController();
   Top250State top250state = Top250State();
   top250state.scrollController = scrollController;
-  top250state.easyRefreshController = easyRefreshController;
+  top250state.controller = easyRefreshController;
   top250state.titleOpacity = 0.0;
   top250state.currentPage = 0;
   top250state.count = 25;

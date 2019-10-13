@@ -224,7 +224,7 @@ packages:
       name: extended_image_library
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.7"
   file:
     dependency: transitive
     description:
@@ -238,7 +238,7 @@ packages:
       name: fish_redux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6"
+    version: "0.2.8"
   fixnum:
     dependency: transitive
     description:
@@ -252,14 +252,14 @@ packages:
       name: flare_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.8"
+    version: "2.2.2"
   flare_flutter:
     dependency: "direct main"
     description:
       name: flare_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.12"
+    version: "1.6.2"
   fluro:
     dependency: "direct main"
     description:
@@ -284,13 +284,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_easyrefresh:
-    dependency: "direct main"
-    description:
-      name: flutter_easyrefresh
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
   flutter_page_indicator:
     dependency: transitive
     description:
@@ -318,7 +311,7 @@ packages:
       name: flutter_slidable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.3"
+    version: "0.5.4"
   flutter_sticky_header:
     dependency: "direct main"
     description:
@@ -629,7 +622,7 @@ packages:
       name: pull_to_refresh
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.6"
+    version: "1.5.7"
   qr:
     dependency: transitive
     description:
@@ -746,7 +739,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.7+1"
   stack_trace:
     dependency: transitive
     description:
@@ -851,7 +844,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.2+1"
+    version: "0.10.2+3"
   vm_service_client:
     dependency: transitive
     description:

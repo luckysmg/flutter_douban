@@ -1,12 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/pages/other_pages/celebrity_page/page.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 ///
 /// @created by 文景睿
@@ -63,15 +61,14 @@ class PerformingPeopleView extends StatelessWidget {
   Widget _photoList(context) {
     return Container(
       constraints: BoxConstraints(maxHeight: 200),
-      child: EasyRefresh(
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: dataList.length,
-          itemBuilder: (context, index) {
-            return _photoListItem(context, index);
-          },
-        ),
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: dataList.length,
+        itemBuilder: (context, index) {
+          return _photoListItem(context, index);
+        },
       ),
     );
   }
