@@ -19,9 +19,6 @@
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
-## 最新版的release下载（只有安卓的，iOS不方便打包就不提供了）
-- [二维码图片链接(图片显示不出来的时候用)](http://a3.qpic.cn/psb?/V14ZW7Fv20HeHr/nf*nEma2kvpsORGSFejPCmGOWF.fAXcdVGPnx7DPg4k!/m/dLYAAAAAAAAAnull&bo=AAEAAQAAAAADByI!&rf=photolist&t=5)
-![image](http://a3.qpic.cn/psb?/V14ZW7Fv20HeHr/nf*nEma2kvpsORGSFejPCmGOWF.fAXcdVGPnx7DPg4k!/m/dLYAAAAAAAAAnull&bo=AAEAAQAAAAADByI!&rf=photolist&t=5)
 
 
 ## 截图
