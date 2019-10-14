@@ -5,7 +5,7 @@ import 'package:flutter_douban/delegate/sliver_header_delegate.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/movie_widgets//movie_hot_show_grid.dart';
-import 'package:flutter_douban/widgets/movie_widgets/movie_page_bottom_list.dart';
+import 'package:flutter_douban/widgets/movie_widgets/movie_staggered_list.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_tab_grid.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_top_cards.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,9 +36,7 @@ class MovieView extends StatelessWidget {
         controller.refreshCompleted();
       },
       onLoading: () async {
-        print('hahah');
-        await Future.delayed(Duration(milliseconds: 1000));
-        controller.loadComplete();
+        controller.loadNoData();
       },
       enablePullUp: true,
       child: CustomScrollView(
@@ -59,7 +57,7 @@ class MovieView extends StatelessWidget {
                 maxHeight: 40, minHeight: 40, child: _recommendSelectTab()),
           ),
           SliverToBoxAdapter(child: _moviePoster()),
-          MovieBottomList(),
+          MovieStaggeredList(),
         ],
       ),
     );
