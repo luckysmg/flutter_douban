@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_douban/main_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/status_bar_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:orientation/orientation.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         bottomHitBoundary: double.infinity,
         maxUnderScrollExtent: double.infinity,
         hideFooterWhenNotFull: true,
+        headerTriggerDistance: 60,
         maxOverScrollExtent: double.infinity,
         headerBuilder: () => DouBanRefreshHeader(),
         footerBuilder: () => CustomFooterIndicator(),

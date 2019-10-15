@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/material.dart'
     hide RefreshIndicator, RefreshIndicatorState;
@@ -11,11 +12,11 @@ import 'package:flutter/material.dart'
 class DouBanRefreshHeader extends RefreshIndicator {
   @override
   State<StatefulWidget> createState() {
-    return DouBanRefreshHeaderState();
+    return _DouBanRefreshHeaderState();
   }
 }
 
-class DouBanRefreshHeaderState
+class _DouBanRefreshHeaderState
     extends RefreshIndicatorState<DouBanRefreshHeader>
     with TickerProviderStateMixin {
   AnimationController _scaleAnimation;
@@ -51,7 +52,11 @@ class DouBanRefreshHeaderState
         ),
       );
 
-      textContent = "下拉刷新";
+      if (mode == RefreshStatus.canRefresh) {
+        textContent = "松开刷新";
+      } else if (mode == RefreshStatus.idle) {
+        textContent = "下拉刷新";
+      }
     } else if (mode == RefreshStatus.refreshing) {
       indicator = RotationTransition(
         alignment: Alignment.center,
@@ -69,8 +74,8 @@ class DouBanRefreshHeaderState
     }
 
     return Container(
-        height: 40,
-        margin: EdgeInsets.only(bottom: 10),
+        height: ScreenUtil().setHeight(55),
+        margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(15)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -79,9 +84,11 @@ class DouBanRefreshHeaderState
               width: 24,
             ),
             Container(
-              width: 70,
+              width: ScreenUtil().setWidth(110),
               child: Text(textContent,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(26),
+                      fontWeight: FontWeight.w500)),
             )
           ],
         ));
@@ -98,19 +105,21 @@ class DouBanRefreshHeaderState
   @override
   void onOffsetChange(double offset) {
     if (!floating) {
-      _scaleAnimation.value = offset / 80.0;
+      _scaleAnimation.value = offset / 60.0;
     }
     super.onOffsetChange(offset);
-  }
-
-  @override
-  Future<void> endRefresh() {
-    return super.endRefresh();
   }
 
   @override
   void resetValue() {
     _scaleAnimation.value = 0.0;
     _rotateAnimation.value = 0.0;
+  }
+
+  @override
+  void dispose() {
+    _scaleAnimation.dispose();
+    _rotateAnimation.dispose();
+    super.dispose();
   }
 }

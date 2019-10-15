@@ -113,7 +113,7 @@ class MovieView extends StatelessWidget {
   ///宣传图
   Widget _introductionImage(String assetName) {
     return Container(
-      width: 350,
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: Image.asset(Constants.ASSETS_IMG + assetName),
     );
   }

@@ -7,6 +7,7 @@ import 'package:flutter_douban/pages/book_music_pages/top250_page/page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ///
@@ -58,18 +59,20 @@ class MovieCards extends StatelessWidget {
 
   Widget _cards(context) {
     return Container(
-      height: 280,
+      height: ScreenUtil().setHeight(400),
+      margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
 
       ///这里是为了添加弹性效果包了一层EasyRefresh框架
-      child: ListView(
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        children: <Widget>[
-          _cardItem('card1.png', context),
-          _cardItem('card3.jpg', context),
-          _cardItem('card2.jpg', context)
-        ],
+      child: EasyRefresh(
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          children: <Widget>[
+            _cardItem('card1.png', context),
+            _cardItem('card3.jpg', context),
+            _cardItem('card2.jpg', context)
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +95,7 @@ class MovieCards extends StatelessWidget {
             break;
         }
       },
-      child: Container(
+      child: Padding(
         padding: EdgeInsets.all(8),
         child: ClipRRect(
           child: Image.asset(

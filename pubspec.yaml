@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^2.1.7
   camera: ^0.5.4
+  flutter_easyrefresh: ^2.0.4
   json_annotation: ^2.0.0
   cached_network_image: ^1.1.1
   flutter_swiper: ^1.1.6
