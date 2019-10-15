@@ -3,6 +3,11 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/material.dart'
     hide RefreshIndicator, RefreshIndicatorState;
 
+///
+/// @created by 文景睿
+/// description:书阴影首页的刷新交互头布局，在不同的刷新状态提供不同
+/// 的交互效果
+///
 class DouBanRefreshHeader extends RefreshIndicator {
   @override
   State<StatefulWidget> createState() {
