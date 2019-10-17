@@ -1,4 +1,4 @@
-package com.wjr.flutter_douban
+package u539699336qq.flutter_douban
 
 import android.os.Bundle
 

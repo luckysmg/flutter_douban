@@ -14,6 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:photo/photo.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'package:provider/provider.dart';
 
 ///
@@ -28,7 +30,6 @@ class BookMusicPage extends StatefulWidget {
 class _BookMusicState extends State<BookMusicPage>
     with SingleTickerProviderStateMixin {
   TabController _controller;
-  ValueKey<ScaffoldState> key = ValueKey(ScaffoldState());
 
   final _tabBarViews = [
     MovieView(),
@@ -75,7 +76,6 @@ class _BookMusicState extends State<BookMusicPage>
           ..init(context);
 
     return Scaffold(
-      key: key,
       appBar: _topAppBar(),
       body: _mainBodyView(),
     );
@@ -244,7 +244,7 @@ class _BookMusicState extends State<BookMusicPage>
 
   Widget _dialogButton(String text, BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if (text == '相册获取') {
           _pickImage(ImageSource.gallery);
         } else {
