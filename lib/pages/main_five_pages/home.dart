@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_douban/pages/other_pages/notification_result_page.dart';
 import 'package:flutter_douban/pages/other_pages/scan_page.dart';
 import 'package:flutter_douban/util/Decorations.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ///
@@ -110,8 +112,8 @@ class _HomePageState extends State<HomePage> {
   ///邮件按钮
   Widget _emailIcon() {
     return GestureDetector(
-      onTap: () {
-        ToastUtil.show('进入邮件');
+      onTap: () async {
+        handleNotification();
       },
       child: Container(
         alignment: Alignment.centerRight,
@@ -183,5 +185,34 @@ class _HomePageState extends State<HomePage> {
         style: TextStyle(fontSize: ScreenUtil().setSp(30)),
       ),
     );
+  }
+
+  void handleNotification() async {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    var initializationSettingsAndroid =
+        AndroidInitializationSettings('indicator');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'your channel id', 'your channel name', 'your channel description',
+        importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+        0, '测试推送通知', '测试推送内容', platformChannelSpecifics,
+        payload: 'item x');
+  }
+
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    NavigatorUtil.push(context, NotificationResultPage(), rootNavigator: true);
   }
 }
