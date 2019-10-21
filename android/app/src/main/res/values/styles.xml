@@ -5,4 +5,11 @@
              Flutter draws its first frame -->
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
+
+    <style name="AppCompatTheme" parent="Theme.AppCompat">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
+    </style>
 </resources>

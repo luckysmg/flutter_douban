@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="u539699336qq.flutter_douban">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,8 +17,12 @@
         android:name="io.flutter.app.FlutterApplication"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="flutter_douban"
-        android:usesCleartextTraffic="true">
+        android:label="豆瓣"
+        tools:replace="android:label"
+        android:theme="@style/AppCompatTheme"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <intent-filter>
@@ -46,6 +51,8 @@
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
         </activity>
+        <activity android:name=".photo_selector.activity.PhotoDetailActivity" />
+        <activity android:name=".photo_selector.activity.SelectPhotoActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="105dp"
+    android:layout_height="105dp"
+    android:layout_marginBottom="0.5dp">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/barrierView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4DC4C4C4"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/checkbox"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/checkIndicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+</RelativeLayout>

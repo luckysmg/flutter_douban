@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_douban/pages/book_music_pages/image_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/movie_page.dart';
 import 'package:flutter_douban/pages/book_music_pages/music_page.dart';
 import 'package:flutter_douban/pages/other_pages/camera_page.dart';
+import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/custom_scroll_behavior.dart';
@@ -269,12 +272,32 @@ class _BookMusicState extends State<BookMusicPage>
   }
 
   void _pickImage(ImageSource source) async {
+    var fromCamera = false;
+    if (source == ImageSource.camera) {
+      fromCamera = true;
+    }
+
+    if (Platform.isAndroid && source == ImageSource.gallery) {
+      Constants.platform.invokeMethod('getPhoto').then((data) async {
+        ///防止界面卡顿
+        await Future.delayed(Duration(milliseconds: 350));
+
+        NavigatorUtil.push(
+            context,
+            ImagePage(
+              images: data,
+            ),
+            rootNavigator: true);
+      });
+      return;
+    }
     ImagePicker.pickImage(source: source).then((data) {
       if (data != null) {
         NavigatorUtil.push(
             context,
             ImagePage(
-              image: data,
+              imageFile: data,
+              fromCamera: fromCamera,
             ),
             rootNavigator: true);
       }

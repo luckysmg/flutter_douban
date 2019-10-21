@@ -15,6 +15,7 @@ class SkeletonView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
         backgroundColor: _color,
         leading: Icon(
           Icons.arrow_back_ios,

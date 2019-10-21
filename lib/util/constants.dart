@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ///
 /// @created by 文景睿
@@ -11,6 +12,8 @@ class Constants {
   ///这个在判断是否是调试模式时候用，在release模式下设置为false即可
   ///eg：网络请求会打印请求到的数据，如果release模式也打印会耗费性能，所以只在debug模式下打印网络信息
   static const bool isDebug = false;
+
+  static const platform = const MethodChannel('u539699336qq.flutter_douban');
 
   static const String BASE_URL = 'https://api.douban.com/v2/';
   static const String ASSETS_IMG = 'assets/images/';

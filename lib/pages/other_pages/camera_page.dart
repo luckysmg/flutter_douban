@@ -105,7 +105,8 @@ class _CameraPageState extends State<CameraPage> {
             NavigatorUtil.push(
                 context,
                 ImagePage(
-                  image: File(path),
+                  imageFile: File(path),
+                  fromCamera: true,
                 ),
                 finishCurrentPage: true);
           }
