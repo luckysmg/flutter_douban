@@ -28,10 +28,10 @@ public class SelectImageAdapter extends BaseQuickAdapter<CompressImageListBean, 
         View barrierView = helper.getView(R.id.barrierView);
 
         if (item.isChecked()) {
-            checkboxIndicator.setImageResource(R.drawable.ico_choose_1);
+            checkboxIndicator.setImageResource(R.drawable.selected);
             barrierView.setVisibility(View.VISIBLE);
         } else {
-            checkboxIndicator.setImageResource(R.drawable.ico_choose_2);
+            checkboxIndicator.setImageResource(R.drawable.unselected);
             barrierView.setVisibility(View.INVISIBLE);
         }
 

@@ -80,11 +80,10 @@ class _HomePageState extends State<HomePage> {
   Widget _searchIcon() {
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(26), left: ScreenUtil().setWidth(25)),
-      child: Icon(
-        Icons.search,
-        color: Colors.grey,
-        size: ScreenUtil().setHeight(40),
+          top: ScreenUtil().setHeight(34), left: ScreenUtil().setWidth(25)),
+      child: Image.asset(
+        Constants.ASSETS_IMG + 'search.png',
+        height: ScreenUtil().setHeight(30),
       ),
     );
   }
@@ -99,10 +98,9 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(
             top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
         child: GestureDetector(
-          child: Icon(
-            Icons.pages,
-            color: Colors.black38,
-            size: ScreenUtil().setHeight(35),
+          child: Image.asset(
+            Constants.ASSETS_IMG + 'scan.png',
+            height: ScreenUtil().setHeight(35),
           ),
         ),
       ),
@@ -150,7 +148,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: ScreenUtil().setHeight(24),
             ),
             Container(
               width: ScreenUtil().setWidth(240),

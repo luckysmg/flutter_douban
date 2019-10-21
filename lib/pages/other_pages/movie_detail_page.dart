@@ -69,6 +69,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ///appbar上标题的初始化透明度
   var titleOpacity = 1.0;
 
+  ///indicator的Y方向偏移
   var indicatorOffsetY;
 
   @override

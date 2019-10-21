@@ -158,11 +158,10 @@ class _BookMusicState extends State<BookMusicPage>
   Widget _searchIcon() {
     return Container(
       margin: EdgeInsets.only(
-          top: ScreenUtil().setHeight(26), left: ScreenUtil().setWidth(25)),
-      child: Icon(
-        Icons.search,
-        color: Colors.grey,
-        size: ScreenUtil().setHeight(40),
+          top: ScreenUtil().setHeight(34), left: ScreenUtil().setWidth(25)),
+      child: Image.asset(
+        Constants.ASSETS_IMG + 'search.png',
+        height: ScreenUtil().setHeight(30),
       ),
     );
   }
@@ -173,10 +172,10 @@ class _BookMusicState extends State<BookMusicPage>
           top: ScreenUtil().setHeight(30), left: ScreenUtil().setWidth(480)),
       child: GestureDetector(
         onTap: _openCamera,
-        child: Icon(
-          Icons.center_focus_weak,
-          color: Colors.black38,
-          size: ScreenUtil().setHeight(35),
+        child: Image.asset(
+          Constants.ASSETS_IMG + 'camera.png',
+          width: ScreenUtil().setHeight(35),
+          height: ScreenUtil().setHeight(35),
         ),
       ),
     );
@@ -280,7 +279,7 @@ class _BookMusicState extends State<BookMusicPage>
     if (Platform.isAndroid && source == ImageSource.gallery) {
       Constants.platform.invokeMethod('getPhoto').then((data) async {
         ///防止界面卡顿
-        await Future.delayed(Duration(milliseconds: 350));
+        await Future.delayed(Duration(milliseconds: 600));
 
         NavigatorUtil.push(
             context,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImagePage extends StatelessWidget {
@@ -32,21 +33,23 @@ class ImagePage extends StatelessWidget {
             ),
           ),
         ),
-        body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              childAspectRatio: 1,
-              mainAxisSpacing: 2,
-              crossAxisSpacing: 2),
-          itemBuilder: (context, index) {
-            return Image.file(
-              File.fromUri(Uri.parse(images[index])),
-              fit: BoxFit.cover,
-              height: ScreenUtil().setHeight(100),
-              width: ScreenUtil().setHeight(100),
-            );
-          },
-          itemCount: images.length,
+        body: EasyRefresh(
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                childAspectRatio: 1,
+                mainAxisSpacing: 2,
+                crossAxisSpacing: 2),
+            itemBuilder: (context, index) {
+              return Image.file(
+                File.fromUri(Uri.parse(images[index])),
+                fit: BoxFit.cover,
+                height: ScreenUtil().setHeight(100),
+                width: ScreenUtil().setHeight(100),
+              );
+            },
+            itemCount: images.length,
+          ),
         ),
       );
     }
