@@ -10,19 +10,24 @@ class CelebrityState implements Cloneable<CelebrityState> {
   String id;
   CelebrityEntity celebrityData;
   CelebrityWorksEntity celebrityWorksData;
+  String navBarTitle;
 
   @override
   CelebrityState clone() {
     return CelebrityState()
       ..id = id
       ..celebrityData = celebrityData
-      ..celebrityWorksData = celebrityWorksData;
+      ..celebrityWorksData = celebrityWorksData
+      ..navBarTitle = navBarTitle;
   }
 }
 
 CelebrityState initState(Map<String, dynamic> args) {
-  String id = args['id'];
-  return CelebrityState()..id = id;
+  var id = args['id'];
+  var title = args['title'];
+  return CelebrityState()
+    ..id = id
+    ..navBarTitle = title;
 }
 
 ///影人的照片+名字的listView的最上面组件的连接器

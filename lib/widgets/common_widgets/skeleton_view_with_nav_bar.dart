@@ -8,26 +8,36 @@ import 'package:shimmer/shimmer.dart';
 /// @created by 文景睿
 /// description:电影详情在没有数据时候的空占位布局
 ///
-class SkeletonView extends StatelessWidget {
+class SkeletonViewWithNavBar extends StatelessWidget {
   final Color _color = Colors.grey[200];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Shimmer.fromColors(
-        direction: ShimmerDirection.ttb,
-        period: const Duration(milliseconds: 1000),
-        baseColor: Constants.APP_SKELETON_COLOR,
-        highlightColor: Colors.white,
-        child: Container(
-          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _header(),
-              _ban(),
-              _columns(),
-            ],
+    return Scaffold(
+      appBar: CupertinoNavigationBar(
+        backgroundColor: _color,
+        leading: Icon(
+          Icons.arrow_back_ios,
+          size: ScreenUtil().setHeight(30),
+          color: Colors.white,
+        ),
+      ),
+      body: Container(
+        child: Shimmer.fromColors(
+          direction: ShimmerDirection.ttb,
+          period: const Duration(milliseconds: 1000),
+          baseColor: Constants.APP_SKELETON_COLOR,
+          highlightColor: Colors.white,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _header(),
+                _ban(),
+                _columns(),
+              ],
+            ),
           ),
         ),
       ),

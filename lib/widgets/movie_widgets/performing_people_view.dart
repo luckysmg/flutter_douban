@@ -79,7 +79,9 @@ class PerformingPeopleView extends StatelessWidget {
       onTap: () {
         if (dataList[index].avatars != null) {
           NavigatorUtil.push(
-              context, CelebrityPage().buildPage({'id': dataList[index].id}));
+              context,
+              CelebrityPage().buildPage(
+                  {'id': dataList[index].id, 'title': dataList[index].name}));
         }
       },
       child: Container(

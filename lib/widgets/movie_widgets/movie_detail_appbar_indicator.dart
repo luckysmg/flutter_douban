@@ -1,30 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/widgets/common_widgets/rating_bar_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:rating_bar/rating_bar.dart';
 
 ///
 /// @created by 文景睿
 /// description:电影详情页面的appbar上面的左上角电影指示器，会根据外部的滚动显示透明度的
 ///
-class MovieDetailAppbarIndicator extends StatefulWidget {
+class MovieDetailAppbarIndicator extends StatelessWidget {
   final MovieDetailEntity data;
 
-  const MovieDetailAppbarIndicator({Key key, this.data}) : super(key: key);
+  final double opacity;
+  final double currentOffsetY;
 
-  @override
-  MovieDetailAppbarIndicatorState createState() =>
-      MovieDetailAppbarIndicatorState();
-}
-
-class MovieDetailAppbarIndicatorState
-    extends State<MovieDetailAppbarIndicator> {
-  double opacity = 0.0;
-  double currentOffsetY = 0;
+  const MovieDetailAppbarIndicator(
+      {Key key, this.data, this.opacity, this.currentOffsetY})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +41,7 @@ class MovieDetailAppbarIndicatorState
         Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(4)),
           child: CachedNetworkImage(
-            imageUrl: this.widget.data.images.small,
+            imageUrl: data.images.small,
             height: ScreenUtil().setHeight(40),
           ),
         ),
@@ -70,7 +63,7 @@ class MovieDetailAppbarIndicatorState
   Widget _movieName() {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
-      child: Text(this.widget.data.title,
+      child: Text(data.title,
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -80,8 +73,7 @@ class MovieDetailAppbarIndicatorState
 
   ///评分条，星星和分数
   Widget _starScore() {
-    double rating =
-        (this.widget.data.rating.average / this.widget.data.rating.max) * 5;
+    double rating = (data.rating.average / data.rating.max) * 5;
 
     if (rating == 0.0) {
       return Container(
@@ -107,7 +99,7 @@ class MovieDetailAppbarIndicatorState
           Container(
             margin: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
             child: Text(
-              this.widget.data.rating.average.toString(),
+              data.rating.average.toString(),
               style: TextStyle(
                   color: Colors.white60, fontSize: ScreenUtil().setSp(22)),
             ),
@@ -115,11 +107,5 @@ class MovieDetailAppbarIndicatorState
         ],
       ),
     );
-  }
-
-  void updateOpacity(opacity, offsetY) {
-    this.opacity = opacity;
-    this.currentOffsetY = offsetY;
-    setState(() {});
   }
 }

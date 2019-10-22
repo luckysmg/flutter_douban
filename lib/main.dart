@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_douban/main_page.dart';
+import 'package:flutter_douban/model/movie_detail_indicator_model.dart';
+import 'package:flutter_douban/model/movie_detail_model.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/status_bar_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +14,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
+import 'model/movie_detail_title_model.dart';
 import 'routes/custom_transition_builder.dart';
 import 'widgets/common_widgets/custom_footer_indicator.dart';
 import 'widgets/common_widgets/douban_refresh_header.dart';
@@ -24,7 +27,14 @@ import 'widgets/common_widgets/douban_refresh_header.dart';
 void main() {
   Provider.debugCheckInvalidValueType = null;
   StatusBarUtil.setTransParentStatusBar();
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    Provider<BookMusicViewTabIndexModel>.value(
+        value: BookMusicViewTabIndexModel()),
+    ChangeNotifierProvider<MovieDetailTitleModel>.value(
+        value: MovieDetailTitleModel()),
+    ChangeNotifierProvider<MovieDetailIndicatorModel>.value(
+        value: MovieDetailIndicatorModel()),
+  ], child: MyApp()));
   OrientationPlugin.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 }
@@ -81,13 +91,14 @@ class _MyAppState extends State<MyApp> {
           ),
           debugShowCheckedModeBanner: false,
           title: '豆瓣客户端',
-          home: MultiProvider(
-            providers: [
-              Provider<BookMusicViewTabIndexModel>.value(
-                  value: BookMusicViewTabIndexModel()),
-            ],
-            child: _splashDisplay ? _splashScreen() : MainPage(),
-          ),
+//          home: MultiProvider(
+//            providers: [
+//              Provider<BookMusicViewTabIndexModel>.value(
+//                  value: BookMusicViewTabIndexModel()),
+//            ],
+//            child: _splashDisplay ? _splashScreen() : MainPage(),
+//          ),
+          home: _splashDisplay ? _splashScreen() : MainPage(),
         ),
       ),
     );

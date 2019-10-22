@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
+import 'package:flutter_douban/model/movie_detail_indicator_model.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
+import 'package:flutter_douban/model/movie_detail_title_model.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
-import 'package:flutter_douban/widgets/common_widgets/skeleton_view.dart';
+import 'package:flutter_douban/widgets/common_widgets/skeleton_view_with_nav_bar.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/buy_ticket_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/movie_detail_appbar_indicator.dart';
@@ -47,12 +49,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   final ScrollController scrollController = ScrollController();
 
-  final GlobalKey<MovieDetailAppbarIndicatorState>
-      _movieDetailAppbarIndicatorStateKey = GlobalKey();
-
-  final GlobalKey<MovieDetailAppbarTitleState> _movieDetailAppbarTitleStateKey =
-      GlobalKey();
-
   final MovieDetailModel _movieDetailModel = MovieDetailModel();
 
   ///电影详情数据实体
@@ -61,7 +57,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ///电影长评数据实体（用于抽屉中）
   MovieLongCommentEntity _longCommentData;
 
+  ///整个页面的context
   BuildContext context;
+
+  ///下面这两个是控制刷新范围的
+  BuildContext appBarTitleContext;
+  BuildContext appBarIndicatorContext;
 
   ///appbar上退出按钮右边的电影指示的初始化透明度
   var indicatorOpacity = 0.0;
@@ -89,8 +90,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           _longCommentData = value.longCommentData;
           _bgColor = value.bgColor;
           this.context = context;
-
-          return value.hasData ? _filledDataView(context) : SkeletonView();
+          return value.hasData
+              ? _filledDataView(context)
+              : SkeletonViewWithNavBar();
         },
       ),
     );
@@ -115,7 +117,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Widget _appBar(BuildContext context) {
     return CupertinoNavigationBar(
-      automaticallyImplyLeading: false,
+      previousPageTitle: '电影',
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context);
@@ -145,20 +147,30 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   Widget _movieAppBarIndicator() {
-    return Container(
-      child: MovieDetailAppbarIndicator(
-        key: _movieDetailAppbarIndicatorStateKey,
-        data: _detailData,
-      ),
+    return Consumer<MovieDetailIndicatorModel>(
+      builder: (context, value, _) {
+        appBarIndicatorContext = context;
+        return MovieDetailAppbarIndicator(
+          data: _detailData,
+          opacity: value.opacity,
+          currentOffsetY: value.currentOffsetY,
+        );
+      },
     );
   }
 
   Widget _movieDetailAppbarTitle() {
-    return Container(
-      alignment: Alignment.center,
-      child: MovieDetailAppbarTitle(
-        key: _movieDetailAppbarTitleStateKey,
-      ),
+    return Consumer<MovieDetailTitleModel>(
+      builder: (context, value, _) {
+        appBarTitleContext = context;
+        return Container(
+          alignment: Alignment.center,
+          child: MovieDetailAppbarTitle(
+            opacity: value.opacity,
+//        key: _movieDetailAppbarTitleStateKey,
+          ),
+        );
+      },
     );
   }
 
@@ -435,9 +447,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     double indicatorOffsetY = -(1 / 5) * offset + 40;
 
     ///拿到所有数据之后利用key更新状态
-    _movieDetailAppbarIndicatorStateKey.currentState
-        .updateOpacity(indicatorOpacity, indicatorOffsetY);
-    _movieDetailAppbarTitleStateKey.currentState.updateOpacity(titleOpacity);
+    Provider.of<MovieDetailTitleModel>(appBarTitleContext).update(titleOpacity);
+    Provider.of<MovieDetailIndicatorModel>(appBarIndicatorContext)
+        .update(indicatorOpacity, indicatorOffsetY);
   }
 
   ///滚动到顶部
