@@ -10,11 +10,16 @@ import 'package:shimmer/shimmer.dart';
 ///
 class SkeletonViewWithNavBar extends StatelessWidget {
   final Color _color = Colors.grey[200];
+  final bool appBarTransitionBetweenRoutes;
+
+  SkeletonViewWithNavBar({Key key, this.appBarTransitionBetweenRoutes = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: appBarTransitionBetweenRoutes,
         backgroundColor: _color,
         leading: Icon(
           Icons.arrow_back_ios,

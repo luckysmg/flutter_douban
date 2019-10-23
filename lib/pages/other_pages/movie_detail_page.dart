@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
-import 'package:flutter_douban/model/movie_detail_indicator_model.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
-import 'package:flutter_douban/model/movie_detail_title_model.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_view_with_nav_bar.dart';
@@ -35,7 +33,7 @@ class MovieDetailPage extends StatefulWidget {
   ///appbar交互的判断临界offset
   static const edgeOffsetY = 200.0;
 
-  const MovieDetailPage({Key key, this.movieId, this.isComingSoon = false})
+  MovieDetailPage({Key key, this.movieId, this.isComingSoon = false})
       : super(key: key);
 
   @override
@@ -50,6 +48,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   final ScrollController scrollController = ScrollController();
 
   final MovieDetailModel _movieDetailModel = MovieDetailModel();
+
+  final GlobalKey<MovieDetailAppbarIndicatorState> appbarIndicatorKey =
+      GlobalKey();
+  final GlobalKey<MovieDetailAppbarTitleState> appbarTitleKey = GlobalKey();
 
   ///电影详情数据实体
   MovieDetailEntity _detailData;
@@ -117,7 +119,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   Widget _appBar(BuildContext context) {
     return CupertinoNavigationBar(
-      previousPageTitle: '电影',
+      transitionBetweenRoutes: false,
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context);
@@ -147,30 +149,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   Widget _movieAppBarIndicator() {
-    return Consumer<MovieDetailIndicatorModel>(
-      builder: (context, value, _) {
-        appBarIndicatorContext = context;
-        return MovieDetailAppbarIndicator(
-          data: _detailData,
-          opacity: value.opacity,
-          currentOffsetY: value.currentOffsetY,
-        );
-      },
+    return MovieDetailAppbarIndicator(
+      key: appbarIndicatorKey,
+      data: _detailData,
     );
   }
 
   Widget _movieDetailAppbarTitle() {
-    return Consumer<MovieDetailTitleModel>(
-      builder: (context, value, _) {
-        appBarTitleContext = context;
-        return Container(
-          alignment: Alignment.center,
-          child: MovieDetailAppbarTitle(
-            opacity: value.opacity,
-//        key: _movieDetailAppbarTitleStateKey,
-          ),
-        );
-      },
+    return Container(
+      alignment: Alignment.center,
+      child: MovieDetailAppbarTitle(
+        key: appbarTitleKey,
+      ),
     );
   }
 
@@ -446,10 +436,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         (MovieDetailPage.edgeOffsetY - offset) / MovieDetailPage.edgeOffsetY;
     double indicatorOffsetY = -(1 / 5) * offset + 40;
 
-    ///拿到所有数据之后利用key更新状态
-    Provider.of<MovieDetailTitleModel>(appBarTitleContext).update(titleOpacity);
-    Provider.of<MovieDetailIndicatorModel>(appBarIndicatorContext)
-        .update(indicatorOpacity, indicatorOffsetY);
+    appbarIndicatorKey.currentState.update(indicatorOpacity, indicatorOffsetY);
+    appbarTitleKey.currentState.update(titleOpacity);
   }
 
   ///滚动到顶部

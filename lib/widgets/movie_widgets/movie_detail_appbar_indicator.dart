@@ -9,15 +9,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 /// @created by 文景睿
 /// description:电影详情页面的appbar上面的左上角电影指示器，会根据外部的滚动显示透明度的
 ///
-class MovieDetailAppbarIndicator extends StatelessWidget {
+
+class MovieDetailAppbarIndicator extends StatefulWidget {
   final MovieDetailEntity data;
 
-  final double opacity;
-  final double currentOffsetY;
+  const MovieDetailAppbarIndicator({Key key, this.data}) : super(key: key);
 
-  const MovieDetailAppbarIndicator(
-      {Key key, this.data, this.opacity, this.currentOffsetY})
-      : super(key: key);
+  @override
+  MovieDetailAppbarIndicatorState createState() {
+    return MovieDetailAppbarIndicatorState();
+  }
+}
+
+class MovieDetailAppbarIndicatorState
+    extends State<MovieDetailAppbarIndicator> {
+  double opacity = 0.0;
+  double currentOffsetY = 40.0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +48,7 @@ class MovieDetailAppbarIndicator extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(4)),
           child: CachedNetworkImage(
-            imageUrl: data.images.small,
+            imageUrl: widget.data.images.small,
             height: ScreenUtil().setHeight(40),
           ),
         ),
@@ -63,7 +70,7 @@ class MovieDetailAppbarIndicator extends StatelessWidget {
   Widget _movieName() {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
-      child: Text(data.title,
+      child: Text(widget.data.title,
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -73,7 +80,7 @@ class MovieDetailAppbarIndicator extends StatelessWidget {
 
   ///评分条，星星和分数
   Widget _starScore() {
-    double rating = (data.rating.average / data.rating.max) * 5;
+    double rating = (widget.data.rating.average / widget.data.rating.max) * 5;
 
     if (rating == 0.0) {
       return Container(
@@ -99,7 +106,7 @@ class MovieDetailAppbarIndicator extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
             child: Text(
-              data.rating.average.toString(),
+              widget.data.rating.average.toString(),
               style: TextStyle(
                   color: Colors.white60, fontSize: ScreenUtil().setSp(22)),
             ),
@@ -107,5 +114,11 @@ class MovieDetailAppbarIndicator extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void update(double opacity, currentOffsetY) {
+    this.opacity = opacity;
+    this.currentOffsetY = currentOffsetY;
+    setState(() {});
   }
 }

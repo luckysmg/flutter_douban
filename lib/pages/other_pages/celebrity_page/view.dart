@@ -32,6 +32,7 @@ Widget buildView(
 
   return Scaffold(
       appBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
         backgroundColor: Colors.white,
         trailing: Icon(
           Icons.more_horiz,

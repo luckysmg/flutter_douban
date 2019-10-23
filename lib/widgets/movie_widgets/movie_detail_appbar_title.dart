@@ -6,10 +6,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 /// @created by 文景睿
 /// description:电影详情中的appbar的title
 ///
-class MovieDetailAppbarTitle extends StatelessWidget {
-  final double opacity;
 
-  const MovieDetailAppbarTitle({Key key, this.opacity}) : super(key: key);
+class MovieDetailAppbarTitle extends StatefulWidget {
+  MovieDetailAppbarTitle({Key key}) : super(key: key);
+
+  @override
+  MovieDetailAppbarTitleState createState() {
+    return MovieDetailAppbarTitleState();
+  }
+}
+
+class MovieDetailAppbarTitleState extends State<MovieDetailAppbarTitle> {
+  double opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,5 +29,10 @@ class MovieDetailAppbarTitle extends StatelessWidget {
         style: TextStyle(fontSize: ScreenUtil().setSp(32), color: Colors.white),
       ),
     );
+  }
+
+  void update(double opacity) {
+    this.opacity = opacity;
+    setState(() {});
   }
 }
