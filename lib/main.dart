@@ -21,9 +21,6 @@ import 'widgets/common_widgets/douban_refresh_header.dart';
 ///
 
 void main() {
-
-
-
   Provider.debugCheckInvalidValueType = null;
   StatusBarUtil.setTransParentStatusBar();
   runApp(MultiProvider(providers: [
