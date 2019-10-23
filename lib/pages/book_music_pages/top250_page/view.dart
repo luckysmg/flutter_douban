@@ -2,7 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/widgets/common_widgets/custom_footer_indicator.dart';
-import 'package:flutter_douban/widgets/common_widgets/skeleton_view.dart';
+import 'package:flutter_douban/widgets/common_widgets/skeleton_view_with_nav_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -12,7 +12,7 @@ import 'state.dart';
 Widget buildView(
     Top250State state, Dispatch dispatch, ViewService viewService) {
   if (state.list == null) {
-    return SkeletonView();
+    return SkeletonViewWithNavBar();
   }
 
   ListAdapter adapter = viewService.buildAdapter();
