@@ -13,15 +13,15 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 import u539699336qq.flutter_douban.R;
-import u539699336qq.flutter_douban.photo_selector.bean.CompressImageListBean;
+import u539699336qq.flutter_douban.photo_selector.bean.ImageListBean;
 
-public class SelectImageAdapter extends BaseQuickAdapter<CompressImageListBean, BaseViewHolder> {
-    public SelectImageAdapter(int layoutResId, @Nullable List<CompressImageListBean> data) {
+public class SelectImageAdapter extends BaseQuickAdapter<ImageListBean, BaseViewHolder> {
+    public SelectImageAdapter(int layoutResId, @Nullable List<ImageListBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(@NonNull BaseViewHolder helper, CompressImageListBean item) {
+    protected void convert(@NonNull BaseViewHolder helper, ImageListBean item) {
         helper.addOnClickListener(R.id.checkbox);
 
         ImageView checkboxIndicator = helper.getView(R.id.checkIndicator);

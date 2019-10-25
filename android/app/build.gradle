@@ -67,6 +67,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     api 'top.zibin:Luban:1.1.8'
     api 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'top.androidman:superbutton:1.1.1'

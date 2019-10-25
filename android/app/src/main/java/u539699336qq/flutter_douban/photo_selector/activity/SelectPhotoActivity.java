@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -17,9 +17,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,7 +27,7 @@ import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 import u539699336qq.flutter_douban.R;
 import u539699336qq.flutter_douban.photo_selector.adapter.SelectImageAdapter;
-import u539699336qq.flutter_douban.photo_selector.bean.CompressImageListBean;
+import u539699336qq.flutter_douban.photo_selector.bean.ImageListBean;
 import u539699336qq.flutter_douban.photo_selector.util.GalleryPhotoUtil;
 import u539699336qq.flutter_douban.photo_selector.util.PhotoSelectorUtil;
 import u539699336qq.flutter_douban.photo_selector.util.StatusBarUtil;
@@ -41,7 +38,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
     private ArrayList<String> originalImageList;
     private ArrayList<String> compressedImageList;
     private ArrayList<String> selectedImageList;
-    private ArrayList<CompressImageListBean> imageInfoList;
+    private ArrayList<ImageListBean> imageInfoList;
     private RecyclerView recyclerView;
     private SelectImageAdapter selectImageAdapter;
     private SuperButton superButton;
@@ -106,37 +103,31 @@ public class SelectPhotoActivity extends AppCompatActivity {
             finish();
         });
 
-        selectImageAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(SelectPhotoActivity.this, PhotoDetailActivity.class);
-                intent.putExtra("path", selectImageAdapter.getData().get(position).getFilePath());
-                startActivity(intent);
-            }
+        selectImageAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Intent intent = new Intent(SelectPhotoActivity.this, PhotoDetailActivity.class);
+            intent.putExtra("path", selectImageAdapter.getData().get(position).getFilePath());
+            startActivity(intent);
         });
 
-        selectImageAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.checkbox) {
+        selectImageAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.checkbox) {
 
-                    if (imageInfoList.get(position).isChecked()) {
-                        imageInfoList.get(position).setChecked(false);
-                        selectImageCount--;
-                        updateButtonText();
-                    } else {
+                if (imageInfoList.get(position).isChecked()) {
+                    imageInfoList.get(position).setChecked(false);
+                    selectImageCount--;
+                    updateButtonText();
+                } else {
 
-                        if(selectImageCount == 9){
-                            Toast.makeText(SelectPhotoActivity.this, "最多只能选择9张图片", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        imageInfoList.get(position).setChecked(true);
-                        selectImageCount++;
-                        updateButtonText();
+                    if (selectImageCount == 9) {
+                        Toast.makeText(SelectPhotoActivity.this, "最多只能选择9张图片", Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                    selectImageAdapter.notifyItemChanged(position);
+
+                    imageInfoList.get(position).setChecked(true);
+                    selectImageCount++;
+                    updateButtonText();
                 }
+                selectImageAdapter.notifyItemChanged(position);
             }
         });
     }
@@ -151,6 +142,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
      */
     private void compressImages() {
         originalImageList = GalleryPhotoUtil.getGalleryPhoto(getContentResolver());
+        Log.e("Debug:::", "original：："+originalImageList.size() );
         Luban.with(SelectPhotoActivity.this).load(originalImageList).setCompressListener(new OnCompressListener() {
             @Override
             public void onStart() {
@@ -159,10 +151,9 @@ public class SelectPhotoActivity extends AppCompatActivity {
             @Override
             public void onSuccess(File file) {
                 compressedImageCount++;
-                if (compressedImageCount == originalImageList.size()) {
+                compressedImageList.add(file.getPath());
+                if ((compressedImageCount == originalImageList.size()) && selectImageAdapter == null) {
                     updateUI();
-                } else {
-                    compressedImageList.add(file.getPath());
                 }
             }
 
@@ -176,10 +167,12 @@ public class SelectPhotoActivity extends AppCompatActivity {
      * 更新列表
      */
     private void updateUI() {
+        Log.e("Debug:::",  "compressed"+compressedImageList.size() );
+
         superButton.setText("确定 " + selectImageCount + "/" + compressedImageList.size());
-        CompressImageListBean bean;
+        ImageListBean bean;
         for (int i = 0; i < compressedImageList.size(); i++) {
-            bean = new CompressImageListBean();
+            bean = new ImageListBean();
             bean.setFilePath(compressedImageList.get(i));
             imageInfoList.add(bean);
         }
@@ -190,20 +183,20 @@ public class SelectPhotoActivity extends AppCompatActivity {
     }
 
     private void prepareFinish() {
-        if(selectImageCount == 0){
+        if (selectImageCount == 0) {
             return;
         }
-        for (CompressImageListBean item :
+        for (ImageListBean item :
                 selectImageAdapter.getData()) {
-            if(item.isChecked()){
+            if (item.isChecked()) {
                 selectedImageList.add(item.getFilePath());
             }
         }
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList(PhotoSelectorUtil.RESULT_KEY,selectedImageList);
+        bundle.putStringArrayList(PhotoSelectorUtil.RESULT_KEY, selectedImageList);
         intent.putExtras(bundle);
-        setResult(PhotoSelectorUtil.PHOTO_SELECTOR_RESULT_CODE,intent);
+        setResult(PhotoSelectorUtil.PHOTO_SELECTOR_RESULT_CODE, intent);
         finish();
     }
 }

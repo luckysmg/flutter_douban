@@ -1,7 +1,7 @@
 package u539699336qq.flutter_douban.photo_selector.bean;
 
 
-public class CompressImageListBean {
+public class ImageListBean {
     private String filePath;
     private boolean checked;
 
