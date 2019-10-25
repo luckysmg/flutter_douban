@@ -5,6 +5,7 @@ import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/book_music_pages/top250_page/app_bar_component/action.dart';
 import 'package:flutter_douban/pages/book_music_pages/top250_page/top250_list_adapter/kou_bei_list_item_component/state.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/toast_util.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -31,12 +32,17 @@ void _onInit(Action action, Context<Top250State> ctx) async {
   int pos = 1;
 
   if (Constants.isRealNetworkData) {
-    await DioUtil.getInstance().get(
-        url: Constants.URL_REAL_TOP250,
-        queryParameters: {
-          'start': ctx.state.currentPage,
-          'count': ctx.state.count
-        }).then((data) {
+    await DioUtil.getInstance()
+        .get(
+            url: Constants.URL_REAL_TOP250,
+            queryParameters: {
+              'start': ctx.state.currentPage,
+              'count': ctx.state.count
+            },
+            onFailure: (e) {
+              ToastUtil.show('网络错误');
+            })
+        .then((data) {
       entity = Top250Entity.fromJson(data);
     });
   } else {

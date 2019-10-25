@@ -4,6 +4,7 @@ import 'package:flutter_douban/http/dio_util.dart';
 import 'package:flutter_douban/http/mock_request.dart';
 import 'package:flutter_douban/pages/book_music_pages/kou_bei_page/kou_bei_list_adapter/kou_bei_list_item_component/state.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/toast_util.dart';
 
 import 'action.dart';
 import 'app_bar_component/action.dart';
@@ -28,7 +29,13 @@ void _onInit(Action action, Context<KouBeiState> ctx) async {
   });
 
   if (Constants.isRealNetworkData) {
-    DioUtil.getInstance().get(url: Constants.URL_HTTP_KOU_BEI).then((data) {
+    DioUtil.getInstance()
+        .get(
+            url: Constants.URL_HTTP_KOU_BEI,
+            onFailure: (e) {
+              ToastUtil.show('网络错误');
+            })
+        .then((data) {
       KouBeiEntity entity = KouBeiEntity.fromJson(data);
       List<KouBeiListItemState> list = List();
       entity.subjects.forEach((item) {
