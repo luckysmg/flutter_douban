@@ -1,6 +1,5 @@
 package u539699336qq.flutter_douban.photo_selector.adapter;
 
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,6 +7,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class ImageAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, String item) {
-        ImageView imageView = helper.getView(R.id.img);
+        PhotoView photoView = helper.getView(R.id.img);
         Glide.with(mContext)
                 .load(item)
-                .into(imageView);
+                .into(photoView);
     }
 }

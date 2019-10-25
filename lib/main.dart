@@ -83,13 +83,6 @@ class _MyAppState extends State<MyApp> {
           ),
           debugShowCheckedModeBanner: false,
           title: '豆瓣客户端',
-//          home: MultiProvider(
-//            providers: [
-//              Provider<BookMusicViewTabIndexModel>.value(
-//                  value: BookMusicViewTabIndexModel()),
-//            ],
-//            child: _splashDisplay ? _splashScreen() : MainPage(),
-//          ),
           home: _splashDisplay ? _splashScreen() : MainPage(),
         ),
       ),

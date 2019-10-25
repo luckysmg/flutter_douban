@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".photo_selector.activity.PhotoDetailActivity">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
