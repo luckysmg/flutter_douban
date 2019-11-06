@@ -71,6 +71,11 @@ class _MyAppState extends State<MyApp> {
         headerBuilder: () => DouBanRefreshHeader(),
         footerBuilder: () => CustomFooterIndicator(),
         child: MaterialApp(
+//          theme: CupertinoThemeData(
+//              textTheme: CupertinoTextThemeData(
+//                primaryColor: Colors.black,
+//              ),
+//              primaryColor: Colors.black),
           theme: ThemeData(
             pageTransitionsTheme: PageTransitionsTheme(
               builders: {
@@ -92,9 +97,8 @@ class _MyAppState extends State<MyApp> {
   ///延时闪屏
   Widget _splashScreen() {
     return Scaffold(
-      body: Container(
-        child: Image.asset(Constants.ASSETS_IMG + 'launch.jpg'),
-      ),
+      body: Image.asset(Constants.ASSETS_IMG + 'launch.jpg',
+          fit: BoxFit.fitHeight),
     );
   }
 

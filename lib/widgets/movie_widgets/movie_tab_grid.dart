@@ -109,7 +109,7 @@ class MovieTabGridState extends State<MovieTabGrid>
     if (_hotShowSubjectData == null || _comingSoonSubjectData == null) {
       return _emptyDataBody();
     } else {
-      return _filledDataBody();
+      return RepaintBoundary(child: _filledDataBody());
     }
   }
 

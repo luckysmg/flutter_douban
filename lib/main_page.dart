@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
         ScreenUtil(width: 750, height: 1334, allowFontScaling: false)
           ..init(context);
 
-    ///由于iOS平台风格的bScaffold自带懒加载效果，所以不用本身的Scaffold
+    ///由于iOS平台风格的Scaffold自带懒加载效果，所以不用本身的Scaffold
     return CupertinoTabScaffold(
       resizeToAvoidBottomInset: true,
       tabBar: _tabBar(),
