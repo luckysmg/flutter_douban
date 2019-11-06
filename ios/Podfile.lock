@@ -23,8 +23,6 @@ PODS:
     - Flutter
   - permission_handler (3.3.0):
     - Flutter
-  - photo_manager (0.0.1):
-    - Flutter
   - qr_code_scanner (0.0.2):
     - Flutter
     - MTBBarcodeScanner
@@ -48,7 +46,6 @@ DEPENDENCIES:
   - orientation (from `.symlinks/plugins/orientation/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - photo_manager (from `.symlinks/plugins/photo_manager/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -81,8 +78,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
-  photo_manager:
-    :path: ".symlinks/plugins/photo_manager/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   shared_preferences:
@@ -105,7 +100,6 @@ SPEC CHECKSUMS:
   orientation: 46fe7528896a5c3e6215366bcb462c182ebfd4e9
   path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
   permission_handler: 67637977b227d62d46bfbf524f335f8568de5a73
-  photo_manager: 47ca9adddeea702246c96c6f67769f03907cd953
   qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
