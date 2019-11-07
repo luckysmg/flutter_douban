@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/pages/other_pages/image_preview_page.dart';
@@ -19,13 +21,25 @@ class NavigatorUtil {
             fullscreenDialog: true),
       );
     } else if (finishCurrentPage) {
-      Navigator.of(context, rootNavigator: rootNavigator).pushReplacement(
-        MaterialPageRoute(builder: (context) => destinationPage),
-      );
+      if (Platform.isAndroid) {
+        Navigator.of(context, rootNavigator: rootNavigator).pushReplacement(
+          MaterialPageRoute(builder: (context) => destinationPage),
+        );
+      } else {
+        Navigator.of(context, rootNavigator: rootNavigator).pushReplacement(
+          CupertinoPageRoute(builder: (context) => destinationPage),
+        );
+      }
     } else {
-      Navigator.of(context, rootNavigator: rootNavigator).push(
-          MaterialPageRoute(
-              builder: (BuildContext context) => destinationPage));
+      if (Platform.isAndroid) {
+        Navigator.of(context, rootNavigator: rootNavigator).push(
+            MaterialPageRoute(
+                builder: (BuildContext context) => destinationPage));
+      } else {
+        Navigator.of(context, rootNavigator: rootNavigator).push(
+            CupertinoPageRoute(
+                builder: (BuildContext context) => destinationPage));
+      }
     }
   }
 

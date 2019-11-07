@@ -14,63 +14,53 @@ class SkeletonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Shimmer.fromColors(
-        direction: ShimmerDirection.ttb,
-        period: const Duration(milliseconds: 1000),
-        baseColor: Constants.APP_SKELETON_COLOR,
-        highlightColor: Colors.white,
-        child: Container(
-          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _header(),
-              _ban(),
-              _columns(),
-            ],
-          ),
-        ),
+      margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _header(),
+          _ban(),
+          _columns(),
+        ],
       ),
     );
   }
 
   Widget _header() {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: ScreenUtil().setHeight(250),
-            width: ScreenUtil().setWidth(200),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: _color),
-          ),
-          SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                color: _color,
-                height: ScreenUtil().setHeight(16),
-                width: ScreenUtil().setWidth(340),
-              ),
-              SizedBox(height: 20),
-              Container(
-                color: _color,
-                height: ScreenUtil().setHeight(16),
-                width: ScreenUtil().setWidth(340),
-              ),
-              SizedBox(height: 20),
-              Container(
-                color: _color,
-                height: ScreenUtil().setHeight(16),
-                width: ScreenUtil().setWidth(200),
-              ),
-            ],
-          )
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          height: ScreenUtil().setWidth(220) * 1.35,
+          width: ScreenUtil().setWidth(220),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10), color: _color),
+        ),
+        SizedBox(width: 20),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              color: _color,
+              height: ScreenUtil().setHeight(16),
+              width: ScreenUtil().setWidth(340),
+            ),
+            SizedBox(height: 20),
+            Container(
+              color: _color,
+              height: ScreenUtil().setHeight(16),
+              width: ScreenUtil().setWidth(340),
+            ),
+            SizedBox(height: 20),
+            Container(
+              color: _color,
+              height: ScreenUtil().setHeight(16),
+              width: ScreenUtil().setWidth(200),
+            ),
+          ],
+        )
+      ],
     );
   }
 
@@ -84,72 +74,70 @@ class SkeletonView extends StatelessWidget {
   }
 
   Widget _columns() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil().setWidth(530),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil().setWidth(180),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.9,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.9,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.9,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.7,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.8,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.7,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.7,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            color: _color,
-            height: ScreenUtil().setHeight(16),
-            width: ScreenUtil.screenWidthDp * 0.8,
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil().setWidth(530),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil().setWidth(180),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.9,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.9,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.9,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.7,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.8,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.7,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.7,
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          color: _color,
+          height: ScreenUtil().setHeight(16),
+          width: ScreenUtil.screenWidthDp * 0.8,
+        ),
+      ],
     );
   }
 }

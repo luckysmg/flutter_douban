@@ -218,11 +218,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   ///电影图片
   Widget _movieImage() {
     return Container(
-      margin: const EdgeInsets.only(right: 20),
-      height: ScreenUtil().setHeight(250),
-      width: ScreenUtil().setWidth(200),
+      margin: EdgeInsets.only(right: ScreenUtil().setWidth(28)),
+      width: ScreenUtil().setWidth(220),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         child: CachedNetworkImage(
           imageUrl: _detailData.images.large,
           fadeInDuration: Duration(milliseconds: 100),
