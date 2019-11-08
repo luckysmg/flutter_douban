@@ -17,20 +17,15 @@ class BriefIntroductionView extends StatefulWidget {
 
 class _BriefIntroductionViewState extends State<BriefIntroductionView> {
   bool isExpanded = false;
+  var height;
 
   @override
   Widget build(BuildContext context) {
+    ///内容布局
+    var content;
     if (!isExpanded) {
-      return _notExpandedLayout();
-    } else {
-      return _expandedLayout();
-    }
-  }
-
-  ///未展开时的布局
-  Widget _notExpandedLayout() {
-    return SliverToBoxAdapter(
-      child: Container(
+      height = ScreenUtil().setHeight(240);
+      content = Container(
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(12)),
         constraints: BoxConstraints(
           minHeight: 50,
@@ -67,7 +62,9 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
             GestureDetector(
               onTap: () {
                 isExpanded = true;
-                setState(() {});
+                setState(() {
+                  height = 400;
+                });
               },
               child: Align(
                 alignment: Alignment.centerRight,
@@ -84,14 +81,10 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  ///展开时的布局
-  Widget _expandedLayout() {
-    return SliverToBoxAdapter(
-      child: Container(
+      );
+    } else {
+      height = ScreenUtil().setHeight(600);
+      content = Container(
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(12)),
         constraints: BoxConstraints(
           minHeight: 50,
@@ -108,13 +101,13 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
               child: Text(
                 '简介',
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: ScreenUtil().setSp(30),
                     color: Colors.white,
                     fontWeight: FontWeight.w700),
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 10, right: 10),
+              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: Text(
                 this.widget.text,
                 style: TextStyle(
@@ -125,7 +118,11 @@ class _BriefIntroductionViewState extends State<BriefIntroductionView> {
             ),
           ],
         ),
-      ),
+      );
+    }
+
+    return SliverToBoxAdapter(
+      child: content,
     );
   }
 }
