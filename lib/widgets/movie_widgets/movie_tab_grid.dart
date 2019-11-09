@@ -99,13 +99,11 @@ class MovieTabGridState extends State<MovieTabGrid>
   ///刷新数据
   Future refreshData() async {
     await Future.delayed(Duration(milliseconds: 1000));
-    return null;
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
     if (_hotShowSubjectData == null || _comingSoonSubjectData == null) {
       return _emptyDataBody();
     } else {
@@ -318,7 +316,7 @@ class MovieTabGridState extends State<MovieTabGrid>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 500),
+                fadeInDuration: Duration(milliseconds: 200),
                 width: ScreenUtil().setWidth(220),
                 height: ScreenUtil().setHeight(260),
                 imageUrl: _hotShowSubjectData[index].images.medium,
@@ -401,7 +399,7 @@ class MovieTabGridState extends State<MovieTabGrid>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 500),
+                fadeInDuration: Duration(milliseconds: 200),
                 width: ScreenUtil().setWidth(220),
                 height: ScreenUtil().setHeight(260),
                 imageUrl: _comingSoonSubjectData[index].images.medium,

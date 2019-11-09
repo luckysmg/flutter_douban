@@ -39,7 +39,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _splashDisplay = true;
   var rootView;
 
   @override
@@ -48,7 +47,6 @@ class _MyAppState extends State<MyApp> {
     initCacheData();
     Future.delayed(Duration(milliseconds: 1500), () async {
       setState(() {
-        _splashDisplay = false;
         StatusBarUtil.showStatusBar();
       });
     });
@@ -92,31 +90,31 @@ class _MyAppState extends State<MyApp> {
         ),
       );
     } else if (Platform.isIOS) {
-      rootView = CupertinoApp(
-        debugShowCheckedModeBanner: false,
-        theme: CupertinoThemeData(
-            textTheme: CupertinoTextThemeData(
-              primaryColor: Colors.black,
-            ),
-            primaryColor: Colors.black),
-        home: OKToast(
-          textStyle: TextStyle(fontSize: 18),
-          dismissOtherOnShow: true,
-          handleTouth: true,
-          textPadding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-          radius: 10,
-          backgroundColor: Constants.APP_THEME_COLOR,
-          movingOnWindowChange: true,
-          child: RefreshConfiguration(
-            topHitBoundary: double.infinity,
-            bottomHitBoundary: double.infinity,
-            maxUnderScrollExtent: double.infinity,
-            hideFooterWhenNotFull: true,
-            headerTriggerDistance: 60,
-            maxOverScrollExtent: double.infinity,
-            headerBuilder: () => DouBanRefreshHeader(),
-            footerBuilder: () => CustomFooterIndicator(),
-            child: MaterialApp(
+      rootView = OKToast(
+        textStyle: TextStyle(fontSize: 18),
+        dismissOtherOnShow: true,
+        handleTouth: true,
+        textPadding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+        radius: 10,
+        backgroundColor: Constants.APP_THEME_COLOR,
+        movingOnWindowChange: true,
+        child: RefreshConfiguration(
+          topHitBoundary: double.infinity,
+          bottomHitBoundary: double.infinity,
+          maxUnderScrollExtent: double.infinity,
+          hideFooterWhenNotFull: true,
+          headerTriggerDistance: 60,
+          maxOverScrollExtent: double.infinity,
+          headerBuilder: () => DouBanRefreshHeader(),
+          footerBuilder: () => CustomFooterIndicator(),
+          child: CupertinoApp(
+            debugShowCheckedModeBanner: false,
+            theme: CupertinoThemeData(
+                textTheme: CupertinoTextThemeData(
+                  primaryColor: Colors.black,
+                ),
+                primaryColor: Colors.black),
+            home: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: '豆瓣客户端',
               home: MainPage(),
@@ -127,14 +125,6 @@ class _MyAppState extends State<MyApp> {
     }
     return rootView;
   }
-
-//  ///延时闪屏
-//  Widget _splashScreen() {
-//    return Scaffold(
-//      body: Image.asset(Constants.ASSETS_IMG + 'launch.jpg',
-//          fit: BoxFit.fitHeight),
-//    );
-//  }
 
   ///初始化缓存数据
   void initCacheData() {
