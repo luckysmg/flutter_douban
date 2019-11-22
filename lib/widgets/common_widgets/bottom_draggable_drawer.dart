@@ -12,17 +12,17 @@ import 'package:flutter/cupertino.dart';
 /// content的height：ScreenUtil.screenHeightDp,
 ///
 class BottomDraggableDrawer extends StatefulWidget {
-  ///原始的偏移
+  ///原始的偏移（关闭的时候距离顶部的高度）
   final double originalOffset;
+
+  ///打开的偏移（开启的时候距离顶部的高度）
+  final double minOffsetDistance;
 
   ///可拖拽的头(只有此控件能同时响应手势拖拽和点击来关闭抽屉！！)
   final Widget draggableHeader;
 
   ///内容布局
   final Widget content;
-
-  ///最大偏移量
-  final double maxOffsetDistance;
 
   ///动画时间（单位是ms，默认值 = 250ms）
   final int animationDuration;
@@ -36,7 +36,7 @@ class BottomDraggableDrawer extends StatefulWidget {
       {@required this.draggableHeader,
       @required this.content,
       @required this.originalOffset,
-      @required this.maxOffsetDistance,
+      @required this.minOffsetDistance,
       this.animationDuration = 250,
       this.onOpened,
       this.controller});
@@ -50,30 +50,14 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   BottomDraggableDrawerController controller;
 
   ValueChanged<bool> onOpened;
-
-  ///原始偏移值
   double originalOffset;
-
-  ///当前的偏移值
   double offsetDistance;
-
-  ///这个是最大的偏移量
-  double maxOffsetDistance;
-
-  ///动画时间
+  double minOffsetDistance;
   int animationDuration;
-
   double startPos;
   double endPos;
-
-  ///是否已经到达底部的标示
   bool hasToBottom = true;
-
-  ///到顶部
   bool toTop = false;
-
-  ///方向标示
-
   AnimationController animationController;
   Animation<double> animation;
 
@@ -84,10 +68,10 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
     controller?.state = this;
     onOpened = widget.onOpened;
     originalOffset = this.widget.originalOffset;
-    maxOffsetDistance = this.widget.maxOffsetDistance;
+    minOffsetDistance = this.widget.minOffsetDistance;
     offsetDistance = originalOffset;
     animationDuration = this.widget.animationDuration;
-    offsetDistance = offsetDistance.clamp(maxOffsetDistance, originalOffset);
+    offsetDistance = offsetDistance.clamp(minOffsetDistance, originalOffset);
     animationDuration = this.widget.animationDuration;
     animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: animationDuration));
@@ -97,13 +81,14 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   void didUpdateWidget(BottomDraggableDrawer oldWidget) {
     super.didUpdateWidget(oldWidget);
     controller = widget.controller;
+    controller?.state = this;
     onOpened = widget.onOpened;
     hasToBottom = true;
     originalOffset = widget.originalOffset;
-    maxOffsetDistance = widget.maxOffsetDistance;
+    minOffsetDistance = widget.minOffsetDistance;
     offsetDistance = originalOffset;
     animationDuration = widget.animationDuration;
-    offsetDistance = offsetDistance.clamp(maxOffsetDistance, originalOffset);
+    offsetDistance = offsetDistance.clamp(minOffsetDistance, originalOffset);
     animationDuration = widget.animationDuration;
   }
 
@@ -174,7 +159,7 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
     } else {
       startPos = offsetDistance;
     }
-    endPos = maxOffsetDistance;
+    endPos = minOffsetDistance;
     animationController.value = 0.0;
     final CurvedAnimation curve = CurvedAnimation(
         parent: animationController, curve: Curves.linearToEaseOut);
@@ -194,7 +179,7 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
     hasToBottom = true;
 
     if (!isDragging) {
-      startPos = maxOffsetDistance;
+      startPos = minOffsetDistance;
     } else {
       startPos = offsetDistance;
     }

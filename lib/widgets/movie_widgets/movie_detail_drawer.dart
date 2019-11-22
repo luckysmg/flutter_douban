@@ -25,7 +25,7 @@ class MovieDetailDrawer extends StatelessWidget {
       bottom: 0,
       child: BottomDraggableDrawer(
         controller: controller,
-        maxOffsetDistance: ScreenUtil.screenHeightDp * 0.2,
+        minOffsetDistance: ScreenUtil.screenHeightDp * 0.2,
 
         ///打开后离顶部的高度
         originalOffset: ScreenUtil.screenHeightDp * 0.98,

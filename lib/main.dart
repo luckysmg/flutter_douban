@@ -12,7 +12,6 @@ import 'package:orientation/orientation.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 import 'model/book_music_view_tab_index_model.dart';
 import 'widgets/common_widgets/custom_footer_indicator.dart';
