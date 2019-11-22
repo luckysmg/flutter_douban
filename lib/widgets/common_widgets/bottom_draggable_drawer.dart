@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
 /// @created LuckySmg
@@ -83,7 +81,7 @@ class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   void initState() {
     super.initState();
     controller = widget.controller;
-    controller.state = this;
+    controller?.state = this;
     onOpened = widget.onOpened;
     originalOffset = this.widget.originalOffset;
     maxOffsetDistance = this.widget.maxOffsetDistance;

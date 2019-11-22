@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
 import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
+import 'package:flutter_douban/test.dart';
 import 'package:flutter_douban/util/constants.dart';
+import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/bottom_draggable_drawer.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_view_with_nav_bar.dart';
@@ -174,6 +176,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return GestureDetector(
       onTap: () {
         controller.switchDrawerStatus();
+//        NavigatorUtil.push(context, MainPage());
       },
       child: Container(
         margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
