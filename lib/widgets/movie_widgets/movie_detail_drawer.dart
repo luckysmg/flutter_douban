@@ -13,8 +13,10 @@ import 'long_comment_list_view.dart';
 class MovieDetailDrawer extends StatelessWidget {
   final MovieLongCommentEntity longCommentData;
   final bool isComingSoon;
+  final controller;
 
-  MovieDetailDrawer({Key key, this.longCommentData, this.isComingSoon})
+  MovieDetailDrawer(
+      {Key key, this.longCommentData, this.isComingSoon, this.controller})
       : super(key: key);
 
   @override
@@ -22,8 +24,13 @@ class MovieDetailDrawer extends StatelessWidget {
     return Positioned(
       bottom: 0,
       child: BottomDraggableDrawer(
-        maxOffsetDistance: ScreenUtil.screenHeightDp * 0.18,
+        controller: controller,
+        maxOffsetDistance: ScreenUtil.screenHeightDp * 0.2,
+
+        ///打开后离顶部的高度
         originalOffset: ScreenUtil.screenHeightDp * 0.98,
+
+        ///没打开的时候离顶部的高度
         draggableHeader: _header(),
         content: isComingSoon
             ? _comingSoonEmptyDrawer()

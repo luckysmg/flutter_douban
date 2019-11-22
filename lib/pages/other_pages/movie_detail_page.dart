@@ -6,6 +6,7 @@ import 'package:flutter_douban/entity/movie_long_comment_entity.dart';
 import 'package:flutter_douban/model/movie_detail_model.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/toast_util.dart';
+import 'package:flutter_douban/widgets/common_widgets/bottom_draggable_drawer.dart';
 import 'package:flutter_douban/widgets/common_widgets/skeleton_view_with_nav_bar.dart';
 import 'package:flutter_douban/widgets/movie_widgets/brief_introduction_view.dart';
 import 'package:flutter_douban/widgets/movie_widgets/buy_ticket_view.dart';
@@ -41,6 +42,9 @@ class MovieDetailPage extends StatefulWidget {
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
+  final BottomDraggableDrawerController controller =
+      BottomDraggableDrawerController();
+
   final Color _textColor = Colors.white;
 
   Color _bgColor = Colors.blueGrey[600];
@@ -109,6 +113,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         children: <Widget>[
           _mainBody(),
           MovieDetailDrawer(
+            controller: controller,
             longCommentData: _longCommentData,
             isComingSoon: widget.isComingSoon,
           ),
@@ -166,11 +171,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   ///appbar右边的'更多'按钮
   Widget _moreIcon() {
-    return Container(
-      margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
-      child: Icon(
-        Icons.more_horiz,
-        size: ScreenUtil().setHeight(40),
+    return GestureDetector(
+      onTap: () {
+        controller.switchDrawerStatus();
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
+        child: Icon(
+          Icons.more_horiz,
+          size: ScreenUtil().setHeight(40),
+        ),
       ),
     );
   }

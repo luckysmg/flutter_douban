@@ -13,15 +13,17 @@ class SkeletonView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _header(),
-          _ban(),
-          _columns(),
-        ],
+    return Shimmer.fromColors(
+      child: Container(
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _header(),
+            _ban(),
+            _columns(),
+          ],
+        ),
       ),
     );
   }

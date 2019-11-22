@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
-/// @created by 文景睿
-/// description:自定义的底部抽屉控件(这个为自定义控件的特效,属于高级UI的部分
-///  涉及到手势交互，动画拆分等，逻辑较难，建议在学完基础之后在看此类）
+/// @created LuckySmg
 ///
-/// 推荐参数：
-/// maxOffsetDistance: ScreenUtil.screenHeightDp * 0.16,
+/// 示例参数（各位可以根据示例参数慢慢调整，以下是给出的示例）：
+/// 关于ScreenUtil：https://pub.dev/packages/flutter_screenutil
+/// 注意（这些高度都是离对顶部的高度，在外部positioned的bottom为0的情况下）
+/// maxOffsetDistance: ScreenUtil.screenHeightDp * 0.18,
 /// originalOffset: ScreenUtil.screenHeightDp * 0.98,
 /// content的height：ScreenUtil.screenHeightDp,
-/// header高度  ScreenUtil().setHeight(90)
 ///
 class BottomDraggableDrawer extends StatefulWidget {
   ///原始的偏移
   final double originalOffset;
 
-  ///可拖拽的头(只有此控件能同时响应手势拖拽和点击来关闭抽屉)
+  ///可拖拽的头(只有此控件能同时响应手势拖拽和点击来关闭抽屉！！)
   final Widget draggableHeader;
 
   ///内容布局
@@ -26,24 +26,33 @@ class BottomDraggableDrawer extends StatefulWidget {
   ///最大偏移量
   final double maxOffsetDistance;
 
-  ///动画时间（单位是毫秒，默认值=250）
+  ///动画时间（单位是ms，默认值 = 250ms）
   final int animationDuration;
 
-  final double d = ScreenUtil.screenHeightDp;
+  ///打开或关闭的状态回调
+  final ValueChanged onOpened;
+
+  final BottomDraggableDrawerController controller;
 
   BottomDraggableDrawer(
       {@required this.draggableHeader,
       @required this.content,
       @required this.originalOffset,
       @required this.maxOffsetDistance,
-      this.animationDuration = 200});
+      this.animationDuration = 250,
+      this.onOpened,
+      this.controller});
 
   @override
-  _BottomDraggableDrawerState createState() => _BottomDraggableDrawerState();
+  BottomDraggableDrawerState createState() => BottomDraggableDrawerState();
 }
 
-class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
+class BottomDraggableDrawerState extends State<BottomDraggableDrawer>
     with TickerProviderStateMixin {
+  BottomDraggableDrawerController controller;
+
+  ValueChanged<bool> onOpened;
+
   ///原始偏移值
   double originalOffset;
 
@@ -53,7 +62,7 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   ///这个是最大的偏移量
   double maxOffsetDistance;
 
-  ///时间
+  ///动画时间
   int animationDuration;
 
   double startPos;
@@ -61,7 +70,9 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
 
   ///是否已经到达底部的标示
   bool hasToBottom = true;
-  bool toTop;
+
+  ///到顶部
+  bool toTop = false;
 
   ///方向标示
 
@@ -71,7 +82,9 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   @override
   void initState() {
     super.initState();
-
+    controller = widget.controller;
+    controller.state = this;
+    onOpened = widget.onOpened;
     originalOffset = this.widget.originalOffset;
     maxOffsetDistance = this.widget.maxOffsetDistance;
     offsetDistance = originalOffset;
@@ -85,13 +98,15 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
   @override
   void didUpdateWidget(BottomDraggableDrawer oldWidget) {
     super.didUpdateWidget(oldWidget);
+    controller = widget.controller;
+    onOpened = widget.onOpened;
     hasToBottom = true;
-    originalOffset = this.widget.originalOffset;
-    maxOffsetDistance = this.widget.maxOffsetDistance;
+    originalOffset = widget.originalOffset;
+    maxOffsetDistance = widget.maxOffsetDistance;
     offsetDistance = originalOffset;
-    animationDuration = this.widget.animationDuration;
+    animationDuration = widget.animationDuration;
     offsetDistance = offsetDistance.clamp(maxOffsetDistance, originalOffset);
-    animationDuration = this.widget.animationDuration;
+    animationDuration = widget.animationDuration;
   }
 
   @override
@@ -103,9 +118,9 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
           GestureDetector(
             onTap: () {
               if (hasToBottom) {
-                _open(false);
+                open(false);
               } else {
-                _close(false);
+                close(false);
               }
             },
             onVerticalDragStart: _start,
@@ -139,22 +154,22 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
 
   void _end(DragEndDetails details) {
     if (details.velocity.pixelsPerSecond.dy < 0) {
-      _open(true);
+      open(true);
       return;
     } else if (details.velocity.pixelsPerSecond.dy > 0) {
-      _close(true);
+      close(true);
       return;
     }
 
     if (toTop) {
-      _open(true);
+      open(true);
     } else {
-      _close(true);
+      close(true);
     }
   }
 
   ///打开抽屉
-  void _open(bool isDragging) {
+  void open(bool isDragging) {
     hasToBottom = false;
     if (!isDragging) {
       startPos = originalOffset;
@@ -171,10 +186,13 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
         setState(() {});
       });
     animationController.forward();
+    if (onOpened != null) {
+      onOpened(true);
+    }
   }
 
   ///关闭抽屉
-  void _close(bool isDragging) {
+  void close(bool isDragging) {
     hasToBottom = true;
 
     if (!isDragging) {
@@ -193,5 +211,21 @@ class _BottomDraggableDrawerState extends State<BottomDraggableDrawer>
         setState(() {});
       });
     animationController.forward();
+    if (onOpened != null) {
+      onOpened(false);
+    }
+  }
+}
+
+///控制器
+class BottomDraggableDrawerController {
+  BottomDraggableDrawerState state;
+
+  void switchDrawerStatus() {
+    if (state.hasToBottom) {
+      state.open(false);
+    } else {
+      state.close(false);
+    }
   }
 }
