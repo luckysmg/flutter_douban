@@ -54,7 +54,7 @@ import 'package:flutter/painting.dart';
 ///   * [PaletteTarget], to be able to create your own target color types.
 ///   * [PaletteFilter], a function signature for filtering the allowed colors
 ///     in the palette.
-class PaletteGenerator extends Diagnosticable {
+class PaletteGenerator with Diagnosticable {
   /// Create a [PaletteGenerator] from a set of paletteColors and targets.
   ///
   /// The usual way to create a [PaletteGenerator] is to use the asynchronous
@@ -347,16 +347,6 @@ class PaletteGenerator extends Diagnosticable {
 
     return saturationScore + valueScore + populationScore;
   }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(IterableProperty<PaletteColor>(
-        'paletteColors', paletteColors,
-        defaultValue: <PaletteColor>[]));
-    properties.add(IterableProperty<PaletteTarget>('targets', targets,
-        defaultValue: PaletteTarget.baseTargets));
-  }
 }
 
 /// A class which allows custom selection of colors when a [PaletteGenerator] is
@@ -368,7 +358,7 @@ class PaletteGenerator extends Diagnosticable {
 /// See also:
 ///
 ///   * [PaletteGenerator], a class for selecting color palettes from images.
-class PaletteTarget extends Diagnosticable {
+class PaletteTarget with Diagnosticable {
   /// Creates a [PaletteTarget] for custom palette selection.
   ///
   /// None of the arguments can be null.
@@ -596,7 +586,7 @@ typedef _ContrastCalculator = double Function(Color a, Color b, int alpha);
 /// See also:
 ///
 ///   * [PaletteGenerator], a class for selecting color palettes from images.
-class PaletteColor extends Diagnosticable {
+class PaletteColor with Diagnosticable {
   /// Generate a [PaletteColor].
   ///
   /// The `color` and `population` parameters must not be null.

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_douban/pages/other_pages/qr_code_page.dart';
 import 'package:flutter_douban/util/constants.dart';
 import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,10 +37,7 @@ class _PersonPageState extends State<PersonPage> {
           _appBar(),
           SliverList(
             delegate: SliverChildListDelegate(
-              [
-                _useNetworkTile(),
-                _qrCodeEntry(),
-              ],
+              [],
             ),
           ),
         ],
@@ -68,79 +64,6 @@ class _PersonPageState extends State<PersonPage> {
       backgroundColor: Colors.green,
       centerTitle: true,
       title: Text('我的'),
-    );
-  }
-
-  ///是否使用真实网络数据的ListTile
-  Widget _useNetworkTile() {
-    return ListTile(
-      leading: Icon(Icons.wifi),
-      title: Text('书影音是否使用真实网络收据'),
-      trailing: CupertinoSwitch(
-        value: isUsingRealNetwork,
-        onChanged: (value) {
-          SharedPreferences.getInstance().then((data) {
-            data.setBool(Constants.USE_REAL_NETWORK, value);
-          });
-          setState(() {
-            isUsingRealNetwork = value;
-          });
-
-          showDialog(
-            context: context,
-            builder: (context) {
-              return Container(
-                child: CupertinoAlertDialog(
-                  title: Text('注意'),
-                  content: Center(
-                    child: Text('请关闭app后重启生效!',
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(28),
-                            letterSpacing: 2)),
-                  ),
-                  actions: <Widget>[
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Container(
-                        width: double.infinity,
-                        color: Colors.transparent,
-                        alignment: Alignment.center,
-                        margin:
-                            EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-                        child: GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                bottom: ScreenUtil().setHeight(20)),
-                            child: Text('确定',
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(35),
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w500,
-                                    decoration: TextDecoration.none)),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _qrCodeEntry() {
-    return GestureDetector(
-      onTap: () {
-        NavigatorUtil.push(context, QrCodePage(), rootNavigator: true);
-      },
-      child: ListTile(
-        leading: Icon(Icons.pages),
-        title: Text('进入二维码生成界面'),
-      ),
     );
   }
 }

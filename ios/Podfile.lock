@@ -6,55 +6,79 @@ PODS:
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - connectivity_for_web (0.1.0):
+    - Flutter
+  - connectivity_macos (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
-  - flutter_tab_bar_no_ripple (0.0.1):
+  - flutter_plugin_android_lifecycle (0.0.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - image_picker (0.0.1):
     - Flutter
-  - MTBBarcodeScanner (5.0.11)
   - orientation (0.0.1):
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - path_provider_linux (0.0.1):
+    - Flutter
+  - path_provider_macos (0.0.1):
+    - Flutter
+  - path_provider_windows (0.0.1):
+    - Flutter
   - permission_handler (3.3.0):
     - Flutter
-  - qr_code_scanner (0.0.2):
-    - Flutter
-    - MTBBarcodeScanner
   - Reachability (3.2)
   - shared_preferences (0.0.1):
+    - Flutter
+  - shared_preferences_linux (0.0.1):
+    - Flutter
+  - shared_preferences_macos (0.0.1):
+    - Flutter
+  - shared_preferences_web (0.0.1):
+    - Flutter
+  - shared_preferences_windows (0.0.1):
     - Flutter
   - sqflite (0.0.1):
     - Flutter
     - FMDB (~> 2.7.2)
   - video_player (0.0.1):
     - Flutter
+  - video_player_web (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - connectivity_for_web (from `.symlinks/plugins/connectivity_for_web/ios`)
+  - connectivity_macos (from `.symlinks/plugins/connectivity_macos/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
-  - flutter_tab_bar_no_ripple (from `.symlinks/plugins/flutter_tab_bar_no_ripple/ios`)
+  - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - orientation (from `.symlinks/plugins/orientation/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
+  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
+  - path_provider_windows (from `.symlinks/plugins/path_provider_windows/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - shared_preferences_linux (from `.symlinks/plugins/shared_preferences_linux/ios`)
+  - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
+  - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
+  - shared_preferences_windows (from `.symlinks/plugins/shared_preferences_windows/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
+  - video_player_web (from `.symlinks/plugins/video_player_web/ios`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FMDB
-    - MTBBarcodeScanner
     - Reachability
 
 EXTERNAL SOURCES:
@@ -64,48 +88,74 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/camera/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
+  connectivity_for_web:
+    :path: ".symlinks/plugins/connectivity_for_web/ios"
+  connectivity_macos:
+    :path: ".symlinks/plugins/connectivity_macos/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
-  flutter_tab_bar_no_ripple:
-    :path: ".symlinks/plugins/flutter_tab_bar_no_ripple/ios"
+  flutter_plugin_android_lifecycle:
+    :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   orientation:
     :path: ".symlinks/plugins/orientation/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_linux:
+    :path: ".symlinks/plugins/path_provider_linux/ios"
+  path_provider_macos:
+    :path: ".symlinks/plugins/path_provider_macos/ios"
+  path_provider_windows:
+    :path: ".symlinks/plugins/path_provider_windows/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
-  qr_code_scanner:
-    :path: ".symlinks/plugins/qr_code_scanner/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
+  shared_preferences_linux:
+    :path: ".symlinks/plugins/shared_preferences_linux/ios"
+  shared_preferences_macos:
+    :path: ".symlinks/plugins/shared_preferences_macos/ios"
+  shared_preferences_web:
+    :path: ".symlinks/plugins/shared_preferences_web/ios"
+  shared_preferences_windows:
+    :path: ".symlinks/plugins/shared_preferences_windows/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   video_player:
     :path: ".symlinks/plugins/video_player/ios"
+  video_player_web:
+    :path: ".symlinks/plugins/video_player_web/ios"
 
 SPEC CHECKSUMS:
   audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
-  camera: 38cc83ae9a5667bb5a71c7d9edaf60a91920fd4e
-  connectivity: 6e94255659cc86dcbef1d452ad3e0491bb1b3e75
+  camera: a0ca5080336f7af47b88436e5e26da3dee5568f0
+  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  connectivity_for_web: 2b8584556930d4bd490d82b836bcf45067ce345b
+  connectivity_macos: e2e9731b6b22dda39eb1b128f6969d574460e191
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_local_notifications: 9e4738ce2471c5af910d961a6b7eadcf57c50186
-  flutter_tab_bar_no_ripple: 1bfb1062778100558481b918dc17dfec7b31d80b
+  flutter_plugin_android_lifecycle: dc0b544e129eebb77a6bfb1239d4d1c673a60a35
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
-  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
-  orientation: 46fe7528896a5c3e6215366bcb462c182ebfd4e9
-  path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
+  image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
+  orientation: 6c9203efe86ce4cff379756910f18b2d745628c3
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
+  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
+  path_provider_windows: a2b81600c677ac1959367280991971cb9a1edb3b
   permission_handler: 67637977b227d62d46bfbf524f335f8568de5a73
-  qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
-  sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
-  video_player: 69c5f029fac4ffe4fc8a85ea7f7b793709661549
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  shared_preferences_linux: afefbfe8d921e207f01ede8b60373d9e3b566b78
+  shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
+  shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
+  shared_preferences_windows: 36b76d6f54e76ead957e60b49e2f124b4cd3e6ae
+  sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
+  video_player_web: da8cadb8274ed4f8dbee8d7171b420dedd437ce7
 
-PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
+PODFILE CHECKSUM: 2ef0a40072d836b2e62fb7fcb125a5e514afe953
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1

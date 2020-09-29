@@ -37,12 +37,12 @@ class _ImagePreviewPageState extends State<ImagePreviewPage> {
   @override
   Widget build(BuildContext context) {
     return ExtendedImageSlidePage(
-      slideEndHandler: (offset) {
-        return _slideEndHandler(offset: offset);
-      },
-      slideScaleHandler: (offset) {
-        return _slideScaleHandler(offset: offset);
-      },
+      // slideEndHandler: (offset) {
+      //   return _slideEndHandler(offset: offset);
+      // },
+      // slideScaleHandler: (offset) {
+      //   return _slideScaleHandler(offset: offset);
+      // },
       slidePageBackgroundHandler: (offset, size) {
         ///这里根据他的offset的状态回调设置背景的透明度
         return _slidePageBackgroundHandler(offset: offset, pageSize: size);

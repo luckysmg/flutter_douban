@@ -14,7 +14,6 @@ import 'package:flutter_douban/util/navigatior_util.dart';
 import 'package:flutter_douban/util/toast_util.dart';
 import 'package:flutter_douban/widgets/common_widgets/custom_scroll_behavior.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -98,7 +97,7 @@ class _BookMusicState extends State<BookMusicPage>
       preferredSize: Size.fromHeight(30),
       child: Container(
         alignment: Alignment.topLeft,
-        child: TabBarNoRipple(
+        child: TabBar(
           labelPadding: EdgeInsets.only(
               left: ScreenUtil().setWidth(20),
               right: ScreenUtil().setWidth(20),

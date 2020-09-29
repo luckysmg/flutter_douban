@@ -24,52 +24,45 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  dio: ^2.1.7
+  dio: ^3.0.10
   camera: ^0.5.4
   flutter_easyrefresh: ^2.0.4
   json_annotation: ^2.0.0
-  cached_network_image: ^1.1.1
+  cached_network_image: ^2.3.0
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^0.5.3
   bubble_tab_indicator: ^0.1.4
   keyboard_actions: ^2.1.2
   shared_preferences: ^0.5.3+4
-  flutter_tab_bar_no_ripple: ^0.1.1
   carousel_slider: ^1.3.0
   flutter_rating_bar: ^1.3.0+1
-  extended_image: ^0.6.3
+  extended_image: ^1.1.2
   provider: ^3.1.0
   fluro: ^1.5.1
   flutter_sticky_header: ^0.4.0
   video_player: ^0.10.2+3
   oktoast: ^2.1.9
   flutter_slidable: ^0.5.3
-  fish_redux: ^0.2.5
+  fish_redux: ^0.3.4
   permission_handler: ^3.2.2
   image_picker: ^0.6.1+8
   flare_flutter: ^1.5.8
   shimmer: ^1.0.1
   pull_to_refresh: ^1.5.7
+  flustars: ^0.3.2
   orientation: ^1.1.0
   rating_bar: ^0.2.0
-  qr_flutter: ^3.0.1
-  qr_code_scanner: ^0.0.12
+  #  qr_flutter: ^3.0.1
+  #  qr_code_scanner: ^0.0.12
   audioplayers: ^0.13.2
   connectivity: ^0.4.4
   flutter_staggered_grid_view: ^0.3.0
   flutter_local_notifications: ^0.8.4
+  flutter_swipe_action_cell: ^1.2.1
+  event_bus: ^1.1.1
 
 
 dev_dependencies:
-  build_runner: ^1.0.0
-  json_serializable: ^2.0.0
-  flutter_test:
-    sdk: flutter
-  flutter_driver:
-    sdk: flutter
-  test: any
-
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

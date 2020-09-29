@@ -11,6 +11,8 @@ import 'package:flutter_douban/widgets/movie_widgets/movie_top_cards.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../http/mock_request.dart';
+
 ///
 /// @created by 文景睿
 /// description:当底部tab书影音，且顶部tab处于'电影'的页面（此页面没用状态管理，新手可以从此页面学起）

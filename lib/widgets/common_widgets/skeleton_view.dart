@@ -14,6 +14,8 @@ class SkeletonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
+      baseColor: Colors.grey,
+      highlightColor: Colors.white,
       child: Container(
         margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: Column(

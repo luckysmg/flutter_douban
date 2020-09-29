@@ -25,7 +25,10 @@ class CustomTransitionsBuilder extends PageTransitionsBuilder {
         curve: Curves.easeIn,
         reverseCurve: Curves.easeInOut);
 
-    return CupertinoPageRoute.buildPageTransitions(
-        route, context, customAnimation, customSecondaryAnimation, child);
+    return CupertinoPageTransition(
+        primaryRouteAnimation: customAnimation,
+        secondaryRouteAnimation: customSecondaryAnimation,
+        child: child,
+        linearTransition: true);
   }
 }
