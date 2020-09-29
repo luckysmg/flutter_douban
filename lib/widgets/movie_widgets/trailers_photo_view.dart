@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/entity/movie_detail_entity.dart';
@@ -153,9 +154,8 @@ class TrailersPhotoView extends StatelessWidget {
         child: Hero(
           transitionOnUserGestures: true,
           tag: data.photos[index - data.trailers.length].image,
-          child: CachedNetworkImage(
-            imageUrl: data.photos[index - data.trailers.length].image,
-            fadeInDuration: Duration(milliseconds: 200),
+          child: ExtendedImage.network(
+             data.photos[index - data.trailers.length].image,
           ),
         ),
       ),
