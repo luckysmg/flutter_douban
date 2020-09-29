@@ -19,6 +19,7 @@
 - 可选择用真实网络API的数据还是用本地的模拟数据
 - 图片预览，拖拽返回
 
+[体验apk点击这里下载](https://github.com/luckysmg/flutter_douban/raw/master/app-release.apk)
 
 
 ## 截图
